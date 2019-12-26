@@ -1,6 +1,6 @@
 # proyecto2python
 ## Integrantes:
-* Ysabel Ardila
-* José Barrientos
-* Herick Navarro
-* Jorge Viloria
+* Ysabel Ardila --> ysabelardila
+* José Barrientos --> Joseeli54
+* Herick Navarro --> herick1
+* Jorge Viloria --> javiloria
