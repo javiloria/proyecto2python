@@ -11,8 +11,7 @@ class User(AbstractUser):
     esInvitado = models.BooleanField(default=False)
 
     def __init__(self, *args, **kwargs):
-        super(User, self).__init__(*args, **kwargs)
-
+        return super(User, self).__init__(*args, **kwargs)
 
 class Persona(models.Model):
     PROFESOR = 'PRO'
@@ -85,7 +84,7 @@ class Propuesta(models.Model):
     estatus = models.ForeignKey(PropuestasEstatus, on_delete=models.CASCADE, related_name="PropuestasEstatus",verbose_name="estatus de la propuesta")
     estudiante_1 = models.ForeignKey(Persona, on_delete=models.CASCADE, related_name="propuesta_estudiante_1", verbose_name="estudiante 1")
     estudiante_2 = models.ForeignKey(Persona, on_delete=models.CASCADE, null=True, blank=True, related_name="propuesta_estudiante_2", verbose_name="estudiante 2")
-    tutor_academico = models.ForeignKey(Personaa, on_delete=models.CASCADE, related_name="propuesta_tutor_academico", verbose_name="tutor académico")
+    tutor_academico = models.ForeignKey(Persona, on_delete=models.CASCADE, related_name="propuesta_tutor_academico", verbose_name="tutor académico")
     tutor_empresa = models.ForeignKey(Persona, on_delete=models.CASCADE, related_name="propuesta_tutor_empresa", verbose_name="tutor empresarial")
     termin = models.ForeignKey(Termin, on_delete=models.CASCADE, related_name="propuesta_termin", verbose_name="terminología en la que se entrego")
 

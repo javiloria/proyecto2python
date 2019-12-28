@@ -19,11 +19,9 @@ from django.urls import include,path
 #HERICK: importamos todas nuestras vistas aqui 
 from .views import gestorAppTG
 from .views import propuestas
-from .views import personas
-from .views import tesisEstatus
+from .views import persona
 from .views import tesis
 from .views import termin
-from .views import propuestasEstatus
 
 
 urlpatterns = [
@@ -43,11 +41,11 @@ urlpatterns = [
     ], 'gestorAppTG'), namespace='propuestas')),
 
     path('personas/', include(([
-        path('', personas.IndexView.as_view(), name='personas_list'),
-        path('<int:pk>/', personas.DetailView.as_view(), name='personas_details'),
-        path('create/', personas.CreatePersonaView.as_view(), name='personas_create'),
-        path('<int:pk>/update/', personas.UpdatePersonaView.as_view(), name='personas_update'),
-        path('<int:pk>/delete/', personas.DeletePersonaView.as_view(), name='personas_delete')
+        path('', persona.IndexView.as_view(), name='personas_list'),
+        path('<int:pk>/', persona.DetailView.as_view(), name='personas_details'),
+        path('create/', persona.CreatePersonaView.as_view(), name='personas_create'),
+        path('<int:pk>/update/', persona.UpdatePersonaView.as_view(), name='personas_update'),
+        path('<int:pk>/delete/', persona.DeletePersonaView.as_view(), name='personas_delete')
     ], 'gestorAppTG'), namespace='personas')),
 
     path('tesis/', include(([
@@ -62,25 +60,7 @@ urlpatterns = [
         path('', termin.IndexView.as_view(), name='termin_list'),
         path('create/', termin.CreateTerminView.as_view(), name='termin_create'),
         path('<int:pk>/update/', termin.UpdateTerminView.as_view(), name='termin_update'),
-        path('<int:pk>/delete/', term.DeleteTerminView.as_view(), name='termin_delete')
+        path('<int:pk>/delete/', termin.DeleteTerminView.as_view(), name='termin_delete')
     ], 'gestorAppTG'), namespace='terms')),
-
-
-    #estatusss:
-
-    path('propuestasEstatus/', include(([
-        path('', propuestasEstatus.IndexView.as_view(), name='propuestasEstatus_list'),
-        path('create/', propuestasEstatus.CreatePropuestasEstatusView.as_view(), name='propuestasEstatus_create'),
-        path('<int:pk>/update/', propuestasEstatus.UpdatePropuestasEstatusView.as_view(), name='propuestasEstatus_update'),
-        path('<int:pk>/delete/', propuestasEstatus.DeletePropuestasEstatusView.as_view(), name='propuestasEstatus_delete'),
-    ], 'gestorAppTG'), namespace='propuestasEstatus')),
-
-    path('tesisEstatus/', include(([
-        path('', tesisEstatus.IndexView.as_view(), name='tesisEstatus_list'),
-        path('create/', tesisEstatus.CreateTesisEstatusView.as_view(), name='tesisEstatus_create'),
-        path('<int:pk>/update/', tesisEstatus.UpdateTesisEstatusView.as_view(), name='tesisEstatus_update'),
-        path('<int:pk>/delete/', tesisEstatus.DeleteTesisEstatusView.as_view(), name='tesisEstatus_delete'),
-    ], 'gestorAppTG'), namespace='tesisEstatus')),
-
 
 ]

@@ -12,7 +12,7 @@ from ..decorador import *
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class IndexView(generic.ListView):
-    template_name = 'propuesta/index.html'
+    template_name = 'propuestas/index.html'
     context_object_name = 'propuestas_ultimos'
     
     def get_queryset(self):
@@ -21,13 +21,13 @@ class IndexView(generic.ListView):
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class DetailView(generic.DetailView):
     model = Propuesta
-    template_name = 'propuesta/detail.html'
+    template_name = 'propuestas/detail.html'
 
 @method_decorator([login_required, manager_permisos], name='dispatch')
 class CreatePropuestaView(generic.CreateView):
     model = Propuesta
     fields = "__all__"
-    template_name = 'propuesta/create.html'
+    template_name = 'propuestas/create.html'
     def formu_valido(self, form):
         propuesta = form.save(commit=False)
         propuesta.save()
@@ -38,7 +38,7 @@ class CreatePropuestaView(generic.CreateView):
 class UpdatePropuestaView(generic.UpdateView):
     model = Propuesta
     fields = "__all__"
-    template_name = 'propuesta/update.html'
+    template_name = 'propuestas/update.html'
     def formu_valido(self, form):
         propuesta = form.save(commit=False)
         propuesta.save()
@@ -47,6 +47,6 @@ class UpdatePropuestaView(generic.UpdateView):
 
 @method_decorator([login_required, manager_permisos], name='dispatch')
 class DeletePropuestaView(generic.DeleteView):
-    model = propuesta
-    template_name = 'propuesta/delete.html'
+    model = Propuesta
+    template_name = 'propuestas/delete.html'
     success_url = reverse_lazy('propuestas:propuestas_list')

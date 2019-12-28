@@ -28,7 +28,7 @@ class CreateTerminView(generic.CreateView):
         return redirect('terms:terms_list')
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
-class UpdateTermView(generic.UpdateView):
+class UpdateTerminView(generic.UpdateView):
     model = Termin
     fields = "__all__"
     template_name = 'termin/update.html'
@@ -39,7 +39,7 @@ class UpdateTermView(generic.UpdateView):
         return redirect('termins:termins_list')
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
-class DeleteTermView(generic.DeleteView):
+class DeleteTerminView(generic.DeleteView):
     model = Termin
     template_name = 'termin/delete.html'
     success_url = reverse_lazy('termins:termins_list')
