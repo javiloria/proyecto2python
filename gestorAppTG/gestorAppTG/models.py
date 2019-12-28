@@ -9,7 +9,6 @@ class User(AbstractUser):
     esAdmin = models.BooleanField(default=False)
     esManager = models.BooleanField(default=False)
     esInvitado = models.BooleanField(default=False)
-
     def __init__(self, *args, **kwargs):
         return super(User, self).__init__(*args, **kwargs)
 
@@ -20,7 +19,7 @@ class Persona(models.Model):
     TYPE_CHOICES = [
         (PROFESOR, 'Profesor'),
         (ESTUDIANTE, 'Estudiante'),
-        (AFUERA, 'Externo') #TODO: cambiar externo
+        (AFUERA, 'Afuera') #TODO: cambiar externo
     ]
 
     type = models.CharField(max_length=20,choices=TYPE_CHOICES, verbose_name="tipo")
@@ -133,7 +132,7 @@ class Defensa(models.Model):
     jurado_1 = models.BooleanField(default=False,verbose_name="jurado 1 ")
     jurado_2 = models.BooleanField(default=False,verbose_name="jurado 2 ")
     jurado_3 = models.BooleanField(default=False,verbose_name="jurado 3 ")
-    calificacion = models.IntegerField(verbose_name="calificación") #AGregar validacion de la calificacion
+    calificacion = models.IntegerField(verbose_name="calificación") 
     mencion_publicacion = models.BooleanField(default=False,verbose_name="mención publicación")
     mencion_honorifica = models.BooleanField(default=False,verbose_name="mención honorífica")
     correcciones = models.BooleanField(default=False,verbose_name="se entregaron correcciones")
