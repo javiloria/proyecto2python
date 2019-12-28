@@ -9,15 +9,17 @@
 ## ejecutar este proyecto
 1. clone este repositorio
 
-2. ejecute Scripts\activate.bat 
+2. ejecute: Scripts\activate.bat 
 	Esto para ejecutar el ambiente virtual
 
 3. pip install django 
 	* nota: ESte paso solo se hace si no tenia django instalado
 
-4. cd gestorAppTG
+5. ejecutar: pip install -r requirements.txt
 
-5. python manage.py runserver 
+6. cd gestorAppTG
+
+7. python manage.py runserver 
 	* nota: Al hacer este ultimo comando le deberia de aparecer algo como esto: 
 
 	Django version 3.0.1, using settings 'gestorAppTG.settings'
