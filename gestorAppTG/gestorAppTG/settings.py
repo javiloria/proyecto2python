@@ -133,7 +133,7 @@ STATICFILES_DIRS = [
 
 
 # configuracion de Django para las autenticacion
-AUTH_USER_MODEL = 'gestorAppTG.User'
+AUTH_USER_MODEL = 'User' # TODO: arreglar nombre en gestorAppTG
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'propuestas:propuestas_list' #TODO: arreglar nombre de esta
