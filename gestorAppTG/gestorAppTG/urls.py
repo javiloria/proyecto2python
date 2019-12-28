@@ -36,18 +36,18 @@ urlpatterns = [
     
     path('propuestas/', include(([
         path('', propuestas.IndexView.as_view(), name='propuestas_list'),
-        path('<int:pk>/update/', propuestas.UpdatePropuestasView.as_view(), name='propuestas_update'),
-        path('create/', propuestas.CreatePropuestasView.as_view(), name='propuestas_create'),
+        path('<int:pk>/update/', propuestas.UpdatePropuestaView.as_view(), name='propuestas_update'),
+        path('create/', propuestas.CreatePropuestaView.as_view(), name='propuestas_create'),
         path('<int:pk>/', propuestas.DetailView.as_view(), name='propuestas_details'),
-		path('<int:pk>/delete/', propuestas.DeletePropuestasView.as_view(), name='propuestas_delete')
+		path('<int:pk>/delete/', propuestas.DeletePropuestaView.as_view(), name='propuestas_delete')
     ], 'gestorAppTG'), namespace='propuestas')),
 
     path('personas/', include(([
         path('', personas.IndexView.as_view(), name='personas_list'),
         path('<int:pk>/', personas.DetailView.as_view(), name='personas_details'),
-        path('create/', personas.CreatePersonasView.as_view(), name='personas_create'),
-        path('<int:pk>/update/', personas.UpdatePersonasView.as_view(), name='personas_update'),
-        path('<int:pk>/delete/', personas.DeletePersonasView.as_view(), name='personas_delete')
+        path('create/', personas.CreatePersonaView.as_view(), name='personas_create'),
+        path('<int:pk>/update/', personas.UpdatePersonaView.as_view(), name='personas_update'),
+        path('<int:pk>/delete/', personas.DeletePersonaView.as_view(), name='personas_delete')
     ], 'gestorAppTG'), namespace='personas')),
 
     path('tesis/', include(([

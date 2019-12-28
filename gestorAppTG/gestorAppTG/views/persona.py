@@ -27,12 +27,11 @@ class DetailView(generic.DetailView):
 
 
 @method_decorator([login_required, manager_permisos], name='dispatch')
-class CreatePersonView(generic.CreateView):
+class CreatePersonaView(generic.CreateView):
     model = Persona
     fields = "__all__"
     template_name = 'persona/create.html'
-
-    def form_valid(self, form):
+    def formu_valido(self, form):
         persona = form.save(commit=False)
         persona.save()
         messages.success(self.request,  'persona creada exitosamente')
@@ -40,12 +39,11 @@ class CreatePersonView(generic.CreateView):
 
 
 @method_decorator([login_required, manager_permisos], name='dispatch')
-class UpdatePersonView(generic.UpdateView):
+class UpdatePersonaView(generic.UpdateView):
     model = Persona
     fields = "__all__"
     template_name = 'persona/update.html'
-
-    def form_valid(self, form):
+    def formu_valido(self, form):
         persona = form.save(commit=False)
         persona.save()
         messages.success(self.request, 'persona actualizada exitosamente')
@@ -53,7 +51,7 @@ class UpdatePersonView(generic.UpdateView):
 
 
 @method_decorator([login_required, manager_permisos], name='dispatch')
-class DeletePersonView(generic.DeleteView):
+class DeletePersonaView(generic.DeleteView):
     model = Persona
     template_name = 'persona/delete.html'
     success_url = reverse_lazy('personas:personas_list')
