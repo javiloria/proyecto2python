@@ -20,8 +20,10 @@ from django.urls import include,path
 from .views import gestorAppTG
 from .views import propuestas
 from .views import personas
+from .views import tesisEstatus
 from .views import tesis
 from .views import termin
+from .views import propuestasEstatus
 
 
 urlpatterns = [
@@ -62,6 +64,23 @@ urlpatterns = [
         path('<int:pk>/update/', termin.UpdateTerminView.as_view(), name='termin_update'),
         path('<int:pk>/delete/', term.DeleteTerminView.as_view(), name='termin_delete')
     ], 'gestorAppTG'), namespace='terms')),
+
+
+    #estatusss:
+
+    path('propuestasEstatus/', include(([
+        path('', propuestasEstatus.IndexView.as_view(), name='propuestasEstatus_list'),
+        path('create/', propuestasEstatus.CreatePropuestasEstatusView.as_view(), name='propuestasEstatus_create'),
+        path('<int:pk>/update/', propuestasEstatus.UpdatePropuestasEstatusView.as_view(), name='propuestasEstatus_update'),
+        path('<int:pk>/delete/', propuestasEstatus.DeletePropuestasEstatusView.as_view(), name='propuestasEstatus_delete'),
+    ], 'gestorAppTG'), namespace='propuestasEstatus')),
+
+    path('tesisEstatus/', include(([
+        path('', tesisEstatus.IndexView.as_view(), name='tesisEstatus_list'),
+        path('create/', tesisEstatus.CreateTesisEstatusView.as_view(), name='tesisEstatus_create'),
+        path('<int:pk>/update/', tesisEstatus.UpdateTesisEstatusView.as_view(), name='tesisEstatus_update'),
+        path('<int:pk>/delete/', tesisEstatus.DeleteTesisEstatusView.as_view(), name='tesisEstatus_delete'),
+    ], 'gestorAppTG'), namespace='tesisEstatus')),
 
 
 ]
