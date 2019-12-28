@@ -136,5 +136,5 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = 'gestorAppTG.User'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'proposals:proposals_list' #TODO: arreglar nombre de esta
+LOGIN_REDIRECT_URL = 'propuestas:propuestas_list' #TODO: arreglar nombre de esta
 LOGOUT_REDIRECT_URL = 'home'

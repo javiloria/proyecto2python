@@ -14,8 +14,54 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include,path
+
+#HERICK: importamos todas nuestras vistas aqui 
+from .views import gestorAppTG
+from .views import propuestas
+from .views import personas
+from .views import tesis
+from .views import termin
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    
+    path('', gestorAppTG.home, name='home'),
+
+    path('accounts/', include('django.contrib.auth.urls')),
+    
+    path('admin/', admin.site.urls,  name="admin"),
+    
+    path('propuestas/', include(([
+        path('', propuestas.IndexView.as_view(), name='propuestas_list'),
+        path('<int:pk>/update/', propuestas.UpdatePropuestasView.as_view(), name='propuestas_update'),
+        path('create/', propuestas.CreatePropuestasView.as_view(), name='propuestas_create'),
+        path('<int:pk>/', propuestas.DetailView.as_view(), name='propuestas_details'),
+		path('<int:pk>/delete/', propuestas.DeletePropuestasView.as_view(), name='propuestas_delete')
+    ], 'gestorAppTG'), namespace='propuestas')),
+
+    path('personas/', include(([
+        path('', personas.IndexView.as_view(), name='personas_list'),
+        path('<int:pk>/', personas.DetailView.as_view(), name='personas_details'),
+        path('create/', personas.CreatePersonasView.as_view(), name='personas_create'),
+        path('<int:pk>/update/', personas.UpdatePersonasView.as_view(), name='personas_update'),
+        path('<int:pk>/delete/', personas.DeletePersonasView.as_view(), name='personas_delete')
+    ], 'gestorAppTG'), namespace='personas')),
+
+    path('tesis/', include(([
+        path('', tesis.IndexView.as_view(), name='tesis_list'),
+        path('create/', tesis.CreateTesisView.as_view(), name='tesis_create'),
+        path('<str:pk>/', tesis.DetailView.as_view(), name='tesis_details'),
+        path('<str:pk>/update/', tesis.UpdateTesisView.as_view(), name='tesis_update'),
+        path('<str:pk>/delete/', tesis.DeleteTesisView.as_view(), name='tesis_delete'),
+    ], 'gestorAppTG'), namespace='tesis')),
+
+    path('termin/', include(([
+        path('', termin.IndexView.as_view(), name='termin_list'),
+        path('create/', termin.CreateTerminView.as_view(), name='termin_create'),
+        path('<int:pk>/update/', termin.UpdateTerminView.as_view(), name='termin_update'),
+        path('<int:pk>/delete/', term.DeleteTerminView.as_view(), name='termin_delete')
+    ], 'gestorAppTG'), namespace='terms')),
+
+
 ]
