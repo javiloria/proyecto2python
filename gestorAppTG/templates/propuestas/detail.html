@@ -1,0 +1,19 @@
+{% extends 'template.html' %}
+{% block content %}    
+    <br>
+    <h4>Detalle de la propuesta</h4>
+    <p>
+        <br>
+        <strong>Título:&nbsp;</strong> <i>{{ propuesta.titulo }}</i><br>
+        <strong>Fecha:&nbsp;</strong> <i>{{ propuesta.entrega_fecha }}</i><br>
+        <strong>Estatus:&nbsp;</strong> <i>{{ propuesta.estatus }}</i><br>
+        <strong>Estudiante 1:&nbsp;</strong> <i>{{ propuesta.estudiante_1 }}</i><br>      
+        <strong>Estudiante 2:&nbsp;</strong> <i>{{ propuesta.estudiante_2 }}</i><br>
+        <strong>Tutor académico:&nbsp;</strong> <i>{{ propuesta.tutor_academico }}</i><br>
+        <strong>Tutor empresarial:&nbsp;</strong> <i>{{ propuesta.tutor_empresa }}</i><br>
+        <strong>Terminología:&nbsp;</strong> <i>{{ propuesta.termin }}</i><br>
+    </p>
+    <a href="{% url 'propuestas:propuestas_list' %}" class="btn btn-outline-secondary" role="button">
+        volver
+    </a>
+{% endblock %}

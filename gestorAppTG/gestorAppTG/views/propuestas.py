@@ -13,7 +13,7 @@ from ..decorador import *
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class IndexView(generic.ListView):
     template_name = 'propuestas/index.html'
-    context_object_name = 'propuestas_ultimos'
+    context_object_name = 'propuestas_listass'
     
     def get_queryset(self):
         return Propuesta.objects.order_by('entrega_fecha')[:5]
