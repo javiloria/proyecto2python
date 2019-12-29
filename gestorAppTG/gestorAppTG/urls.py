@@ -23,6 +23,9 @@ from .views import persona
 from .views import tesis
 from .views import termin
 from .views import defensa
+from .views import escuela
+from .views import estatusTG
+from .views import estatusPropuesta
 
 urlpatterns = [
     
@@ -71,4 +74,24 @@ urlpatterns = [
         path('<int:pk>/delete/', termin.DeleteTerminView.as_view(), name='termin_delete')
     ], 'gestorAppTG'), namespace='termin')),
 
+    path('estatusPropuestas/', include(([
+        path('', estatusPropuesta.IndexView.as_view(), name='estatusPropuestas_list'),
+        path('create/', estatusPropuesta.CreateEstatusPropuestaView.as_view(), name='estatusPropuestas_create'),
+        path('<int:pk>/update/', estatusPropuesta.UpdateEstatusPropuestaView.as_view(), name='estatusPropuestas_update'),
+        path('<int:pk>/delete/', estatusPropuesta.DeleteEstatusPropuestaView.as_view(), name='estatusPropuestas_delete')
+    ], 'gestorAppTG'), namespace='estatusPropuestas')),
+
+    path('estatusTG/', include(([
+        path('', estatusTG.IndexView.as_view(), name='estatusTG_list'),
+        path('create/', estatusTG.CreateEstatusTGView.as_view(), name='estatusTG_create'),
+        path('<int:pk>/update/', estatusTG.UpdateEstatusTGView.as_view(), name='estatusTG_update'),
+        path('<int:pk>/delete/', estatusTG.DeleteEstatusTGView.as_view(), name='estatusTG_delete')
+    ], 'gestorAppTG'), namespace='estatusTG')),
+
+    path('escuelas/', include(([
+        path('', escuela.IndexView.as_view(), name='escuelas_list'),
+        path('create/', escuela.CreateEscuelaView.as_view(), name='escuelas_create'),
+        path('<int:pk>/update/', escuela.UpdateEscuelaView.as_view(), name='escuelas_update'),
+        path('<int:pk>/delete/', escuela.DeleteEscuelaView.as_view(), name='escuelas_delete')
+    ], 'gestorAppTG'), namespace='escuelas')),
 ]
