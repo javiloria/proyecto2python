@@ -22,10 +22,8 @@
   <link rel="manifest" href="https://getbootstrap.com/docs/4.4/assets/img/favicons/manifest.json">
   <link rel="mask-icon" href="https://getbootstrap.com/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
   <link rel="icon" href="https://getbootstrap.com/docs/4.4/assets/img/favicons/favicon.ico">
-
   <!-- Custom styles for this template -->
   <link href="{% static 'dashboard.css' %}" rel="stylesheet">
-
   <style type="text/css">/* Chart.js */
     @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}
   </style>
@@ -33,7 +31,7 @@
   
 <body>
   <nav class="navbar navbar-dark fixed-top bg-info flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="https://getbootstrap.com/docs/4.4/examples/dashboard/#">Proyecto python</a>>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Proyecto python</a>
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
       <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
@@ -70,7 +68,7 @@
           {% if user.is_authenticated %}
             {% if user.esAdmin %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'termin:termin_list' %}">
+              <a class="nav-link" href="{% url 'termin:termins_list' %}">
                 <span data-feather="clock"></span>
                 Terminologías
               </a>
@@ -78,27 +76,6 @@
             {% endif %}
           {% endif %}
 
-          {% if user.is_authenticated %}
-            {% if user.esAdmin %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'propuestasEstatus:propuestasEstatus_list' %}">
-                <span data-feather="check-square"></span>
-                Estatus de la propuesta
-              </a>
-            </li>
-            {% endif %}
-          {% endif %}
-          {% if user.is_authenticated %}
-            {% if user.esAdmin %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'tesisEstatus:tesisEstatus_list' %}">
-                  <span data-feather="check"></span>
-                  Estatus de la tesis
-                </a>
-              </li>
-            {% endif %}
-          {% endif %}
-          
           {% if user.is_authenticated %}
             {% if user.esInvitado or user.esAdmin or user.esManager %}
             <li class="nav-item">

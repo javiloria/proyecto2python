@@ -12,7 +12,7 @@ from ..decorador import *
 @method_decorator([login_required, admin_permisos], name='dispatch')
 class IndexView(generic.ListView):
     template_name = 'termin/index.html'
-    context_object_name = 'termin_list'    
+    context_object_name = 'termins_list'    
     def get_queryset(self):
         return Termin.objects.order_by('id')[:5]
 
@@ -25,7 +25,7 @@ class CreateTerminView(generic.CreateView):
         term = form.save(commit=False)
         term.save()
         messages.success(self.request, 'La terminología se creo exitosamente')
-        return redirect('terms:terms_list')
+        return redirect('termin:termins_list')
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
 class UpdateTerminView(generic.UpdateView):
@@ -36,10 +36,10 @@ class UpdateTerminView(generic.UpdateView):
         termin = form.save(commit=False)
         termin.save()
         messages.success(self.request, 'La terminología se actualizada exitosamente')
-        return redirect('termins:termins_list')
+        return redirect('termin:termins_list')
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
 class DeleteTerminView(generic.DeleteView):
     model = Termin
     template_name = 'termin/delete.html'
-    success_url = reverse_lazy('termins:termins_list')
+    success_url = reverse_lazy('termin:termins_list')

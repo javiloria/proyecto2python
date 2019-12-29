@@ -57,10 +57,10 @@ urlpatterns = [
     ], 'gestorAppTG'), namespace='tesis')),
 
     path('termin/', include(([
-        path('', termin.IndexView.as_view(), name='termin_list'),
+        path('', termin.IndexView.as_view(), name='termins_list'),
         path('create/', termin.CreateTerminView.as_view(), name='termin_create'),
         path('<int:pk>/update/', termin.UpdateTerminView.as_view(), name='termin_update'),
         path('<int:pk>/delete/', termin.DeleteTerminView.as_view(), name='termin_delete')
-    ], 'gestorAppTG'), namespace='terms')),
+    ], 'gestorAppTG'), namespace='termin')),
 
 ]
