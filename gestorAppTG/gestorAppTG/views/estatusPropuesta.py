@@ -5,41 +5,41 @@ from django.contrib import messages
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
-from ..models import Termin
+from ..models import EstatusPropuesta
 from django.utils.decorators import method_decorator
 from ..decorador import *
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
 class IndexView(generic.ListView):
-    template_name = 'termin/index.html'
-    context_object_name = 'termins_list'    
+    template_name = 'estatusPropuesta/index.html'
+    context_object_name = 'estatusPropuestas_list'    
     def get_queryset(self):
-        return Termin.objects.order_by('id')[:5]
+        return EstatusPropuesta.objects.order_by('id')[:5]
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
-class CreateTerminView(generic.CreateView):
-    model = Termin
+class CreateEstatusPropuestaView(generic.CreateView):
+    model = EstatusPropuesta
     fields = "__all__"
-    template_name = 'termin/create.html'
+    template_name = 'estatusPropuesta/create.html'
     def formu_valido(self, form):
         term = form.save(commit=False)
         term.save()
-        messages.success(self.request, 'La terminología se creo exitosamente')
-        return redirect('termin:termins_list')
+        messages.success(self.request, 'El estatus de la propuesta se creo exitosamente')
+        return redirect('estatusPropuestas:estatusPropuestas_list')
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
-class UpdateTerminView(generic.UpdateView):
-    model = Termin
+class UpdateEstatusPropuestaView(generic.UpdateView):
+    model = EstatusPropuesta
     fields = "__all__"
     template_name = 'termin/update.html'
     def formu_valido(self, form):
-        termin = form.save(commit=False)
-        termin.save()
-        messages.success(self.request, 'La terminología se actualizada exitosamente')
-        return redirect('termin:termins_list')
+        estatusPropuesta = form.save(commit=False)
+        estatusPropuesta.save()
+        messages.success(self.request, 'El estatus de la propuesta se actualizada exitosamente')
+        return redirect('termin:estatusPropuestas_list')
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
-class DeleteTerminView(generic.DeleteView):
-    model = Termin
-    template_name = 'termin/delete.html'
-    success_url = reverse_lazy('termin:termins_list')
+class DeleteEstatusPropuestaView(generic.DeleteView):
+    model = EstatusPropuesta
+    template_name = 'estatusPropuesta/delete.html'
+    success_url = reverse_lazy('estatusPropuesta:estatusPropuestas_list')

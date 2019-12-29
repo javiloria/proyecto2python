@@ -1,0 +1,54 @@
+{% extends 'template.html' %}
+{% block content %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Escuelas</h1>
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+        {% if user.is_authenticated %}
+            {% if user.esAdmin or user.esManager %}
+            <a href="{% url 'escuelas:escuelas_create' %}" class="btn btn-outline-secondary" role="button">
+                Crear Escuela
+            </a>
+            {% endif %}
+        {% endif %}
+        </div>
+        <!--button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+          Exportar proximamente poner este boton Herick
+        </button!-->
+      </div>
+    </div>
+    <!--h5>Agregar aaqui los filtros de búsqueda ELIAS!!</h5!-->
+    {% if escuelas_list %}
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>                        
+                        {% if user.is_authenticated %}
+                            {% if user.esAdmin or user.esManager %}
+                                <th>Accciones</th>
+                            {% endif %}
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in escuelas_list %}
+                    <tr>
+                        <td>{{ p.nombre }}</td>
+                        {% if user.is_authenticated %}
+                            {% if user.esAdmin or user.esManager %}
+                            <td>
+                                <a href="{% url 'escuelas:escuelas_update' p.id %}">Actualizar</a>
+                                <a href="{% url 'escuelas:escuelas_delete' p.id %}">Eliminar</a>
+                            </td>
+                            {% endif %}
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No existen Escuelas...</p>
+    {% endif %}
+{% endblock %}

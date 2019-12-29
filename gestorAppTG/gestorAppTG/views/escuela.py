@@ -5,41 +5,41 @@ from django.contrib import messages
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
-from ..models import Termin
+from ..models import Escuela
 from django.utils.decorators import method_decorator
 from ..decorador import *
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
 class IndexView(generic.ListView):
-    template_name = 'termin/index.html'
-    context_object_name = 'termins_list'    
+    template_name = 'escuela/index.html'
+    context_object_name = 'escuelas_list'    
     def get_queryset(self):
-        return Termin.objects.order_by('id')[:5]
+        return Escuela.objects.order_by('id')[:5]
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
-class CreateTerminView(generic.CreateView):
-    model = Termin
+class CreateEscuelaView(generic.CreateView):
+    model = Escuela
     fields = "__all__"
-    template_name = 'termin/create.html'
+    template_name = 'escuela/create.html'
     def formu_valido(self, form):
-        term = form.save(commit=False)
-        term.save()
-        messages.success(self.request, 'La terminología se creo exitosamente')
-        return redirect('termin:termins_list')
+        escuela = form.save(commit=False)
+        escuela.save()
+        messages.success(self.request, 'La escuela se creo exitosamente')
+        return redirect('escuelas:escuelas_list')
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
-class UpdateTerminView(generic.UpdateView):
-    model = Termin
+class UpdateEscuelaView(generic.UpdateView):
+    model = Escuela
     fields = "__all__"
-    template_name = 'termin/update.html'
+    template_name = 'escuela/update.html'
     def formu_valido(self, form):
-        termin = form.save(commit=False)
-        termin.save()
-        messages.success(self.request, 'La terminología se actualizada exitosamente')
-        return redirect('termin:termins_list')
+        escuela = form.save(commit=False)
+        escuela.save()
+        messages.success(self.request, 'La escuela se actualizada exitosamente')
+        return redirect('escuelas:escuelas_list')
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
-class DeleteTerminView(generic.DeleteView):
-    model = Termin
-    template_name = 'termin/delete.html'
-    success_url = reverse_lazy('termin:termins_list')
+class DeleteEscuelaView(generic.DeleteView):
+    model = Escuela
+    template_name = 'escuela/delete.html'
+    success_url = reverse_lazy('escuelas:escuelas_list')
