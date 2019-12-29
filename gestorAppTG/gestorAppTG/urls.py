@@ -22,7 +22,7 @@ from .views import propuestas
 from .views import persona
 from .views import tesis
 from .views import termin
-
+from .views import defensa
 
 urlpatterns = [
     
@@ -55,6 +55,14 @@ urlpatterns = [
         path('<str:pk>/update/', tesis.UpdateTesisView.as_view(), name='tesis_update'),
         path('<str:pk>/delete/', tesis.DeleteTesisView.as_view(), name='tesis_delete'),
     ], 'gestorAppTG'), namespace='tesis')),
+
+    path('defensas/', include(([
+        path('', defensa.IndexView.as_view(), name='defensas_list'),
+        path('create/', defensa.CreateDefensaView.as_view(), name='defensas_create'),
+        path('<str:pk>/', defensa.DetailView.as_view(), name='defensas_details'),
+        path('<str:pk>/update/', defensa.UpdateDefensaView.as_view(), name='defensas_update'),
+        path('<str:pk>/delete/', defensa.DeleteDefensaView.as_view(), name='defensas_delete'),
+    ], 'gestorAppTG'), namespace='defensas')),
 
     path('termin/', include(([
         path('', termin.IndexView.as_view(), name='termins_list'),

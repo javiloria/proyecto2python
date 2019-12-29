@@ -1,0 +1,22 @@
+{% extends 'template.html' %}
+{% block content %}    
+    <br>
+    <h4>Detalle de la Defensa</h4>
+    <p>
+        <br>
+        <strong>id:&nbsp;</strong> <i>{{ defensa.id }}</i><br>
+        <strong>Fecha de la defensa:&nbsp;</strong> <i>{{ defensa.fecha_defensa }}</i><br>
+        <strong>jurado1:&nbsp;</strong> <i>{{ defensa.jurado_1 }}</i><br>
+        <strong>jurado2:&nbsp;</strong> <i>{{ defensa.jurado_2 }}</i><br>      
+        <strong>jurado3:&nbsp;</strong> <i>{{ defensa.jurado_3 }}</i><br>
+        <strong>calificacion:&nbsp;</strong> <i>{{ defensa.calificacion }}</i><br>
+        <strong>correciones:&nbsp;</strong> <i>{{ defensa.correcciones }}</i><br>
+        <strong>Fecha tope de correciones:&nbsp;</strong> <i>{{ defensa.fecha_correciones }}</i><br>
+        <strong>¿ es mencion publicacion ?&nbsp;</strong> <i>{{ defensa.mencion_publicacion }}</i><br>
+        <strong>¿ es mencion honorifica?&nbsp;</strong> <i>{{ defensa.mencion_honorifica }}</i><br>
+        <strong>tesis asociada:&nbsp;</strong> <i>{{ defensa.tesis }}</i><br>
+    </p>
+    <a href="{% url 'defensas:defensas_list' %}" class="btn btn-outline-secondary" role="button">
+        volver
+    </a>
+{% endblock %}
