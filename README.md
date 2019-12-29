@@ -1,4 +1,6 @@
-# proyecto2python
+# proyecto: gestorAppTG
+## ambiente virtual --> proyecto2python
+
 ## Integrantes:
 * Ysabel Ardila --> ysabelardila
 * José Barrientos --> Joseeli54
@@ -8,8 +10,8 @@
 ## ejecutar este proyecto
 1. clone este repositorio
 
-2. ejecute: Scripts\activate.bat 
-	Esto para ejecutar el ambiente virtual
+2. ejecutar: 	Scripts\activate.bat 
+	* nota: Esto para ejecutar el ambiente virtual
 
 3. pip install django 
 	* nota: ESte paso solo se hace si no tenia django instalado
