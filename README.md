@@ -38,7 +38,7 @@
 
 * evaluar la reincorporacion de los estatus de las propuestas y la de los estatus de las tesis
 
-* evaluar el agregar editar escuelas
+* evaluar el agregar, editar escuelas hay que hacer un nuevo crud
 
 * Acciones que ha realizado cada usuario por periodo de fecha, El usuario que ejecuta cada transacción debe quedar registrado para trazabilidad.
  
