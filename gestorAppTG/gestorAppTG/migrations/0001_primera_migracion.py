@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Termin',
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False, verbose_name='código terminología (Ej:201915)')),
+                ('id', models.IntegerField(primary_key=True, serialize=False, verbose_name='código terminología')),
             	('descripcion', models.CharField(max_length=50, verbose_name="descripción")),
             ],
             options={
@@ -76,12 +76,46 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='Escuela',
+            fields=[
+                ('id', models.IntegerField(primary_key=True, serialize=False, verbose_name='codigo de la escuela')),
+                ('nombre', models.CharField(max_length=50, verbose_name="nombre")),
+            ],
+            options={
+                'verbose_name': 'Escuela',
+                'verbose_name_plural': 'Escuelas',
+            },
+        ),
+        migrations.CreateModel(
+            name='EstatusPropuesta',
+            fields=[
+                ('id', models.IntegerField(primary_key=True, serialize=False, verbose_name="código del estatus de la propuesta")),
+                ('nombre', models.CharField(max_length=50, verbose_name="nombre")),
+            ],
+            options={
+                'verbose_name': 'EstatusPropuesta',
+                'verbose_name_plural': 'EstatusPropuestas',
+            },
+        ),
+        migrations.CreateModel(
+            name='EstatusTG',
+            fields=[
+                ('id', models.IntegerField(primary_key=True, serialize=False, verbose_name="código del estatus del TG")),
+                ('nombre', models.CharField(max_length=50, verbose_name="nombre")),
+            ],
+            options={
+                'verbose_name': 'EstatusTG',
+                'verbose_name_plural': 'EstatusTGs',
+            },
+        ),
+        migrations.CreateModel(
             name='Propuesta',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
 			    ('entrega_fecha', models.DateTimeField(verbose_name='fecha de entrega')), 
 			    ('titulo' , models.CharField(max_length=200,verbose_name="título")),
-			    ('estatus' ,models.CharField(max_length=30, verbose_name="estatus de la propuesta")),
+			    ('estatus', models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_estatus",  to='gestorAppTG.EstatusPropuesta' , verbose_name="estatus de la propuesta")),
+                ('escuela', models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_escuela",  to='gestorAppTG.Escuela' , verbose_name="escuela de la propuesta")),
 			    ('estudiante_1' ,models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_estudiante_1", to='gestorAppTG.Persona', verbose_name="estudiante 1")),
 			    ('estudiante_2' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, null=True, blank=True, related_name="propuesta_estudiante_2",  to='gestorAppTG.Persona',verbose_name="estudiante 2")),
 			    ('tutor_academico' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_tutor_academico", to='gestorAppTG.Persona', verbose_name="tutor académico")),
@@ -98,7 +132,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.CharField(max_length=100, primary_key=True, serialize=False)),
 			    ('titulo', models.CharField(max_length=200, null=True, blank=True, verbose_name="título")),
-			    ('estatus', models.CharField(max_length=30, verbose_name="estatus")),
+                ('estatus', models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="escuela_estatus",  to='gestorAppTG.EstatusTG' , verbose_name="estatus del TG")),
+                ('escuela', models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="escuela_escuela",  to='gestorAppTG.Escuela' , verbose_name="escuela del TG")),
 			    ('nrc', models.IntegerField(verbose_name="código NRC")),
 			    ('descriptors', models.CharField(max_length=50, verbose_name="descriptores")),
 			    ('categoriaTema', models.CharField(max_length=50, verbose_name="categoría temática")),

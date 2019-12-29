@@ -26,6 +26,29 @@ def createUsers(app, schema_editor):
         password=make_password("invitado123"),
         esInvitado=True
     )
+
+def createEstatusPropuesta(app, schema_editor):
+    EstatusPropuesta = app.get_model('gestorAppTG', 'EstatusPropuesta')
+    EstatusPropuesta.objects.create(nombre='Por evaluar')
+    EstatusPropuesta.objects.create(nombre='Diferida')
+    EstatusPropuesta.objects.create(nombre='Aprobada')
+    EstatusPropuesta.objects.create(nombre='Rechazada')
+
+
+def createEstatusTG(app, schema_editor):
+    EstatusTG = app.get_model('gestorAppTG', 'EstatusTG')
+    EstatusTG.objects.create(nombre='Por entregar')
+    EstatusTG.objects.create(nombre='Entregado y pendiente por defender')
+    EstatusTG.objects.create(nombre='Diferido')
+    EstatusTG.objects.create(nombre='Aprobado')
+    EstatusTG.objects.create(nombre='Aprobado con solicitud de correcciones')
+    EstatusTG.objects.create(nombre='Rechazado')
+
+def createEscuelas(app, schema_editor):
+    Escuela = app.get_model('gestorAppTG', 'Escuela')
+    Escuela.objects.create(nombre='Ingeneria Informatica')
+    Escuela.objects.create(nombre='Ingeneria Telecomunicaciones')
+    Escuela.objects.create(nombre='Ingeneria Civil')
    
 class Migration(migrations.Migration):
 
@@ -35,5 +58,8 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunPython(createTermin),
-        migrations.RunPython(createUsers)
+        migrations.RunPython(createUsers),
+        migrations.RunPython(createEstatusPropuesta),
+        migrations.RunPython(createEstatusTG),
+        migrations.RunPython(createEscuelas)
     ]

@@ -4,11 +4,11 @@
         {% csrf_token %}
         <p>
             <br>
-            <h4 class="mb-3">Eliminar terminologia</h4>
-            ¿Quieres eliminar esta terminologia? "{{ termin }}"?
+            <h4 class="mb-3">Eliminar estatus de TG</h4>
+            ¿Quieres eliminar este estatus de TG ? "{{ estatusTG }}"?
             <div style="margin-bottom: 50px; margin-top:10px">
                 <button type="submit" class="btn btn-success">Guardar</button>
-                <a href="{% url 'termin:termins_list' %}" class="btn btn-outline-secondary" role="button">
+                <a href="{% url 'estatusTG:estatusTG_list' %}" class="btn btn-outline-secondary" role="button">
                     Volver
                 </a>
             </div>

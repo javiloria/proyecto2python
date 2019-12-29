@@ -67,7 +67,7 @@ class EstatusTG(models.Model):
 
 class Escuela(models.Model):    
     id = models.IntegerField(primary_key=True, verbose_name="código de la escuela")
-    nombre = models.CharField(max_length=20, verbose_name="nombre de la escuela")
+    nombre = models.CharField(max_length=20, verbose_name="nombre")
     def __str__(self):
         return self.nombre
     class Meta:
