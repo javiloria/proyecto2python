@@ -1,0 +1,17 @@
+{% extends 'template.html' %}
+{% block content %}
+    <br>
+    <h3>Detalle de la tesis</h3>
+    <p>
+        <br>
+        <strong>NRC:&nbsp;</strong> <i>{{ tesis.nrc }}</i><br>
+        <strong>Título:&nbsp;</strong> <i>{{ tesis.titulo}}</i><br>
+        <strong>Fecha tope:&nbsp;</strong> <i>{{ tesis.fechaTope }}</i><br>
+        <strong>Estatus:&nbsp;</strong> <i>{{ tesis.estatus }}</i><br>
+        <strong>Terminología:&nbsp;</strong> <i>{{ tesis.termin }}</i><br>
+        <strong>Propuesta:&nbsp;</strong> <i>{{ tesis.propuesta }}</i><br>
+    </p>
+    <a href="{% url 'tesis:tesis_list' %}" class="btn btn-outline-secondary" role="button">
+        volver
+    </a>
+{% endblock %}

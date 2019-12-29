@@ -1,1 +1,16 @@
-delete.html
+{% extends 'template.html' %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <br>
+            <h4 class="mb-3">Eliminar tesis</h4>
+            ¿Quieres eliminar esta tesis? "{{ tesis }}"?
+            <div style="margin-bottom: 50px; margin-top:10px">
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <a href="{% url 'tesis:tesis_list' %}" class="btn btn-outline-secondary" role="button">Volver
+                </a>
+            </div>
+        </p>
+    </form>
+{% endblock %}

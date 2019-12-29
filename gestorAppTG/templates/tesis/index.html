@@ -1,0 +1,62 @@
+{% extends 'template.html' %}
+{% block content %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Tesis</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                    {% if user.is_authenticated %}
+                        {% if user.esAdmin or user.esManager %}
+                            <a href="{% url 'tesis:tesis_create' %}" class="btn btn-outline-secondary" role="button">
+                                Crear Tesis
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+        <!--button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+          Exportar proximamente poner este boton Herick
+        </button!-->
+            </div>
+        </div>
+        <!--h5>Agregar aaqui los filtros de búsqueda ELIAS!!</h5!-->
+        {% if tesis_list %}
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>NRC</th>
+                        <th>Título</th>
+                        <th>Estatus</th>
+                        <th>Propuesta</th>
+                        {% if user.is_authenticated %}
+                            {% if user.esAdmin or user.esManager %}
+                                <th>Accciones</th>
+                            {% endif %}
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in tesis_list %}
+                    <tr>
+                        <td><a href="{% url 'tesis:tesis_details' p.id %}">{{ p.nrc }}</a></td>
+                        <td>{{ p.titulo}}</td>
+                        <td>{{p.estatus}}</td>
+                        <td>{{p.propuesta}}</td>
+                        {% if user.is_authenticated %}
+                            {% if user.esAdmin or user.esManager %}
+                            <td>
+                                <a href="{% url 'tesis:tesis_update' p.id %}">Actualizar</a>
+                                <a href="{% url 'tesis:tesis_delete' p.id %}">Eliminar</a>
+                            </td>
+                            {% endif %}
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No hay tesis todavia...</p>
+    {% endif %}
+{% endblock %}
+
+
