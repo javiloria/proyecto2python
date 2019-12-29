@@ -57,8 +57,7 @@ class Migration(migrations.Migration):
 			    ('email' ,models.CharField(max_length=100, verbose_name="correo personal")),
 			    ('telefono' , models.CharField(max_length=15, verbose_name="teléfono 1")),
 			    ('telefono_1' ,models.CharField(max_length=15, verbose_name="teléfono 2", null=True, blank=True)),
-			    ('observaciones' , models.CharField(max_length=500, verbose_name="observaciones", null=True, blank=True)),
-            ],
+	        ],
             options={
                 'verbose_name': 'Persona',
                 'verbose_name_plural': 'Personas',

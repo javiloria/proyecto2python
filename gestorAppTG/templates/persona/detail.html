@@ -1,0 +1,19 @@
+{% extends 'template.html' %}
+    {% block content %}  
+    <br>
+    <h4>Detalles de la Persona</h4>  
+    <p>
+        <br>
+        <strong>Cédula de identidad:&nbsp;</strong> <i>{{ persona.cedula_id }}</i><br>
+        <strong>primer nombre:&nbsp;</strong> <i>{{ persona.primer_nombre }}</i><br>
+        <strong>segundo nombre:&nbsp;</strong> <i>{{ persona.segundo_nombre }}</i><br>
+        <strong>primer apellido:&nbsp;</strong> <i>{{ persona.primer_apellido }}</i><br>
+        <strong>segundo apellido:&nbsp;</strong> <i>{{ persona.segundo_apellido }}</i><br>
+        <strong>Correo:&nbsp;</strong> <i>{{ persona.email }}</i><br>
+        <strong>Correo de la UCAB:&nbsp;</strong> <i>{{ persona.ucab_email }}</i><br>
+        <strong>Teléfono principal:&nbsp;</strong> <i>{{ persona.telefono }}</i><br>
+    </p>
+    <a href="{% url 'personas:personas_list' %}" class="btn btn-outline-secondary" role="button">
+        Volver
+    </a>
+{% endblock %}

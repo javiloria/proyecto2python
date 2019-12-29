@@ -5,7 +5,6 @@
 * Herick Navarro --> herick1
 * Jorge Viloria --> javiloria
 
-
 ## ejecutar este proyecto
 1. clone este repositorio
 
@@ -18,6 +17,9 @@
 5. ejecutar: pip install -r requirements.txt
 
 6. cd gestorAppTG
+
+7. python manage.py migrate
+	* nota: hacer este migrate solo la primera vez que se corra el proyecto 
 
 7. python manage.py runserver 
 	* nota: Al hacer este ultimo comando le deberia de aparecer algo como esto: 

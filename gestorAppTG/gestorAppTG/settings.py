@@ -37,11 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    #terceross  TODO: areglar
     'crispy_forms',
-
-    #propias
     'gestorAppTG.app.gestorAppTGConfig',
 
 ]
