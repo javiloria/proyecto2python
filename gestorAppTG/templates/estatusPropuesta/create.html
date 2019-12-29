@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
   <br>
-  <h4 class="mb-3">Crear terminologia</h4>
+  <h4 class="mb-3">Crear estatus de un apropuesta</h4>
   <div class="row">
     <div class="col-md-6 col-sm-8 col-12">
       <form method="post" novalidate>
@@ -10,7 +10,7 @@
         {{ form|crispy }}
         <div style="margin-bottom: 50px;">
             <button type="submit" class="btn btn-success">Guardar</button>
-            <a href="{% url 'termin:termins_list' %}" class="btn btn-outline-secondary" role="button">
+            <a href="{% url 'estatusPropuestas:estatusPropuestas_list' %}" class="btn btn-outline-secondary" role="button">
                 Volver
             </a>
         </div>
