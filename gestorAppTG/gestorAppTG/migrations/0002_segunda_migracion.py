@@ -4,29 +4,10 @@
 from django.db import migrations
 from django.contrib.auth.hashers import make_password #para encriptar contraseña
 
-
-def createPropuestasEstatus(app, schema_editor):
-    PropuestasEstatus = app.get_model('gestorAppTG', 'PropuestasEstatus')
-    PropuestasEstatus.objects.create(nombre='Por evaluar')
-    PropuestasEstatus.objects.create(nombre='Diferida')
-    PropuestasEstatus.objects.create(nombre='Aprobada')
-    PropuestasEstatus.objects.create(nombre='Rechazada')
-
-def createTesisEstatus(app, schema_editor):
-    TesisEstatus = app.get_model('gestorAppTG', 'TesisEstatus')
-    TesisEstatus.objects.create(nombre='Por entregar')
-    TesisEstatus.objects.create(nombre='Entregado y pendiente por defender')
-    TesisEstatus.objects.create(nombre='Diferido')
-    TesisEstatus.objects.create(nombre='Aprobado')
-    TesisEstatus.objects.create(nombre='Aprobado con solicitud de correcciones')
-    TesisEstatus.objects.create(nombre='Rechazado')
-
-
 def createTermin(app, schema_editor):
     Termin = app.get_model('gestorAppTG','Termin')
     Termin.objects.create(id="201915", descripcion='primer semestre del año académico')
     Termin.objects.create(id="201925", descripcion='segundo semestre del año académico')
-
 
 def createUsers(app, schema_editor):
     User = app.get_model('gestorAppTG','User')
@@ -36,8 +17,8 @@ def createUsers(app, schema_editor):
         esAdmin=True
     )
     User.objects.create(
-        username="Manager",
-        password=make_password("manager123"),
+        username="Gestor",
+        password=make_password("gestor123"),
         esManager=True
     )
     User.objects.create(
@@ -53,8 +34,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(createPropuestasEstatus),
-        migrations.RunPython(createTesisEstatus),
         migrations.RunPython(createTermin),
         migrations.RunPython(createUsers)
     ]

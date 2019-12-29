@@ -1,8 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-#TODO: VER LO DEL ATRIBUTOS UNIQUE
-#TODO: VER SI TODOS LOS ATRIBUTOS FORANEOS LLEVAN ON_DELETE=MODELS.CASCADE
-#TODO: CAMBIAR ENUM TYPE_CHOICES POR UN MODELO INDEPENDIENE
 
 # Para la autenticacion y autorización
 class User(AbstractUser):
@@ -19,9 +16,8 @@ class Persona(models.Model):
     TYPE_CHOICES = [
         (PROFESOR, 'Profesor'),
         (ESTUDIANTE, 'Estudiante'),
-        (AFUERA, 'Afuera') #TODO: cambiar externo
+        (AFUERA, 'Afuera')
     ]
-
     type = models.CharField(max_length=20,choices=TYPE_CHOICES, verbose_name="tipo")
     cedula_id = models.IntegerField(unique=True, verbose_name="cédula") 
     primer_nombre = models.CharField(max_length=100, verbose_name="primer nombre")
@@ -32,10 +28,8 @@ class Persona(models.Model):
     email = models.CharField(max_length=100, verbose_name="correo personal")
     telefono = models.CharField(max_length=15, verbose_name="teléfono 1")
     telefono_1 = models.CharField(max_length=15, verbose_name="teléfono 2", null=True, blank=True)
-
     def __str__(self):
         return self.primer_nombre + " " + self.primer_apellido
-
     #Opara setear el verbose_name 
     class Meta:
         verbose_name = "Persona"
@@ -47,47 +41,22 @@ class Termin(models.Model):
     descripcion = models.CharField(max_length=50, verbose_name="descripción")
     def __str__(self):
         return str(self.id) + " (" + self.descripcion + ")"
-
     #para setear el verbose_name 
     class Meta:
         verbose_name = "Terminología"
         verbose_name_plural = "Terminologías"
 
-
-class PropuestasEstatus(models.Model):
-    nombre = models.CharField(max_length=20, verbose_name="nombre")
-
-    def __str__(self):
-        return self.nombre
-
-    #para setear el verbose_name 
-    class Meta:
-        verbose_name = "Estado de la propuesta"
-        verbose_name_plural = "Estados de las propuestas"
-
-
-class TesisEstatus(models.Model):
-    nombre = models.CharField(max_length=20, verbose_name="nombre")
-    def __str__(self):
-        return self.nombre
-    #para setear el verbose_name 
-    class Meta:
-        verbose_name = "Estado de la tesi"
-        verbose_name_plural = "Estados de las tesis"
-
 class Propuesta(models.Model):
     entrega_fecha = models.DateTimeField(verbose_name='fecha de entrega') 
     titulo = models.CharField(max_length=200,verbose_name="título")
-    estatus = models.ForeignKey(PropuestasEstatus, on_delete=models.CASCADE, related_name="PropuestasEstatus",verbose_name="estatus de la propuesta")
+    estatus = models.CharField(max_length=200,verbose_name="estatus de la propuesta")
     estudiante_1 = models.ForeignKey(Persona, on_delete=models.CASCADE, related_name="propuesta_estudiante_1", verbose_name="estudiante 1")
     estudiante_2 = models.ForeignKey(Persona, on_delete=models.CASCADE, null=True, blank=True, related_name="propuesta_estudiante_2", verbose_name="estudiante 2")
     tutor_academico = models.ForeignKey(Persona, on_delete=models.CASCADE, related_name="propuesta_tutor_academico", verbose_name="tutor académico")
     tutor_empresa = models.ForeignKey(Persona, on_delete=models.CASCADE, related_name="propuesta_tutor_empresa", verbose_name="tutor empresarial")
     termin = models.ForeignKey(Termin, on_delete=models.CASCADE, related_name="propuesta_termin", verbose_name="terminología en la que se entrego")
-
     def __str__(self):
         return self.titulo
-
     def get_id(self):
         return self.id
     #para setear el verbose_name 
@@ -97,10 +66,9 @@ class Propuesta(models.Model):
 
 
 class Tesis(models.Model):
-
     id = models.CharField(max_length=100,primary_key=True)
     titulo = models.CharField(max_length=200, null=True, blank=True, verbose_name="título")
-    estatus = models.ForeignKey(TesisEstatus, on_delete=models.CASCADE, related_name="TesisEstatus", verbose_name="estatus")
+    estatus = models.CharField(max_length=20, verbose_name="estatus")
     nrc = models.IntegerField(verbose_name="código NRC")
     descriptors = models.CharField(max_length=50, verbose_name="descriptores")
     categoriaTema = models.CharField(max_length=50, verbose_name="categoría temática")
@@ -108,24 +76,19 @@ class Tesis(models.Model):
     EmpresaNombre = models.CharField(max_length=100, verbose_name="nombre de la empresa")
     termin = models.ForeignKey(Termin, on_delete=models.CASCADE, related_name="termin_tesis", verbose_name="terminología")
     propuesta = models.ForeignKey(Propuesta, on_delete=models.CASCADE, related_name="propuestaTesis", verbose_name="propuesta asociada")
-
-
     def __str__(self):
         if self.titulo==None:
             return str(self.propuesta) 
         return self.titulo
-
     def save(self, *args, **kwargs):
         self.id = "TG-" + str(self.propuesta.get_id())
         super(Tesis, self).save(*args, **kwargs)
-
     #para setear el verbose_name 
     class Meta:
         verbose_name = "Tesis"
         verbose_name_plural = "Tesis"
 
 class Defensa(models.Model):   
-
     fecha_defensa = models.DateTimeField(verbose_name="fecha de la defensa")
     jurado_1 = models.BooleanField(default=False,verbose_name="jurado 1 ")
     jurado_2 = models.BooleanField(default=False,verbose_name="jurado 2 ")
@@ -138,10 +101,8 @@ class Defensa(models.Model):
     calificacion_mod = models.BooleanField(default=False,verbose_name="se subió la calificación")
     observaciones = models.CharField(max_length=500,verbose_name="observaciones", null=True, blank=True)
     tesis = models.ForeignKey(Tesis, on_delete=models.CASCADE, related_name="tesisDefensa",verbose_name="tesis adjunta")
-
     def __str__(self):
         return str(self.fecha_defensa)
-    
     #para setear el verbose_name 
     class Meta:
         verbose_name = "Defensa"

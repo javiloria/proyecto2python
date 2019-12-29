@@ -8,6 +8,14 @@
       <form method="post" novalidate>
         {% csrf_token %}
         {{ form|crispy }}
+<!-- 
+TODO: ELIAS: en el campo de estatus de la propuesta poner un droplist con los valores: 
+* Por evaluar
+* Diferida
+* Aprobada
+* Rechazada
+  </!-->
+
         <div style="margin-bottom: 50px;">
             <button type="submit" class="btn btn-success">Guardar</button>
             <a href="{% url 'propuestas:propuestas_list' %}" class="btn btn-outline-secondary" role="button">

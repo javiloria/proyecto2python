@@ -62,18 +62,7 @@ class Migration(migrations.Migration):
                 'verbose_name': 'Persona',
                 'verbose_name_plural': 'Personas',
             },
-        ),     
-        migrations.CreateModel(
-            name='PropuestasEstatus',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-			    ('nombre', models.CharField(max_length=20, verbose_name="nombre")),
-            ],
-            options={
-                'verbose_name': 'Estado de la propuesta',
-                'verbose_name_plural': 'Estados de las propuestas',
-            },
-        ),        
+        ),            
         migrations.CreateModel(
             name='Termin',
             fields=[
@@ -91,7 +80,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
 			    ('entrega_fecha', models.DateTimeField(verbose_name='fecha de entrega')), 
 			    ('titulo' , models.CharField(max_length=200,verbose_name="título")),
-			    ('estatus' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="PropuestasEstatus", to='gestorAppTG.PropuestasEstatus',verbose_name="estatus de la propuesta")),
+			    ('estatus' ,models.CharField(max_length=30, verbose_name="estatus de la propuesta")),
 			    ('estudiante_1' ,models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_estudiante_1", to='gestorAppTG.Persona', verbose_name="estudiante 1")),
 			    ('estudiante_2' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, null=True, blank=True, related_name="propuesta_estudiante_2",  to='gestorAppTG.Persona',verbose_name="estudiante 2")),
 			    ('tutor_academico' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_tutor_academico", to='gestorAppTG.Persona', verbose_name="tutor académico")),
@@ -104,22 +93,11 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='TesisEstatus',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nombre', models.CharField(max_length=20, verbose_name="nombre")),
-            ],
-            options={
-                'verbose_name': 'Estado de latesis',
-                'verbose_name_plural': 'Estados de las tesis',
-            },
-        ),
-        migrations.CreateModel(
             name='Tesis',
             fields=[
                 ('id', models.CharField(max_length=100, primary_key=True, serialize=False)),
 			    ('titulo', models.CharField(max_length=200, null=True, blank=True, verbose_name="título")),
-			    ('estatus', models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="TesisEstatus", to='gestorAppTG.TesisEstatus', verbose_name="estatus")),
+			    ('estatus', models.CharField(max_length=30, verbose_name="estatus")),
 			    ('nrc', models.IntegerField(verbose_name="código NRC")),
 			    ('descriptors', models.CharField(max_length=50, verbose_name="descriptores")),
 			    ('categoriaTema', models.CharField(max_length=50, verbose_name="categoría temática")),
@@ -134,7 +112,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Defense',
+            name='Defensa',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
 			    ('fecha_defensa', models.DateTimeField(verbose_name="fecha de la defensa")),
