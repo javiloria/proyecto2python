@@ -38,8 +38,6 @@
 
 * evaluar la reincorporacion de los estatus de las propuestas y la de los estatus de las tesis
 
-* agregar defensas lo que es el viewl la url y los templates
-
 * evaluar el agregar editar escuelas
 
 * Acciones que ha realizado cada usuario por periodo de fecha, El usuario que ejecuta cada transacción debe quedar registrado para trazabilidad.
