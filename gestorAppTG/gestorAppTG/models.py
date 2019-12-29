@@ -28,6 +28,7 @@ class Persona(models.Model):
     email = models.CharField(max_length=100, verbose_name="correo personal")
     telefono = models.CharField(max_length=15, verbose_name="teléfono 1")
     telefono_1 = models.CharField(max_length=15, verbose_name="teléfono 2", null=True, blank=True)
+    observaciones = models.CharField(max_length=100, verbose_name="observaciones", null=True, blank=True)
     def __str__(self):
         return self.primer_nombre + " " + self.primer_apellido
     #Opara setear el verbose_name 
@@ -89,6 +90,7 @@ class Tesis(models.Model):
         verbose_name_plural = "Tesis"
 
 class Defensa(models.Model):   
+    id = models.CharField(max_length=100,primary_key=True)
     fecha_defensa = models.DateTimeField(verbose_name="fecha de la defensa")
     jurado_1 = models.BooleanField(default=False,verbose_name="jurado 1 ")
     jurado_2 = models.BooleanField(default=False,verbose_name="jurado 2 ")
@@ -103,6 +105,9 @@ class Defensa(models.Model):
     tesis = models.ForeignKey(Tesis, on_delete=models.CASCADE, related_name="tesisDefensa",verbose_name="tesis adjunta")
     def __str__(self):
         return str(self.fecha_defensa)
+    def save(self, *args, **kwargs):
+        self.id = "D-" + str(self.tesis.get_id())
+        super(Tesis, self).save(*args, **kwargs)
     #para setear el verbose_name 
     class Meta:
         verbose_name = "Defensa"

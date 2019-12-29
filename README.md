@@ -7,7 +7,7 @@
 * Herick Navarro --> herick1
 * Jorge Viloria --> javiloria
 
-## ejecutar este proyecto
+## ¿ Como ejecutar este proyecto?
 1. clone este repositorio
 
 2. ejecutar: 	Scripts\activate.bat 
@@ -31,3 +31,43 @@
 	Quit the server with CTRL-BREAK.
 
 6. En su navegador ejecutar: http://127.0.0.1:8000/
+
+## Cosas que faltan por hacer:
+
+* Hacer que la página inicial muestre algo alusivo al site las ultimas tres propuestas y las ultimas tres tesis, o las ultimas tres defensas
+
+* evaluar la reincorporacion de los estatus de las propuestas y la de los estatus de las tesis
+
+* agregar defensas lo que es el viewl la url y los templates
+
+* evaluar el agregar editar escuelas
+
+* Acciones que ha realizado cada usuario por periodo de fecha, El usuario que ejecuta cada transacción debe quedar registrado para trazabilidad.
+ 
+* Exportar como pdf y como excel todas las consultas o todas las información
+
+* ver como utilizar readthedocs
+
+### consultas que hay que hacer:
+* Lista de propuestas en estado diferentes de aprobadas, ordenadas por número de CI del
+alumno y mostrar apellidos y nombres del alumno, TERM y nombre de la propuesta.
+
+* Lista de TG en ejecución (estado diferente a aprobado), ordenados por número de CI del
+alumno y mostrar apellidos y nombres del alumno, TERM y nombre del TG,
+
+* Lista de Defensas no realizadas, ordenados por número de CI del alumno y mostrar apellidos
+y nombres del alumno, TERM y nombre del TG
+
+* Una consulta que permita desplegar una lista dependiendo del TERM, propuesta, TG o
+defensa y estatus de estas. 
+
+* Una consulta por selección de profesor que permita identificar las propuestas, TG o defensa
+que tenga asignadas y que muestre el tipo de asignación (tutor, jurado, jurado suplente). 
+
+* Una consulta por TERM que permita mostrar todas las propuestas, TG o defensas a realizar
+en ese período. 
+
+* Estadísticas: Al seleccionar uno o varios TERM debe mostrar una tabla de notas, media
+aritmética, mediana, moda y desviación estándar de la selección. Este último debe ser
+exportable a pdf.
+
