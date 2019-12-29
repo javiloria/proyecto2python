@@ -56,7 +56,6 @@ class Termin(models.Model):
 
 
 class PropuestasEstatus(models.Model):
-    
     nombre = models.CharField(max_length=20, verbose_name="nombre")
 
     def __str__(self):

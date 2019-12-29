@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import user_passes_test
 
 def admin_permisos(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='login'):
     Deco = user_passes_test(
-        lambda x: x.estaActivo and x.esAdmin,
+        lambda x: x.is_active and x.esAdmin,
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )
@@ -13,7 +13,7 @@ def admin_permisos(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login
 
 def manager_permisos(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='login'):
     Deco = user_passes_test(
-        lambda x: x.estaActivo and (x.esManager or x.esAdmin),
+        lambda x: x.is_active and (x.esManager or x.esAdmin),
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )
@@ -23,7 +23,7 @@ def manager_permisos(function=None, redirect_field_name=REDIRECT_FIELD_NAME, log
 
 def invitado_permisos(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='login'):
     Deco = user_passes_test(
-        lambda x: x.estaActivo and (x.esManager or u.esAdmin or u.esInvitado),
+        lambda x: x.is_active and (x.esManager or x.esAdmin or x.esInvitado),
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )

@@ -31,18 +31,18 @@ def createTermin(app, schema_editor):
 def createUsers(app, schema_editor):
     User = app.get_model('gestorAppTG','User')
     User.objects.create(
-        usuario="admin",
-        contrasena=make_password("admin123"),
+        username="admin",
+        password=make_password("admin123"),
         esAdmin=True
     )
     User.objects.create(
-        usuario="Manager",
-        contrasena=make_password("manager123"),
+        username="Manager",
+        password=make_password("manager123"),
         esManager=True
     )
     User.objects.create(
-    	usuario="invitado",
-        contrasena=make_password("invitado123"),
+    	username="invitado",
+        password=make_password("invitado123"),
         esInvitado=True
     )
    
