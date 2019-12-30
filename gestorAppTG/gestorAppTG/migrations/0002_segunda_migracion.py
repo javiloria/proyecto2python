@@ -14,17 +14,36 @@ def createUsers(app, schema_editor):
     User.objects.create(
         username="admin",
         password=make_password("admin123"),
-        esAdmin=True
+        esAdmin=True,
+        cedula=123,
+        primer_nombre="hjashkf",
+        primer_apellido="kdasjjdla",
+        ucab_email="hdhad@est.ucab.edu.ve",
+        email="heri@gmail.com",
+        telefono="01290391"
+
     )
     User.objects.create(
         username="gestor",
-        password=make_password("gestor123"),
-        esGestor=True
+        password="gestor123",
+        esGestor=True,
+        cedula=1234,
+        primer_nombre="hjashkf",
+        primer_apellido="kdasjjdla",
+        ucab_email="hdhasd@est.ucab.edu.ve",
+        email="herdi@gmail.com",
+        telefono="01290391"
     )
     User.objects.create(
     	username="invitado",
         password=make_password("invitado123"),
-        esInvitado=True
+        esInvitado=True,
+        cedula=1223,
+        primer_nombre="hjashkf",
+        primer_apellido="kkdasjjdla",
+        ucab_email="hdhkad@est.ucab.edu.ve",
+        email="hekri@gmail.com",
+        telefono="01290391"
     )
 
 def createEstatusPropuesta(app, schema_editor):

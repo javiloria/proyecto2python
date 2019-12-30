@@ -19,7 +19,7 @@ from django.urls import include,path
 #HERICK: importamos todas nuestras vistas aqui 
 from .views import gestorAppTG
 from .views import propuestas
-from .views import persona
+from .views import user
 from .views import tesis
 from .views import termin
 from .views import defensa
@@ -43,13 +43,13 @@ urlpatterns = [
 		path('<int:pk>/delete/', propuestas.DeletePropuestaView.as_view(), name='propuestas_delete')
     ], 'gestorAppTG'), namespace='propuestas')),
 
-    path('personas/', include(([
-        path('', persona.IndexView.as_view(), name='personas_list'),
-        path('<int:pk>/', persona.DetailView.as_view(), name='personas_details'),
-        path('create/', persona.CreatePersonaView.as_view(), name='personas_create'),
-        path('<int:pk>/update/', persona.UpdatePersonaView.as_view(), name='personas_update'),
-        path('<int:pk>/delete/', persona.DeletePersonaView.as_view(), name='personas_delete')
-    ], 'gestorAppTG'), namespace='personas')),
+    path('users/', include(([
+        path('', user.IndexView.as_view(), name='users_list'),
+        path('<int:pk>/', user.DetailView.as_view(), name='users_details'),
+        path('create/', user.CreateUserView.as_view(), name='users_create'),
+        path('<int:pk>/update/', user.UpdateUserView.as_view(), name='users_update'),
+        path('<int:pk>/delete/', user.DeleteUserView.as_view(), name='users_delete')
+    ], 'gestorAppTG'), namespace='users')),
 
     path('tesis/', include(([
         path('', tesis.IndexView.as_view(), name='tesis_list'),

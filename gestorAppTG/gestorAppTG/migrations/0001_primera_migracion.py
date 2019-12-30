@@ -9,8 +9,9 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('auth', '0011_update_proxy_permissions'),
     ]
-
+    
     operations = [
 
         migrations.CreateModel(
@@ -22,47 +23,39 @@ class Migration(migrations.Migration):
                 ('esAdmin', models.BooleanField(default=False)),
                 ('esGestor', models.BooleanField(default=False)),
                 ('esInvitado', models.BooleanField(default=False)),
+                ('type', models.CharField(blank=True, null=True,choices=[('PRO', 'Profesor'), ('EST', 'Estudiante'), ('AFU', 'Externo')], max_length=20, verbose_name='tipo')),
+                ('cedula' , models.IntegerField(unique=True, verbose_name="cédula") ),
+                ('primer_nombre' , models.CharField(max_length=100, verbose_name="primer nombre")),
+                ('segundo_nombre' , models.CharField(max_length=100, null=True, blank=True, verbose_name="segundo nombre")),
+                ('primer_apellido' , models.CharField(max_length=100, verbose_name="primer apellido")),
+                ('segundo_apellido' , models.CharField(max_length=100, null=True, blank=True, verbose_name="segundo apellido")),
+                ('ucab_email' , models.CharField(max_length=100,verbose_name="correo ucab", null=True, blank=True)),
+                ('email' ,models.CharField(max_length=100, verbose_name="correo personal")),
+                ('telefono' , models.CharField(max_length=15, verbose_name="teléfono 1")),
+                ('telefono_1' ,models.CharField(max_length=15, verbose_name="teléfono 2", null=True, blank=True)),
+                ('observaciones' ,models.CharField(max_length=15, verbose_name="observaciones", null=True, blank=True)),
                 #esto te lo crea por defecto DJANGO python
                 #porque estamos usando el user del mismo django
                 ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
                 ('is_superuser', models.BooleanField(default=False, verbose_name='superuser status')),
                  ('first_name', models.CharField(blank=True, max_length=30, verbose_name='first name')),
                 ('last_name', models.CharField(blank=True, max_length=150, verbose_name='last name')),
-                ('email', models.EmailField(blank=True, max_length=254, verbose_name='email address')),
+                #('email', models.EmailField(blank=True, max_length=254, verbose_name='email address')),
                 ('is_staff', models.BooleanField(default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='staff status')),
                  ('is_active', models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')),
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
-
+                ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.Group', verbose_name='groups')),
+                ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.Permission', verbose_name='user permissions')),
+   
             ],
             options={
-                'verbose_name': 'user',
-                'verbose_name_plural': 'users',
+                'verbose_name': 'User',
+                'verbose_name_plural': 'Users',
                 'abstract': False,
             },
             managers=[
                 ('objects', django.contrib.auth.models.UserManager()),
             ],
-        ),
-        migrations.CreateModel(
-            name='Persona',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type', models.CharField(choices=[('PRO', 'Profesor'), ('EST', 'Estudiante'), ('AFU', 'Afuera')], max_length=20, verbose_name='tipo')),
-    			('cedula_id' , models.IntegerField(unique=True, verbose_name="cédula") ),
-			    ('primer_nombre' , models.CharField(max_length=100, verbose_name="primer nombre")),
-			    ('segundo_nombre' , models.CharField(max_length=100, null=True, blank=True, verbose_name="segundo nombre")),
-			    ('primer_apellido' , models.CharField(max_length=100, verbose_name="primer apellido")),
-			    ('segundo_apellido' , models.CharField(max_length=100, null=True, blank=True, verbose_name="segundo apellido")),
-			    ('ucab_email' , models.CharField(max_length=100,verbose_name="correo ucab", null=True, blank=True)),
-			    ('email' ,models.CharField(max_length=100, verbose_name="correo personal")),
-			    ('telefono' , models.CharField(max_length=15, verbose_name="teléfono 1")),
-			    ('telefono_1' ,models.CharField(max_length=15, verbose_name="teléfono 2", null=True, blank=True)),
-                ('observaciones' ,models.CharField(max_length=15, verbose_name="observaciones", null=True, blank=True))
-	        ],
-            options={
-                'verbose_name': 'Persona',
-                'verbose_name_plural': 'Personas',
-            },
         ),            
         migrations.CreateModel(
             name='Termin',
@@ -116,10 +109,10 @@ class Migration(migrations.Migration):
 			    ('titulo' , models.CharField(max_length=200,verbose_name="título")),
 			    ('estatus', models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_estatus",  to='gestorAppTG.EstatusPropuesta' , verbose_name="estatus de la propuesta")),
                 ('escuela', models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_escuela",  to='gestorAppTG.Escuela' , verbose_name="escuela de la propuesta")),
-			    ('estudiante_1' ,models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_estudiante_1", to='gestorAppTG.Persona', verbose_name="estudiante 1")),
-			    ('estudiante_2' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, null=True, blank=True, related_name="propuesta_estudiante_2",  to='gestorAppTG.Persona',verbose_name="estudiante 2")),
-			    ('tutor_academico' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_tutor_academico", to='gestorAppTG.Persona', verbose_name="tutor académico")),
-			    ('tutor_empresa' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_tutor_empresa", to='gestorAppTG.Persona', verbose_name="tutor empresarial")),
+			    ('estudiante_1' ,models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_estudiante_1", to='gestorAppTG.User', verbose_name="estudiante 1")),
+			    ('estudiante_2' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, null=True, blank=True, related_name="propuesta_estudiante_2",  to='gestorAppTG.User',verbose_name="estudiante 2")),
+			    ('tutor_academico' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_tutor_academico", to='gestorAppTG.User', verbose_name="tutor académico")),
+			    ('tutor_empresa' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_tutor_empresa", to='gestorAppTG.User', verbose_name="tutor empresarial")),
 			    ('termin' , models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_termin",  to='gestorAppTG.Termin',verbose_name="terminología en la que se entrego")),
 			],
             options={

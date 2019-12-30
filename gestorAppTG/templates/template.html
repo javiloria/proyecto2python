@@ -36,9 +36,9 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           {% if user.is_authenticated %}
-            {% if user.esInvitado or user.esAdmin or user.esGestor %}
+            {% if user.esAdmin %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'personas:personas_list' %}">
+              <a class="nav-link" href="{% url 'users:users_list' %}">
                 <span data-feather="users"></span>
                 Personas
               </a>
@@ -78,7 +78,7 @@
           {% endif %}
 
           {% if user.is_authenticated %}
-            {% if user.esAdmin %}
+            {% if user.esAdmin  or user.esGestor %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'escuelas:escuelas_list' %}">
                 <span data-feather="book-open"></span>
@@ -89,7 +89,7 @@
           {% endif %}
 
           {% if user.is_authenticated %}
-            {% if user.esAdmin %}
+            {% if user.esAdmin or user.esGestor %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'estatusPropuestas:estatusPropuestas_list' %}">
                 <span data-feather="book"></span>
@@ -100,7 +100,7 @@
           {% endif %}
 
           {% if user.is_authenticated %}
-            {% if user.esAdmin %}
+            {% if user.esAdmin  or user.esGestor %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'estatusTGs:estatusTGs_list' %}">
                 <span data-feather="book-open"></span>
@@ -111,7 +111,7 @@
           {% endif %}
 
            {% if user.is_authenticated %}
-            {% if user.esAdmin %}
+            {% if user.esAdmin  or user.esGestor %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'termin:termins_list' %}">
                 <span data-feather="clock"></span>

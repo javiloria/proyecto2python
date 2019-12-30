@@ -9,49 +9,48 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from ..decorador import *
 from django.contrib.auth.decorators import login_required
-from ..models import Persona
+from ..models import User
 
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class IndexView(generic.ListView):
-    template_name = 'persona/index.html'
-    context_object_name = 'list_personas'
-    
+    template_name = 'user/index.html'
+    context_object_name = 'list_users'
     def get_queryset(self):
-        return Persona.objects.order_by('primer_nombre')[:5]
+        return User.objects.order_by('cedula')[:10]
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class DetailView(generic.DetailView):
-    model = Persona
-    template_name = 'persona/detail.html'
+    model = User
+    template_name = 'user/detail.html'
 
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
-class CreatePersonaView(generic.CreateView):
-    model = Persona
+class CreateUserView(generic.CreateView):
+    model = User
     fields = "__all__"
-    template_name = 'persona/create.html'
+    template_name = 'user/create.html'
     def form_valid(self, form):
-        persona = form.save(commit=False)
-        persona.save()
-        messages.success(self.request,  'persona creada exitosamente')
-        return redirect('personas:personas_list')
+        user = form.save(commit=False)
+        user.save()
+        messages.success(self.request,  'usuario creado exitosamente')
+        return redirect('users:users_list')
 
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
-class UpdatePersonaView(generic.UpdateView):
-    model = Persona
+class UpdateUserView(generic.UpdateView):
+    model = User
     fields = "__all__"
-    template_name = 'persona/update.html'
+    template_name = 'user/update.html'
     def form_valid(self, form):
-        persona = form.save(commit=False)
-        persona.save()
-        messages.success(self.request, 'persona actualizada exitosamente')
-        return redirect('personas:personas_list')
+        user = form.save(commit=False)
+        user.save()
+        messages.success(self.request, 'usuario actualizado exitosamente')
+        return redirect('users:users_list')
 
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
-class DeletePersonaView(generic.DeleteView):
-    model = Persona
-    template_name = 'persona/delete.html'
-    success_url = reverse_lazy('personas:personas_list')
+class DeleteUserView(generic.DeleteView):
+    model = User
+    template_name = 'user/delete.html'
+    success_url = reverse_lazy('users:users_list')

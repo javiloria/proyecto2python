@@ -36,17 +36,11 @@
 
 * Hacer que la página inicial muestre algo alusivo al site las ultimas tres propuestas y las ultimas tres tesis, o las ultimas tres defensas
 
-* evaluar la reincorporacion de los estatus de las propuestas y la de los estatus de las tesis
-
-* evaluar el agregar, editar escuelas hay que hacer un nuevo crud
-
 * Acciones que ha realizado cada usuario por periodo de fecha, El usuario que ejecuta cada transacción debe quedar registrado para trazabilidad.
  
 * Exportar como pdf y como excel todas las consultas o todas las información
 
 * ver como utilizar readthedocs
-
-* cambiar esManager por esGestor
 
 ### consultas que hay que hacer:
 * Lista de propuestas en estado diferentes de aprobadas, ordenadas por número de CI del

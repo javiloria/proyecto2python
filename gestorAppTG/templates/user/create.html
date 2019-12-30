@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
   <br>
-  <h4 class="mb-3">Crear persona</h4>
+  <h4 class="mb-3">Crear Usuario</h4>
   <div class="row">
     <div class="col-md-6 col-sm-8 col-12">
       <form method="post" novalidate>
@@ -10,7 +10,7 @@
         {{ form|crispy }}
         <div style="margin-bottom: 50px;">
             <button type="submit" class="btn btn-info">Guardar</button>
-            <a href="{% url 'personas:personas_list' %}" class="btn btn-outline-info" role="button">
+            <a href="{% url 'users:users_list' %}" class="btn btn-outline-info" role="button">
                 Volver
             </a>
         </div>

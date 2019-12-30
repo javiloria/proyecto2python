@@ -1,25 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.hashers import make_password #para encriptar contraseña
 
-# Para la autenticacion y autorización
 class User(AbstractUser):
     esAdmin = models.BooleanField(default=False)
     esGestor = models.BooleanField(default=False)
-    esInvitado = models.BooleanField(default=False)
+    esInvitado = models.BooleanField(default=False) 
+    username = models.CharField(error_messages={'unique': 'El usuario ya existe!!'}, max_length=150, unique=True, verbose_name='usuario')
+    password = models.CharField(max_length=128, verbose_name='contraseña')
     def __init__(self, *args, **kwargs):
         return super(User, self).__init__(*args, **kwargs)
-
-class Persona(models.Model):
     PROFESOR = 'PRO'
     ESTUDIANTE = 'EST'
-    AFUERA = 'AFU'
+    EXTERNO = 'AFU'
     TYPE_CHOICES = [
         (PROFESOR, 'Profesor'),
         (ESTUDIANTE, 'Estudiante'),
-        (AFUERA, 'externo')
+        (EXTERNO, 'Externo')
     ]
     type = models.CharField(max_length=20,choices=TYPE_CHOICES, verbose_name="tipo")
-    cedula_id = models.IntegerField(unique=True, verbose_name="cédula") 
+    cedula = models.IntegerField(unique=True, verbose_name="cédula") 
     primer_nombre = models.CharField(max_length=100, verbose_name="primer nombre")
     segundo_nombre = models.CharField(max_length=100, null=True, blank=True, verbose_name="segundo nombre")
     primer_apellido = models.CharField(max_length=100, verbose_name="primer apellido")
@@ -30,11 +30,11 @@ class Persona(models.Model):
     telefono_1 = models.CharField(max_length=15, verbose_name="teléfono 2", null=True, blank=True)
     observaciones = models.CharField(max_length=100, verbose_name="observaciones", null=True, blank=True)
     def __str__(self):
-        return self.primer_nombre + " " + self.primer_apellido
-    #Opara setear el verbose_name 
-    class Meta:
-        verbose_name = "Persona"
-        verbose_name_plural = "Personas"
+        return self.primer_apellido + " " + self.segundo_apellido+ ", " + self.primer_nombre
+
+    def save(self, *args, **kwargs):
+        self.password = make_password(self.password)
+        super(User, self).save(*args, **kwargs)
 
 
 class Termin(models.Model):    
@@ -76,10 +76,10 @@ class Propuesta(models.Model):
     titulo = models.CharField(max_length=200,verbose_name="título")
     escuela= models.ForeignKey(Escuela, on_delete=models.CASCADE, related_name="propuesta_escuela", verbose_name="escuela asociada") 
     estatus = models.ForeignKey(EstatusPropuesta, on_delete=models.CASCADE, related_name="propuesta_estatus",verbose_name="estatus de la propuesta")
-    estudiante_1 = models.ForeignKey(Persona, on_delete=models.CASCADE, related_name="propuesta_estudiante_1", verbose_name="estudiante 1")
-    estudiante_2 = models.ForeignKey(Persona, on_delete=models.CASCADE, null=True, blank=True, related_name="propuesta_estudiante_2", verbose_name="estudiante 2")
-    tutor_academico = models.ForeignKey(Persona, on_delete=models.CASCADE, related_name="propuesta_tutor_academico", verbose_name="tutor académico")
-    tutor_empresa = models.ForeignKey(Persona, on_delete=models.CASCADE, related_name="propuesta_tutor_empresa", verbose_name="tutor empresarial")
+    estudiante_1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="propuesta_estudiante_1", verbose_name="estudiante 1")
+    estudiante_2 = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="propuesta_estudiante_2", verbose_name="estudiante 2")
+    tutor_academico = models.ForeignKey(User, on_delete=models.CASCADE, related_name="propuesta_tutor_academico", verbose_name="tutor académico")
+    tutor_empresa = models.ForeignKey(User, on_delete=models.CASCADE, related_name="propuesta_tutor_empresa", verbose_name="tutor empresarial")
     termin = models.ForeignKey(Termin, on_delete=models.CASCADE, related_name="propuesta_termin", verbose_name="terminología en la que se entrego")
     def __str__(self):
         return self.titulo
