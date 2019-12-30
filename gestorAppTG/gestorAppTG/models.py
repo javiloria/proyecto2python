@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 # Para la autenticacion y autorización
 class User(AbstractUser):
     esAdmin = models.BooleanField(default=False)
-    esManager = models.BooleanField(default=False)
+    esGestor = models.BooleanField(default=False)
     esInvitado = models.BooleanField(default=False)
     def __init__(self, *args, **kwargs):
         return super(User, self).__init__(*args, **kwargs)
@@ -16,7 +16,7 @@ class Persona(models.Model):
     TYPE_CHOICES = [
         (PROFESOR, 'Profesor'),
         (ESTUDIANTE, 'Estudiante'),
-        (AFUERA, 'Afuera')
+        (AFUERA, 'externo')
     ]
     type = models.CharField(max_length=20,choices=TYPE_CHOICES, verbose_name="tipo")
     cedula_id = models.IntegerField(unique=True, verbose_name="cédula") 

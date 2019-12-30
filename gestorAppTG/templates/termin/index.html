@@ -5,7 +5,7 @@
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
         {% if user.is_authenticated %}
-            {% if user.esAdmin or user.esManager %}
+            {% if user.esAdmin or user.esGestor %}
             <a href="{% url 'termin:termin_create' %}" class="btn btn-outline-info" role="button">
                 Crear Terminologia
             </a>
@@ -26,7 +26,7 @@
                         <th>Codigo de terminologia</th>  
                         <th>Descripcion</th>                        
                         {% if user.is_authenticated %}
-                            {% if user.esAdmin or user.esManager %}
+                            {% if user.esAdmin or user.esGestor %}
                                 <th>Accciones</th>
                             {% endif %}
                         {% endif %}
@@ -39,7 +39,7 @@
                         <td>{{ p.id }}</td>
                         <td>{{ p.descripcion }}</td>
                         {% if user.is_authenticated %}
-                            {% if user.esAdmin or user.esManager %}
+                            {% if user.esAdmin or user.esGestor %}
                             <td>
                                 <a href="{% url 'termin:termin_update' p.id %}">Actualizar</a>
                                 <a href="{% url 'termin:termin_delete' p.id %}">Eliminar</a>

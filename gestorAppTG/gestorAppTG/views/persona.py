@@ -26,7 +26,7 @@ class DetailView(generic.DetailView):
     template_name = 'persona/detail.html'
 
 
-@method_decorator([login_required, manager_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class CreatePersonaView(generic.CreateView):
     model = Persona
     fields = "__all__"
@@ -38,7 +38,7 @@ class CreatePersonaView(generic.CreateView):
         return redirect('personas:personas_list')
 
 
-@method_decorator([login_required, manager_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class UpdatePersonaView(generic.UpdateView):
     model = Persona
     fields = "__all__"
@@ -50,7 +50,7 @@ class UpdatePersonaView(generic.UpdateView):
         return redirect('personas:personas_list')
 
 
-@method_decorator([login_required, manager_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class DeletePersonaView(generic.DeleteView):
     model = Persona
     template_name = 'persona/delete.html'

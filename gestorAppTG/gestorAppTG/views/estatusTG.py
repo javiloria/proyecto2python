@@ -14,7 +14,7 @@ class IndexView(generic.ListView):
     template_name = 'estatusTG/index.html'
     context_object_name = 'estatusTGs_list'    
     def get_queryset(self):
-        return EstatusTG.objects.order_by('id')[:5]
+        return EstatusTG.objects.order_by('id')[:10]
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
 class CreateEstatusTGView(generic.CreateView):

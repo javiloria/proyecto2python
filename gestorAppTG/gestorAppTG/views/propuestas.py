@@ -23,7 +23,7 @@ class DetailView(generic.DetailView):
     model = Propuesta
     template_name = 'propuestas/detail.html'
 
-@method_decorator([login_required, manager_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class CreatePropuestaView(generic.CreateView):
     model = Propuesta
     fields = "__all__"
@@ -34,7 +34,7 @@ class CreatePropuestaView(generic.CreateView):
         messages.success(self.request, 'La propuesta fue creada exitosamente')
         return redirect('propuestas:propuestas_list')
 
-@method_decorator([login_required, manager_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class UpdatePropuestaView(generic.UpdateView):
     model = Propuesta
     fields = "__all__"
@@ -45,7 +45,7 @@ class UpdatePropuestaView(generic.UpdateView):
         messages.success(self.request, 'La propuesta fue actualizada exitosamente')
         return redirect('propuestas:propuestas_list')
 
-@method_decorator([login_required, manager_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class DeletePropuestaView(generic.DeleteView):
     model = Propuesta
     template_name = 'propuestas/delete.html'

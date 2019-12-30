@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('username', models.CharField(error_messages={'unique': 'El usuario ya existe!!'}, max_length=150, unique=True, validators=[django.contrib.auth.validators.UnicodeUsernameValidator()], verbose_name='usuario')),
                 ('password', models.CharField(max_length=128, verbose_name='contraseña')),
                 ('esAdmin', models.BooleanField(default=False)),
-                ('esManager', models.BooleanField(default=False)),
+                ('esGestor', models.BooleanField(default=False)),
                 ('esInvitado', models.BooleanField(default=False)),
                 #esto te lo crea por defecto DJANGO python
                 #porque estamos usando el user del mismo django

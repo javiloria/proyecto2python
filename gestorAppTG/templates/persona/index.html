@@ -5,7 +5,7 @@
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
             {% if user.is_authenticated %}
-                {% if user.esAdmin or user.esManager %}
+                {% if user.esAdmin or user.esGestor %}
                     <a href="{% url 'personas:personas_create' %}" class="btn btn-outline-info" role="button">
                         Crear una Persona
                     </a>
@@ -28,7 +28,7 @@
                         <th>Apellido</th>
                         <th>Telefono</th>
                         {% if user.is_authenticated %}
-                            {% if user.esAdmin or user.esManager %}
+                            {% if user.esAdmin or user.esGestor %}
                                 <th>Accciones</th>
                             {% endif %}
                         {% endif %}
@@ -42,7 +42,7 @@
                         <td>{{ i.primer_apellido }}</td>
                         <td>{{i.telefono}}</td>
                         {% if user.is_authenticated %}
-                            {% if user.esAdmin or user.esManager %}
+                            {% if user.esAdmin or user.esGestor %}
                             <td>
                                 <a href="{% url 'personas:personas_update' i.id %}">Actualizar</a>
                                 <a href="{% url 'personas:personas_delete' i.id %}">Eliminar</a>

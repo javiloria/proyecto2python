@@ -22,7 +22,7 @@ class DetailView(generic.DetailView):
     model = Defensa
     template_name = 'defensa/detail.html'
 
-@method_decorator([login_required, manager_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class CreateDefensaView(generic.CreateView):
     model = Defensa
     fields = "__all__"
@@ -33,7 +33,7 @@ class CreateDefensaView(generic.CreateView):
         messages.success(self.request, 'La defensa fue creada exitosamente')
         return redirect('defensas:defensas_list')
 
-@method_decorator([login_required, manager_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class UpdateDefensaView(generic.UpdateView):
     model = Defensa
     fields = "__all__"
@@ -44,7 +44,7 @@ class UpdateDefensaView(generic.UpdateView):
         messages.success(self.request, 'La defensa fue actualizada exitosamente')
         return redirect('defensas:defensas_list')
 
-@method_decorator([login_required, manager_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class DeleteDefensaView(generic.DeleteView):
     model = Defensa
     template_name = 'defensa/delete.html'

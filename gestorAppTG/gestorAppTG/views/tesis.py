@@ -21,7 +21,7 @@ class DetailView(generic.DetailView):
     model = Tesis
     template_name = 'tesis/detail.html'
 
-@method_decorator([login_required, manager_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class CreateTesisView(generic.CreateView):
     model = Tesis
     fields = "__all__"
@@ -32,7 +32,7 @@ class CreateTesisView(generic.CreateView):
         messages.success(self.request, 'La tesis se creoo exitosamente')
         return redirect('tesis:tesis_list')
 
-@method_decorator([login_required, manager_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class UpdateTesisView(generic.UpdateView):
     model = Tesis
     fields =  "__all__"
@@ -43,7 +43,7 @@ class UpdateTesisView(generic.UpdateView):
         messages.success(self.request, 'La propuesta se actualizo exitosamente')
         return redirect('tesis:tesis_list')
 
-@method_decorator([login_required, manager_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class DeleteTesisView(generic.DeleteView):
     model = Tesis
     template_name = 'tesis/delete.html'

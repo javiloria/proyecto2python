@@ -36,7 +36,7 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           {% if user.is_authenticated %}
-            {% if user.esInvitado or user.esAdmin or user.esManager %}
+            {% if user.esInvitado or user.esAdmin or user.esGestor %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'personas:personas_list' %}">
                 <span data-feather="users"></span>
@@ -47,7 +47,7 @@
           {% endif %}
 
           {% if user.is_authenticated %}
-            {% if user.esInvitado or user.esAdmin or user.esManager %}
+            {% if user.esInvitado or user.esAdmin or user.esGestor %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'propuestas:propuestas_list' %}">
                 <span data-feather="file"></span>
@@ -57,7 +57,7 @@
             {% endif %}
           {% endif %}
           {% if user.is_authenticated %}
-            {% if user.esInvitado or user.esAdmin or user.esManager %}
+            {% if user.esInvitado or user.esAdmin or user.esGestor %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'tesis:tesis_list' %}">
                 <span data-feather="home"></span>
@@ -67,7 +67,7 @@
             {% endif %}
           {% endif %}
           {% if user.is_authenticated %}
-            {% if user.esInvitado or user.esAdmin or user.esManager %}
+            {% if user.esInvitado or user.esAdmin or user.esGestor %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'defensas:defensas_list' %}">
                 <span data-feather="file"></span>

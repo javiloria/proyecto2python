@@ -5,8 +5,8 @@
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
         {% if user.is_authenticated %}
-            {% if user.esAdmin or user.esManager %}
-            <a href="{% url 'estatusTGs:estatusTG_create' %}" class="btn btn-outline-info" role="button">
+            {% if user.esAdmin or user.esGestor %}
+            <a href="{% url 'estatusTGs:estatusTGs_create' %}" class="btn btn-outline-info" role="button">
                 Crear estatus de TG
             </a>
             {% endif %}
@@ -25,7 +25,7 @@
                     <tr>
                         <th>Nombre</th>                        
                         {% if user.is_authenticated %}
-                            {% if user.esAdmin or user.esManager %}
+                            {% if user.esAdmin or user.esGestor %}
                                 <th>Accciones</th>
                             {% endif %}
                         {% endif %}
@@ -36,10 +36,10 @@
                     <tr>
                         <td>{{ p.nombre }}</td>
                         {% if user.is_authenticated %}
-                            {% if user.esAdmin or user.esManager %}
+                            {% if user.esAdmin or user.esGestor %}
                             <td>
-                                <a href="{% url 'estatusTGs:estatusTG_update' p.id %}">Actualizar</a>
-                                <a href="{% url 'estatusTGs:estatusTG_delete' p.id %}">Eliminar</a>
+                                <a href="{% url 'estatusTGs:estatusTGs_update' p.id %}">Actualizar</a>
+                                <a href="{% url 'estatusTGs:estatusTGs_delete' p.id %}">Eliminar</a>
                             </td>
                             {% endif %}
                         {% endif %}

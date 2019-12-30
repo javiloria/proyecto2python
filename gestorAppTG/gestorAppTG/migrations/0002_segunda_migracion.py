@@ -17,9 +17,9 @@ def createUsers(app, schema_editor):
         esAdmin=True
     )
     User.objects.create(
-        username="Gestor",
+        username="gestor",
         password=make_password("gestor123"),
-        esManager=True
+        esGestor=True
     )
     User.objects.create(
     	username="invitado",
