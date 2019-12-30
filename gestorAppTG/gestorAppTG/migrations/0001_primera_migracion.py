@@ -150,7 +150,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Defensa',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.CharField(max_length=100, primary_key=True, serialize=False, verbose_name='ID')),
 			    ('fecha_defensa', models.DateTimeField(verbose_name="fecha de la defensa")),
 			    ('jurado_1',models.BooleanField(default=False,verbose_name="jurado 1 ")),
 			    ('jurado_2', models.BooleanField(default=False,verbose_name="jurado 2 ")),

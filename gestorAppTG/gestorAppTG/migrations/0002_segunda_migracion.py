@@ -34,7 +34,6 @@ def createEstatusPropuesta(app, schema_editor):
     EstatusPropuesta.objects.create(nombre='Aprobada')
     EstatusPropuesta.objects.create(nombre='Rechazada')
 
-
 def createEstatusTG(app, schema_editor):
     EstatusTG = app.get_model('gestorAppTG', 'EstatusTG')
     EstatusTG.objects.create(nombre='Por entregar')
