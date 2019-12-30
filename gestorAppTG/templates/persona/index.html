@@ -6,7 +6,7 @@
         <div class="btn-group mr-2">
             {% if user.is_authenticated %}
                 {% if user.esAdmin or user.esManager %}
-                    <a href="{% url 'personas:personas_create' %}" class="btn btn-outline-secondary" role="button">
+                    <a href="{% url 'personas:personas_create' %}" class="btn btn-outline-info" role="button">
                         Crear una Persona
                     </a>
                 {% endif %}

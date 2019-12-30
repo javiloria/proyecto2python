@@ -31,7 +31,7 @@ class CreatePersonaView(generic.CreateView):
     model = Persona
     fields = "__all__"
     template_name = 'persona/create.html'
-    def formu_valido(self, form):
+    def form_valid(self, form):
         persona = form.save(commit=False)
         persona.save()
         messages.success(self.request,  'persona creada exitosamente')
@@ -43,7 +43,7 @@ class UpdatePersonaView(generic.UpdateView):
     model = Persona
     fields = "__all__"
     template_name = 'persona/update.html'
-    def formu_valido(self, form):
+    def form_valid(self, form):
         persona = form.save(commit=False)
         persona.save()
         messages.success(self.request, 'persona actualizada exitosamente')

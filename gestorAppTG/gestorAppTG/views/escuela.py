@@ -21,7 +21,7 @@ class CreateEscuelaView(generic.CreateView):
     model = Escuela
     fields = "__all__"
     template_name = 'escuela/create.html'
-    def formu_valido(self, form):
+    def form_valid(self, form):
         escuela = form.save(commit=False)
         escuela.save()
         messages.success(self.request, 'La escuela se creo exitosamente')
@@ -32,7 +32,7 @@ class UpdateEscuelaView(generic.UpdateView):
     model = Escuela
     fields = "__all__"
     template_name = 'escuela/update.html'
-    def formu_valido(self, form):
+    def form_valid(self, form):
         escuela = form.save(commit=False)
         escuela.save()
         messages.success(self.request, 'La escuela se actualizada exitosamente')

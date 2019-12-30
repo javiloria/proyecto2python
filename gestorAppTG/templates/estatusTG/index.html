@@ -6,7 +6,7 @@
         <div class="btn-group mr-2">
         {% if user.is_authenticated %}
             {% if user.esAdmin or user.esManager %}
-            <a href="{% url 'estatusTG:estatusTG_create' %}" class="btn btn-outline-secondary" role="button">
+            <a href="{% url 'estatusTGs:estatusTG_create' %}" class="btn btn-outline-info" role="button">
                 Crear estatus de TG
             </a>
             {% endif %}
@@ -18,7 +18,7 @@
       </div>
     </div>
     <!--h5>Agregar aaqui los filtros de búsqueda ELIAS!!</h5!-->
-    {% if estatusTG_list %}
+    {% if estatusTGs_list %}
         <div class="table-responsive">
             <table class="table table-striped table-sm">
                 <thead>
@@ -32,14 +32,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for p in estatusTG_list %}
+                    {% for p in estatusTGs_list %}
                     <tr>
                         <td>{{ p.nombre }}</td>
                         {% if user.is_authenticated %}
                             {% if user.esAdmin or user.esManager %}
                             <td>
-                                <a href="{% url 'estatusTG:estatusTG_update' p.id %}">Actualizar</a>
-                                <a href="{% url 'estatusTG:estatusTG_delete' p.id %}">Eliminar</a>
+                                <a href="{% url 'estatusTGs:estatusTG_update' p.id %}">Actualizar</a>
+                                <a href="{% url 'estatusTGs:estatusTG_delete' p.id %}">Eliminar</a>
                             </td>
                             {% endif %}
                         {% endif %}

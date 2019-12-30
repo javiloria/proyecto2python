@@ -6,8 +6,8 @@
         <div class="btn-group mr-2">
         {% if user.is_authenticated %}
             {% if user.esAdmin or user.esManager %}
-            <a href="{% url 'estatusPropuestas:estatusPropuestas_create' %}" class="btn btn-outline-secondary" role="button">
-                Crear Estatus de un propuesta de TG
+            <a href="{% url 'estatusPropuestas:estatusPropuestas_create' %}" class="btn btn-outline-info" role="button">
+                Crear Estatus de una propuesta 
             </a>
             {% endif %}
         {% endif %}

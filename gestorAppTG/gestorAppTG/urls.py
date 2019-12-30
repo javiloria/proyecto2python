@@ -82,11 +82,11 @@ urlpatterns = [
     ], 'gestorAppTG'), namespace='estatusPropuestas')),
 
     path('estatusTG/', include(([
-        path('', estatusTG.IndexView.as_view(), name='estatusTG_list'),
+        path('', estatusTG.IndexView.as_view(), name='estatusTGs_list'),
         path('create/', estatusTG.CreateEstatusTGView.as_view(), name='estatusTG_create'),
         path('<int:pk>/update/', estatusTG.UpdateEstatusTGView.as_view(), name='estatusTG_update'),
         path('<int:pk>/delete/', estatusTG.DeleteEstatusTGView.as_view(), name='estatusTG_delete')
-    ], 'gestorAppTG'), namespace='estatusTG')),
+    ], 'gestorAppTG'), namespace='estatusTGs')),
 
     path('escuelas/', include(([
         path('', escuela.IndexView.as_view(), name='escuelas_list'),

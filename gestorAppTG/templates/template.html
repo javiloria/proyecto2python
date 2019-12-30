@@ -15,14 +15,6 @@
     <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
     <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
 
-    <!-- Favicons -->
-  <link rel="apple-touch-icon" href="https://getbootstrap.com/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-  <link rel="icon" href="https://getbootstrap.com/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-  <link rel="icon" href="https://getbootstrap.com/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-  <link rel="manifest" href="https://getbootstrap.com/docs/4.4/assets/img/favicons/manifest.json">
-  <link rel="mask-icon" href="https://getbootstrap.com/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
-  <link rel="icon" href="https://getbootstrap.com/docs/4.4/assets/img/favicons/favicon.ico">
-  <!-- Custom styles for this template -->
   <link href="{% static 'dashboard.css' %}" rel="stylesheet">
   <style type="text/css">/* Chart.js */
     @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}
@@ -46,17 +38,6 @@
           {% if user.is_authenticated %}
             {% if user.esInvitado or user.esAdmin or user.esManager %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'propuestas:propuestas_list' %}">
-                <span data-feather="file"></span>
-                Propuestas
-              </a>
-            </li>
-            {% endif %}
-          {% endif %}
-
-          {% if user.is_authenticated %}
-            {% if user.esInvitado or user.esAdmin or user.esManager %}
-            <li class="nav-item">
               <a class="nav-link" href="{% url 'personas:personas_list' %}">
                 <span data-feather="users"></span>
                 Personas
@@ -66,20 +47,20 @@
           {% endif %}
 
           {% if user.is_authenticated %}
-            {% if user.esAdmin %}
+            {% if user.esInvitado or user.esAdmin or user.esManager %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'termin:termins_list' %}">
-                <span data-feather="clock"></span>
-                Terminologías
+              <a class="nav-link" href="{% url 'propuestas:propuestas_list' %}">
+                <span data-feather="file"></span>
+                Propuestas
               </a>
             </li>
             {% endif %}
           {% endif %}
-
           {% if user.is_authenticated %}
             {% if user.esInvitado or user.esAdmin or user.esManager %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'tesis:tesis_list' %}">
+                <span data-feather="home"></span>
                 Tesis
               </a>
             </li>
@@ -100,7 +81,7 @@
             {% if user.esAdmin %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'escuelas:escuelas_list' %}">
-                <span data-feather="clock"></span>
+                <span data-feather="book-open"></span>
                 Escuela
               </a>
             </li>
@@ -111,7 +92,7 @@
             {% if user.esAdmin %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'estatusPropuestas:estatusPropuestas_list' %}">
-                <span data-feather="clock"></span>
+                <span data-feather="book"></span>
                 Estatus de las Propuestas
               </a>
             </li>
@@ -121,14 +102,25 @@
           {% if user.is_authenticated %}
             {% if user.esAdmin %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'estatusTG:estatusTG_list' %}">
-                <span data-feather="clock"></span>
+              <a class="nav-link" href="{% url 'estatusTGs:estatusTGs_list' %}">
+                <span data-feather="book-open"></span>
                 Estatus del TG
               </a>
             </li>
             {% endif %}
           {% endif %}
-          
+
+           {% if user.is_authenticated %}
+            {% if user.esAdmin %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'termin:termins_list' %}">
+                <span data-feather="clock"></span>
+                Terminologías
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
+                   
         </ul>
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Reportes</span>
@@ -163,8 +155,7 @@
         </ul>
       </div>
     </nav>
-
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+    <main role="main" style="padding-top:0px;"class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute;  overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
     {% block content %}
     {% endblock %}
     </main>

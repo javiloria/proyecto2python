@@ -28,7 +28,7 @@ class CreatePropuestaView(generic.CreateView):
     model = Propuesta
     fields = "__all__"
     template_name = 'propuestas/create.html'
-    def formu_valido(self, form):
+    def form_valid(self, form):
         propuesta = form.save(commit=False)
         propuesta.save()
         messages.success(self.request, 'La propuesta fue creada exitosamente')
@@ -39,7 +39,7 @@ class UpdatePropuestaView(generic.UpdateView):
     model = Propuesta
     fields = "__all__"
     template_name = 'propuestas/update.html'
-    def formu_valido(self, form):
+    def form_valid(self, form):
         propuesta = form.save(commit=False)
         propuesta.save()
         messages.success(self.request, 'La propuesta fue actualizada exitosamente')

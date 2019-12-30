@@ -78,7 +78,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Escuela',
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False, verbose_name='codigo de la escuela')),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=50, verbose_name="nombre")),
             ],
             options={
@@ -89,8 +89,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='EstatusPropuesta',
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False, verbose_name="código del estatus de la propuesta")),
-                ('nombre', models.CharField(max_length=50, verbose_name="nombre")),
+            ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+             ('nombre', models.CharField(max_length=50, verbose_name="nombre")),
             ],
             options={
                 'verbose_name': 'EstatusPropuesta',
@@ -100,7 +100,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='EstatusTG',
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False, verbose_name="código del estatus del TG")),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name="ID")),
                 ('nombre', models.CharField(max_length=50, verbose_name="nombre")),
             ],
             options={

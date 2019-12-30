@@ -6,7 +6,7 @@
         <div class="btn-group mr-2">
         {% if user.is_authenticated %}
             {% if user.esAdmin or user.esManager %}
-            <a href="{% url 'termin:termin_create' %}" class="btn btn-outline-secondary" role="button">
+            <a href="{% url 'termin:termin_create' %}" class="btn btn-outline-info" role="button">
                 Crear Terminologia
             </a>
             {% endif %}
@@ -23,7 +23,8 @@
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>Tipo</th>                        
+                        <th>Codigo de terminologia</th>  
+                        <th>Descripcion</th>                        
                         {% if user.is_authenticated %}
                             {% if user.esAdmin or user.esManager %}
                                 <th>Accciones</th>
@@ -34,6 +35,8 @@
                 <tbody>
                     {% for p in termins_list %}
                     <tr>
+
+                        <td>{{ p.id }}</td>
                         <td>{{ p.descripcion }}</td>
                         {% if user.is_authenticated %}
                             {% if user.esAdmin or user.esManager %}

@@ -14,14 +14,14 @@ class IndexView(generic.ListView):
     template_name = 'estatusPropuesta/index.html'
     context_object_name = 'estatusPropuestas_list'    
     def get_queryset(self):
-        return EstatusPropuesta.objects.order_by('id')[:5]
+        return EstatusPropuesta.objects.order_by('id')[:10]
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
 class CreateEstatusPropuestaView(generic.CreateView):
     model = EstatusPropuesta
     fields = "__all__"
     template_name = 'estatusPropuesta/create.html'
-    def formu_valido(self, form):
+    def form_valid(self, form):
         term = form.save(commit=False)
         term.save()
         messages.success(self.request, 'El estatus de la propuesta se creo exitosamente')
@@ -32,14 +32,14 @@ class UpdateEstatusPropuestaView(generic.UpdateView):
     model = EstatusPropuesta
     fields = "__all__"
     template_name = 'termin/update.html'
-    def formu_valido(self, form):
+    def form_valid(self, form):
         estatusPropuesta = form.save(commit=False)
         estatusPropuesta.save()
         messages.success(self.request, 'El estatus de la propuesta se actualizada exitosamente')
-        return redirect('termin:estatusPropuestas_list')
+        return redirect('estatusPropuestas:estatusPropuestas_list')
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
 class DeleteEstatusPropuestaView(generic.DeleteView):
     model = EstatusPropuesta
     template_name = 'estatusPropuesta/delete.html'
-    success_url = reverse_lazy('estatusPropuesta:estatusPropuestas_list')
+    success_url = reverse_lazy('estatusPropuestas:estatusPropuestas_list')

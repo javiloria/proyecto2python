@@ -6,7 +6,7 @@
         <div class="btn-group mr-2">
         {% if user.is_authenticated %}
             {% if user.esAdmin or user.esManager %}
-            <a href="{% url 'escuelas:escuelas_create' %}" class="btn btn-outline-secondary" role="button">
+            <a href="{% url 'escuelas:escuelas_create' %}" class="btn btn-outline-info" role="button">
                 Crear Escuela
             </a>
             {% endif %}

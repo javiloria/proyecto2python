@@ -9,8 +9,8 @@
         {% csrf_token %}
         {{ form|crispy }}
           <div style="margin-bottom: 50px;">
-            <button type="submit" class="btn btn-success">Guardar</button>
-            <a href="{% url 'estatusPropuestas:estatusPropuestas_list' %}" class="btn btn-outline-secondary" role="button">volver</a>
+            <button type="submit" class="btn btn-info">Guardar</button>
+            <a href="{% url 'estatusPropuestas:estatusPropuestas_list' %}" class="btn btn-outline-info" role="button">volver</a>
           </div>
         </form>
         </form>

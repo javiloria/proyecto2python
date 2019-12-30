@@ -29,11 +29,11 @@ ELIAS -->
       </button>
     </nav>
 
-    <main role="main" class="container" style="padding-top: 5rem;">
+    <main role="main" class="container" style="padding-top:  10px;">
       <div class="starter-template">
 
 
-        <div class="container" style="width: 50%; padding-top: 5rem;">
+        <div class="container" style="width: 50%; padding-top: 10px;">
         <h2>Login</h2>
           <form method="post" novalidate>
               {% csrf_token %}
@@ -41,7 +41,7 @@ ELIAS -->
               {{ form.username|as_crispy_field }}
               {{ form.password|as_crispy_field }}
               <button type="submit" class="btn btn-primary">Iniciar</button>
-              <a href="{% url 'home' %}" class="btn btn-outline-secondary" role="button">
+              <a href="{% url 'home' %}" class="btn btn-outline-info" role="button">
                 Volver
               </a>
           </form>

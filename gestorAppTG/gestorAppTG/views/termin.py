@@ -21,9 +21,9 @@ class CreateTerminView(generic.CreateView):
     model = Termin
     fields = "__all__"
     template_name = 'termin/create.html'
-    def formu_valido(self, form):
-        term = form.save(commit=False)
-        term.save()
+    def form_valid(self, form):
+        termin = form.save(commit=False)
+        termin.save()
         messages.success(self.request, 'La terminología se creo exitosamente')
         return redirect('termin:termins_list')
 
@@ -32,7 +32,7 @@ class UpdateTerminView(generic.UpdateView):
     model = Termin
     fields = "__all__"
     template_name = 'termin/update.html'
-    def formu_valido(self, form):
+    def form_valid(self, form):
         termin = form.save(commit=False)
         termin.save()
         messages.success(self.request, 'La terminología se actualizada exitosamente')

@@ -26,7 +26,7 @@ class CreateTesisView(generic.CreateView):
     model = Tesis
     fields = "__all__"
     template_name = 'tesis/create.html'
-    def formu_valido(self, form):
+    def form_valid(self, form):
         tesis = form.save(commit=False)
         tesis.save()
         messages.success(self.request, 'La tesis se creoo exitosamente')
@@ -37,7 +37,7 @@ class UpdateTesisView(generic.UpdateView):
     model = Tesis
     fields =  "__all__"
     template_name = 'tesis/update.html'
-    def formu_valido(self, form):
+    def form_valid(self, form):
         tesis = form.save(commit=False)
         tesis.save()
         messages.success(self.request, 'La propuesta se actualizo exitosamente')

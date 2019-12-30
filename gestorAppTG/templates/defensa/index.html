@@ -6,7 +6,7 @@
         <div class="btn-group mr-2">
             {% if user.is_authenticated %}
                 {% if user.esAdmin or user.esManager %}
-                    <a href="{% url 'defensas:defensas_create' %}" class="btn btn-outline-secondary" role="button">
+                    <a href="{% url 'defensas:defensas_create' %}" class="btn btn-outline-info" role="button">
                         Crear defensa
                     </a>
                 {% endif %}

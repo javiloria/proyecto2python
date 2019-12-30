@@ -48,7 +48,6 @@ class Termin(models.Model):
         verbose_name_plural = "Terminologías"
 
 class EstatusPropuesta(models.Model):    
-    id = models.IntegerField(primary_key=True, verbose_name="código del estatus de la propuesta")
     nombre = models.CharField(max_length=20, verbose_name="nombre")
     def __str__(self):
         return self.nombre
@@ -57,7 +56,6 @@ class EstatusPropuesta(models.Model):
         verbose_name_plural = "EstatusPropuestas"
 
 class EstatusTG(models.Model):    
-    id = models.IntegerField(primary_key=True, verbose_name="código del estatus del TG")
     nombre = models.CharField(max_length=20, verbose_name="nombre")
     def __str__(self):
         return self.nombre
@@ -66,7 +64,6 @@ class EstatusTG(models.Model):
         verbose_name_plural = "EstatusTGs"
 
 class Escuela(models.Model):    
-    id = models.IntegerField(primary_key=True, verbose_name="código de la escuela")
     nombre = models.CharField(max_length=20, verbose_name="nombre")
     def __str__(self):
         return self.nombre
@@ -86,7 +83,7 @@ class Propuesta(models.Model):
     termin = models.ForeignKey(Termin, on_delete=models.CASCADE, related_name="propuesta_termin", verbose_name="terminología en la que se entrego")
     def __str__(self):
         return self.titulo
-    def get_id(self):
+    def getId(self):
         return self.id
     #para setear el verbose_name 
     class Meta:
@@ -106,12 +103,14 @@ class Tesis(models.Model):
     EmpresaNombre = models.CharField(max_length=100, verbose_name="nombre de la empresa")
     termin = models.ForeignKey(Termin, on_delete=models.CASCADE, related_name="termin_tesis", verbose_name="terminología")
     propuesta = models.ForeignKey(Propuesta, on_delete=models.CASCADE, related_name="propuestaTesis", verbose_name="propuesta asociada")
+    def getId(self):
+        return self.id
     def __str__(self):
         if self.titulo==None:
             return str(self.propuesta) 
         return self.titulo
     def save(self, *args, **kwargs):
-        self.id = "TG-" + str(self.propuesta.get_id())
+        self.id = "TG-" + str(self.propuesta.getId())
         super(Tesis, self).save(*args, **kwargs)
     #para setear el verbose_name 
     class Meta:
@@ -135,8 +134,8 @@ class Defensa(models.Model):
     def __str__(self):
         return str(self.fecha_defensa)
     def save(self, *args, **kwargs):
-        self.id = "D-" + str(self.tesis.get_id())
-        super(Tesis, self).save(*args, **kwargs)
+        self.id = "D-" + str(self.tesis.getId())
+        super(Defensa, self).save(*args, **kwargs)
     #para setear el verbose_name 
     class Meta:
         verbose_name = "Defensa"
