@@ -46,6 +46,8 @@
 
 * ver como utilizar readthedocs
 
+* cambiar esManager por esGestor
+
 ### consultas que hay que hacer:
 * Lista de propuestas en estado diferentes de aprobadas, ordenadas por número de CI del
 alumno y mostrar apellidos y nombres del alumno, TERM y nombre de la propuesta.
@@ -69,3 +71,17 @@ en ese período.
 aritmética, mediana, moda y desviación estándar de la selección. Este último debe ser
 exportable a pdf.
 
+
+### Errores: 
+
+* al modificar la id de alguno y actualizas el no se va actualizar la id, sin enbargo si despues de eso eliminas y vuelve a cargar veras que se añadio uno nuevo con la id anterior que tu supuestamente cambiaste , arreglar esto
+
+* revisar panel de EstatusTG que esta presentando proleas y no se porque
+
+* en la pantalla de la propusta no esta validado que la propuesta el tutor sea diferente a los demas ni que los estudiantes se repitan , ni nada de eso
+
+* hay que conectar user con persona (podemos unir user con persona)
+
+* NRC cambiar y poner id
+
+* Defensa hay que arreglar todo lo campos en el create, ademas de poner las limitantes de la calificacion y otras vainas
