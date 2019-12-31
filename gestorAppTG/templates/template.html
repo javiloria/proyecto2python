@@ -127,11 +127,18 @@
           <!-- href="https://getbootstrap.com/docs/4.4/examples/dashboard/#" aria-label="Add a new report"!-->
         </h6>
         <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.4/examples/dashboard/#">
-              Reporte 1
-            </a>
-          </li>
+
+           {% if user.is_authenticated %}
+            {% if user.esAdmin  or user.esGestor %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reporte1s:reporte1s_list' %}">
+                <span data-feather="clock"></span>
+                Reporte 1
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
+                   
           <li class="nav-item">
             <a class="nav-link" href="https://getbootstrap.com/docs/4.4/examples/dashboard/#">
               Reporte 2

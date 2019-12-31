@@ -30,11 +30,13 @@ class User(AbstractUser):
     telefono_1 = models.CharField(max_length=15, verbose_name="teléfono 2", null=True, blank=True)
     observaciones = models.CharField(max_length=100, verbose_name="observaciones", null=True, blank=True)
     def __str__(self):
-        return self.primer_apellido + " " + self.segundo_apellido+ ", " + self.primer_nombre
-
+        return self.primer_apellido + ", " + self.primer_nombre
     def save(self, *args, **kwargs):
         self.password = make_password(self.password)
         super(User, self).save(*args, **kwargs)
+    class Meta:
+        verbose_name = "User"
+        verbose_name_plural = "Users"
 
 
 class Termin(models.Model):    

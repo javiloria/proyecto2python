@@ -26,6 +26,7 @@ from .views import defensa
 from .views import escuela
 from .views import estatusTG
 from .views import estatusPropuesta
+from .views import reporte1
 
 urlpatterns = [
     
@@ -94,4 +95,8 @@ urlpatterns = [
         path('<int:pk>/update/', escuela.UpdateEscuelaView.as_view(), name='escuelas_update'),
         path('<int:pk>/delete/', escuela.DeleteEscuelaView.as_view(), name='escuelas_delete')
     ], 'gestorAppTG'), namespace='escuelas')),
+
+    path('reporte1/', include(([
+        path('', reporte1.IndexView.as_view(), name='reporte1s_list')
+    ], 'gestorAppTG'), namespace='reporte1s')),
 ]
