@@ -13,16 +13,16 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-# Instalacion de tema
-import guzzle_sphinx_theme
-extensions = ['sphinx.ext.autodoc']
-html_theme_path = guzzle_sphinx_theme.html_theme_path()
-html_theme = 'guzzle_sphinx_theme'
 
-# Register the theme as an extension to generate a sitemap.xmls
-extensions.append("guzzle_sphinx_theme")
 
-# Guzzle theme options (see theme.conf for more information)
+import sphinx_rtd_theme
+
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx_rtd_theme",
+]
+
+html_theme = "sphinx_rtd_theme"
 
 
 
