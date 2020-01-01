@@ -26,7 +26,7 @@ from .views import defensa
 from .views import escuela
 from .views import estatusTG
 from .views import estatusPropuesta
-from .views import reporte1
+from .views import reporte
 
 urlpatterns = [
     
@@ -97,6 +97,24 @@ urlpatterns = [
     ], 'gestorAppTG'), namespace='escuelas')),
 
     path('reporte1/', include(([
-        path('', reporte1.IndexView.as_view(), name='reporte1s_list')
+        path('', reporte.IndexReporte1View.as_view(), name='reporte1s_list')
     ], 'gestorAppTG'), namespace='reporte1s')),
+    path('reporte2/', include(([
+        path('', reporte.IndexReporte2View.as_view(), name='reporte2s_list')
+    ], 'gestorAppTG'), namespace='reporte2s')),
+    path('reporte3/', include(([
+        path('', reporte.IndexReporte3View.as_view(), name='reporte3s_list')
+    ], 'gestorAppTG'), namespace='reporte3s')),
+    path('reporte4/', include(([
+        path('', reporte.IndexReporte4View.as_view(), name='reporte4s_list')
+    ], 'gestorAppTG'), namespace='reporte4s')),
+    path('reporte5/', include(([
+        path('', reporte.IndexReporte5View.as_view(), name='reporte5s_list')
+    ], 'gestorAppTG'), namespace='reporte5s')),
+    path('reporte6/', include(([
+        path('', reporte.IndexReporte6View.as_view(), name='reporte6s_list')
+    ], 'gestorAppTG'), namespace='reporte6s')),
+    path('reporte7/', include(([
+        path('', reporte.IndexReporte7View.as_view(), name='reporte7s_list')
+    ], 'gestorAppTG'), namespace='reporte7s')),
 ]

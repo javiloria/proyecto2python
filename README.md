@@ -38,6 +38,10 @@
 
 * Acciones que ha realizado cada usuario por periodo de fecha, El usuario que ejecuta cada transacción debe quedar registrado para trazabilidad.
  
+* filtro de un buscador por expresiones regulares en la tabla 
+
+* agregar query de los 7 reportes finales (consultas que hay que hacer:)
+
 * Exportar como pdf y como excel todas las consultas o todas las información
 
 * ver como utilizar readthedocs
@@ -72,8 +76,6 @@ exportable a pdf.
 
 * en la pantalla de la propusta no esta validado que la propuesta el tutor sea diferente a los demas ni que los estudiantes se repitan , ni nada de eso
 
-* hay que conectar user con persona (podemos unir user con persona)
-
 * NRC cambiar y poner id
 
-* Defensa hay que arreglar todo lo campos en el create, ademas de poner las limitantes de la calificacion y otras vainas
+* Defensa hay que arreglar todo lo campos en el create (ver jurados y cambiar fecha de correcion como null tambien, ademas de poner las limitantes de la calificacion y otras vainas

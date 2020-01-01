@@ -139,26 +139,82 @@
             {% endif %}
           {% endif %}
                    
-          <li class="nav-item">
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.4/examples/dashboard/#">
-              Reporte 2
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.4/examples/dashboard/#">
-              Reporte 3
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.4/examples/dashboard/#">
-              Reporte 4
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.4/examples/dashboard/#">
-              Reporte 5
-            </a>
-          </li>
+           {% if user.is_authenticated %}
+            {% if user.esAdmin  or user.esGestor %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reporte2s:reporte2s_list' %}">
+                <span data-feather="clock"></span>
+                Reporte 2
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
+
+          {% if user.is_authenticated %}
+            {% if user.esAdmin  or user.esGestor %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reporte2s:reporte2s_list' %}">
+                <span data-feather="clock"></span>
+                Reporte 2
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
+                     {% if user.is_authenticated %}
+            {% if user.esAdmin  or user.esGestor %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reporte3s:reporte3s_list' %}">
+                <span data-feather="clock"></span>
+                Reporte 3
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
+          
+          {% if user.is_authenticated %}
+            {% if user.esAdmin  or user.esGestor %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reporte4s:reporte4s_list' %}">
+                <span data-feather="clock"></span>
+                Reporte 4
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
+
+          {% if user.is_authenticated %}
+            {% if user.esAdmin  or user.esGestor %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reporte5s:reporte5s_list' %}">
+                <span data-feather="clock"></span>
+                Reporte 5
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}           
+
+          {% if user.is_authenticated %}
+            {% if user.esAdmin  or user.esGestor %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reporte6s:reporte6s_list' %}">
+                <span data-feather="clock"></span>
+                Reporte 6
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
+
+          {% if user.is_authenticated %}
+            {% if user.esAdmin  or user.esGestor %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reporte7s:reporte7s_list' %}">
+                <span data-feather="clock"></span>
+                Reporte 7
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
+
         </ul>
       </div>
     </nav>

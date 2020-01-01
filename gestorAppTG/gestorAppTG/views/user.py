@@ -24,11 +24,12 @@ class DetailView(generic.DetailView):
     model = User
     template_name = 'user/detail.html'
 
+opciones=['cedula', 'esAdmin', 'esGestor', 'esInvitado', 'username', 'password', 'type', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 'ucab_email', 'email', 'telefono', 'telefono_1', 'observaciones']
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class CreateUserView(generic.CreateView):
     model = User
-    fields = "__all__"
+    fields = opciones
     template_name = 'user/create.html'
     def form_valid(self, form):
         user = form.save(commit=False)
@@ -40,7 +41,7 @@ class CreateUserView(generic.CreateView):
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class UpdateUserView(generic.UpdateView):
     model = User
-    fields = "__all__"
+    fields = opciones
     template_name = 'user/update.html'
     def form_valid(self, form):
         user = form.save(commit=False)
