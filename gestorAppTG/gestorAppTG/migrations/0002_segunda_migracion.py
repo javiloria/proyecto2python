@@ -8,6 +8,8 @@ def createTermin(app, schema_editor):
     Termin = app.get_model('gestorAppTG','Termin')
     Termin.objects.create(id="201915", descripcion='primer semestre del año académico')
     Termin.objects.create(id="201925", descripcion='segundo semestre del año académico')
+    Termin.objects.create(id="202015", descripcion='primer semestre del año académico')
+    Termin.objects.create(id="202025", descripcion='segundo semestre del año académico')
 
 def createUsers(app, schema_editor):
     User = app.get_model('gestorAppTG','User')
@@ -45,6 +47,102 @@ def createUsers(app, schema_editor):
         email="hekri@gmail.com",
         telefono="01290391"
     )
+    User.objects.create(
+    	username="jorge",
+        password=make_password("jorge123"),
+        esInvitado=True,
+        cedula=27513724,
+        primer_nombre="Jorge",
+        primer_apellido="Viloria",
+        ucab_email="javiloria.16@est.ucab.edu.ve",
+        email="javiloria100@gmail.com",
+        telefono="0424328264"
+    )
+    User.objects.create(
+    	username="elias",
+        password=make_password("elias123"),
+        esInvitado=True,
+        cedula=26089396,
+        primer_nombre="José",
+        primer_apellido="Barrientos",
+        ucab_email="jebarrientos.16@est.ucab.edu.ve",
+        email="joseeli54@gmail.com",
+        telefono="04142398425"
+    )
+    User.objects.create(
+    	username="ysabel",
+        password=make_password("ysabel123"),
+        esInvitado=True,
+        cedula=2345632,
+        primer_nombre="Ysabel",
+        primer_apellido="Ardila",
+        ucab_email="ytardila.16@est.ucab.edu.ve",
+        email="ysabelardila@gmail.com",
+        telefono="04247249399"
+    )
+    User.objects.create(
+    	username="herick",
+        password=make_password("herick123"),
+        esInvitado=True,
+        cedula=2677289,
+        primer_nombre="Herick",
+        primer_apellido="Navarro",
+        ucab_email="hdnavarro@est.ucab.edu.ve",
+        email="hdnavarro@gmail.com",
+        telefono="04140200884"
+    )
+    User.objects.create(
+    	username="francisco",
+        password=make_password("francisco123"),
+        esInvitado=True,
+        cedula=12789765,
+        primer_nombre="Francisco",
+        primer_apellido="Gomez",
+        ucab_email="fgomez@est.ucab.edu.ve",
+        email="franciscogomez@gmail.com",
+        telefono="04267249399"
+    )
+
+    User.objects.create(
+    	username="goyo",
+        password=make_password("goyo123"),
+        esInvitado=True,
+        cedula=8923765,
+        primer_nombre="José",
+        primer_apellido="Castillo",
+        ucab_email="jcastillo@est.ucab.edu.ve",
+        email="jgcastillop@gmail.com",
+        telefono="0412605343"
+    )
+    User.objects.create(
+    	username="manuel",
+        password=make_password("manuel123"),
+        esInvitado=True,
+        cedula=10276583,
+        primer_nombre="Manuel",
+        primer_apellido="Pena",
+        ucab_email="mpena@est.ucab.edu.ve",
+        email="manuelpena@gmail.com",
+        telefono="0412789546"
+    )
+    User.objects.create(
+    	username="fanny",
+        password=make_password("fanny123"),
+        esInvitado=True,
+        cedula=10212903,
+        primer_nombre="Fanny",
+        primer_apellido="Hernandez",
+        ucab_email="fannyh@est.ucab.edu.ve",
+        email="fannyhernandez@gmail.com",
+        telefono="0414759566"
+    )
+def createPropuestas(app,schema_editor):
+    Propuesta = app.get_model('gestorAppTG', 'Propuesta')
+    #Propuesta.objects.create(entrega_fecha='2019-12-19', titulo='Prueba 1',estatus_id=1, escuela_id=1,
+    # estudiante_1_id=3,estudiante_2_id=4, tutor_academico_id= 8, tutor_empresa_id=7, termin_id=2 )   
+
+def createTesis(app,schema_editor):
+    Tesis = app.get_model('gestorAppTG', 'Tesis')
 
 def createEstatusPropuesta(app, schema_editor):
     EstatusPropuesta = app.get_model('gestorAppTG', 'EstatusPropuesta')
@@ -67,7 +165,7 @@ def createEscuelas(app, schema_editor):
     Escuela.objects.create(nombre='Ingeneria Informatica')
     Escuela.objects.create(nombre='Ingeneria Telecomunicaciones')
     Escuela.objects.create(nombre='Ingeneria Civil')
-   
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -79,5 +177,7 @@ class Migration(migrations.Migration):
         migrations.RunPython(createUsers),
         migrations.RunPython(createEstatusPropuesta),
         migrations.RunPython(createEstatusTG),
-        migrations.RunPython(createEscuelas)
+        migrations.RunPython(createEscuelas),
+        migrations.RunPython(createPropuestas),
+        migrations.RunPython(createTesis)
     ]
