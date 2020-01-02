@@ -112,7 +112,7 @@ class Migration(migrations.Migration):
 			    ('estudiante_1' ,models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_estudiante_1", to='gestorAppTG.User', verbose_name="estudiante 1")),
 			    ('estudiante_2' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, null=True, blank=True, related_name="propuesta_estudiante_2",  to='gestorAppTG.User',verbose_name="estudiante 2")),
 			    ('tutor_academico' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_tutor_academico", to='gestorAppTG.User', verbose_name="tutor académico")),
-			    ('tutor_empresa' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_tutor_empresa", to='gestorAppTG.User', verbose_name="tutor empresarial")),
+			    ('tutor_empresa' , models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,blank=True, null=True, related_name="propuesta_tutor_empresa", to='gestorAppTG.User', verbose_name="tutor empresarial")),
 			    ('termin' , models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="propuesta_termin",  to='gestorAppTG.Termin',verbose_name="terminología en la que se entrego")),
 			],
             options={

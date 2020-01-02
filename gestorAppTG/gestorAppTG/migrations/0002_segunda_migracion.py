@@ -6,8 +6,10 @@ from django.contrib.auth.hashers import make_password #para encriptar contraseñ
 
 def createTermin(app, schema_editor):
     Termin = app.get_model('gestorAppTG','Termin')
-    Termin.objects.create(id="201915", descripcion='primer semestre del año académico')
-    Termin.objects.create(id="201925", descripcion='segundo semestre del año académico')
+    Termin.objects.create(id="201915", descripcion='primer semestre del año académico 2019')
+    Termin.objects.create(id="201925", descripcion='segundo semestre del año académico 2019')
+    Termin.objects.create(id="202015", descripcion='primer semestre del año académico 2020')
+    Termin.objects.create(id="202025", descripcion='segundo semestre del año académico 2020')
 
 def createUsers(app, schema_editor):
     User = app.get_model('gestorAppTG','User')
@@ -20,19 +22,21 @@ def createUsers(app, schema_editor):
         primer_apellido="kdasjjdla",
         ucab_email="hdhad@est.ucab.edu.ve",
         email="heri@gmail.com",
-        telefono="01290391"
+        telefono="01290391",
+        type='Externo'
 
     )
     User.objects.create(
         username="gestor",
-        password="gestor123",
+        password=make_password("gestor123"),
         esGestor=True,
         cedula=1234,
         primer_nombre="hjashkf",
         primer_apellido="kdasjjdla",
         ucab_email="hdhasd@est.ucab.edu.ve",
         email="herdi@gmail.com",
-        telefono="01290391"
+        telefono="01290391",
+        type='Externo'
     )
     User.objects.create(
     	username="invitado",
@@ -43,8 +47,398 @@ def createUsers(app, schema_editor):
         primer_apellido="kkdasjjdla",
         ucab_email="hdhkad@est.ucab.edu.ve",
         email="hekri@gmail.com",
-        telefono="01290391"
+        telefono="01290391",
+        type='Externo'
     )
+    User.objects.create(
+    	username="jorge",
+        password=make_password("jorge123"),
+        esInvitado=True,
+        cedula=27513724,
+        primer_nombre="Jorge",
+        primer_apellido="Viloria",
+        ucab_email="javiloria.16@est.ucab.edu.ve",
+        email="javiloria100@gmail.com",
+        telefono="0424328264",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="elias",
+        password=make_password("elias123"),
+        esInvitado=True,
+        cedula=26089396,
+        primer_nombre="José",
+        primer_apellido="Barrientos",
+        ucab_email="jebarrientos.16@est.ucab.edu.ve",
+        email="joseeli54@gmail.com",
+        telefono="04142398425",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="ysabel",
+        password=make_password("ysabel123"),
+        esInvitado=True,
+        cedula=2345632,
+        primer_nombre="Ysabel",
+        primer_apellido="Ardila",
+        ucab_email="ytardila.16@est.ucab.edu.ve",
+        email="ysabelardila@gmail.com",
+        telefono="04247249399",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="herick",
+        password=make_password("herick123"),
+        esInvitado=True,
+        cedula=2677289,
+        primer_nombre="Herick",
+        primer_apellido="Navarro",
+        ucab_email="hdnavarro@est.ucab.edu.ve",
+        email="hdnavarro@gmail.com",
+        telefono="04140200884",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="max",
+        password=make_password("max123"),
+        esInvitado=True,
+        cedula=27892345,
+        primer_nombre="Max",
+        primer_apellido="Quiroz",
+        ucab_email="mjquiroz.16@est.ucab.edu.ve",
+        email="maxquiroz@gmail.com",
+        telefono="0424067894",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="cholo",
+        password=make_password("cholo123"),
+        esInvitado=True,
+        cedula=24592343,
+        primer_nombre="Miguel",
+        primer_apellido="Ordoñez",
+        ucab_email="maordonez.16@est.ucab.edu.ve",
+        email="miguelaordonez@gmail.com",
+        telefono="0412783456",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="mario",
+        password=make_password("mario123"),
+        esInvitado=True,
+        cedula=27890367,
+        primer_nombre="Mario",
+        primer_apellido="Martínez",
+        ucab_email="mmmartinez.18@est.ucab.edu.ve",
+        email="mariomartinez12@gmail.com",
+        telefono="0424245678",
+        type='Estudiante'
+    )            
+    User.objects.create(
+    	username="maria",
+        password=make_password("maria123"),
+        esInvitado=True,
+        cedula=26789123,
+        primer_nombre="Maria",
+        primer_apellido="Da silva",
+        ucab_email="mddasilva.17@est.ucab.edu.ve",
+        email="mariadsd123@gmail.com",
+        telefono="0414573444",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="rebeca",
+        password=make_password("rebeca123"),
+        esInvitado=True,
+        cedula=28832431,
+        primer_nombre="Rebeca",
+        primer_apellido="Barbella",
+        ucab_email="rcbarbella.18@est.ucab.edu.ve",
+        email="rebebarbella2012@gmail.com",
+        telefono="0416783489",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="josem",
+        password=make_password("josem123"),
+        esInvitado=True,
+        cedula=25672674,
+        primer_nombre="José",
+        primer_apellido="De freitos",
+        ucab_email="jmdefreitos.15@est.ucab.edu.ve",
+        email="josemanueldf99@gmail.com",
+        telefono="0416783983",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="kelly",
+        password=make_password("kelly123"),
+        esInvitado=True,
+        cedula=26597676,
+        primer_nombre="Kelly",
+        primer_apellido="Peña",
+        ucab_email="kkpena.15@est.ucab.edu.ve",
+        email="kellykpena@gmail.com",
+        telefono="04261041228",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="maribel",
+        password=make_password("maribel123"),
+        esInvitado=True,
+        cedula=26897211,
+        primer_nombre="Maribel",
+        primer_apellido="Aranguren",
+        ucab_email="maaranguren.16@est.ucab.edu.ve",
+        email="maribelaranguren@gmail.com",
+        telefono="04242792715",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="julio",
+        password=make_password("julio123"),
+        esInvitado=True,
+        cedula=26777838,
+        primer_nombre="Julio",
+        primer_apellido="Rojas",
+        ucab_email="jjrojas.15@est.ucab.edu.ve",
+        email="juliorojas@gmail.com",
+        telefono="0416899365",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="miguel",
+        password=make_password("miguel123"),
+        esInvitado=True,
+        cedula=25992234,
+        primer_nombre="Miguel",
+        primer_apellido="Molina",
+        ucab_email="mamolina.16@est.ucab.edu.ve",
+        email="mamolinar1997@gmail.com",
+        telefono="0424321654",
+        type='Estudiante'
+    )                                                                                                                                            
+    User.objects.create(
+    	username="francisco",
+        password=make_password("francisco123"),
+        esInvitado=True,
+        cedula=12789765,
+        primer_nombre="Francisco",
+        primer_apellido="Gomez",
+        ucab_email="fgomez@est.ucab.edu.ve",
+        email="franciscogomez@gmail.com",
+        telefono="04267249399",
+        type='Profesor'
+    )
+
+    User.objects.create(
+    	username="goyo",
+        password=make_password("goyo123"),
+        esInvitado=True,
+        cedula=8923765,
+        primer_nombre="José",
+        primer_apellido="Castillo",
+        ucab_email="jcastillo@est.ucab.edu.ve",
+        email="jgcastillop@gmail.com",
+        telefono="0412605343",
+        type='Profesor'
+    )
+    User.objects.create(
+    	username="manuel",
+        password=make_password("manuel123"),
+        esInvitado=True,
+        cedula=10276583,
+        primer_nombre="Manuel",
+        primer_apellido="Pena",
+        ucab_email="mpena@est.ucab.edu.ve",
+        email="manuelpena@gmail.com",
+        telefono="0412789546",
+        type='Profesor'
+    )
+    User.objects.create(
+    	username="fanny",
+        password=make_password("fanny123"),
+        esInvitado=True,
+        cedula=10212903,
+        primer_nombre="Fanny",
+        primer_apellido="Hernandez",
+        ucab_email="fannyh@est.ucab.edu.ve",
+        email="fannyhernandez@gmail.com",
+        telefono="0414759566",
+        type='Profesor'
+    )
+    User.objects.create(
+    	username="cipriano",
+        password=make_password("cipriano123"),
+        esInvitado=True,
+        cedula=12783423,
+        primer_nombre="Cipriano",
+        primer_apellido="Machado",
+        email="ciprianomachado@gmail.com",
+        telefono="0416782834",
+        type='Externo'
+    )
+    User.objects.create(
+    	username="javier",
+        password=make_password("javier123"),
+        esInvitado=True,
+        cedula=12793421,
+        primer_nombre="Javier",
+        primer_apellido="Rojas",
+        email="javierrojas@gmail.com",
+        telefono="0412255734",
+        type='Externo'
+    )       
+    User.objects.create(
+    	username="jose",
+        password=make_password("jose123"),
+        esInvitado=True,
+        cedula=19793429,
+        primer_nombre="José",
+        primer_apellido="Catalayud",
+        email="josecatalayud@pwc.com",
+        telefono="0416782321",
+        type='Externo'
+    )
+    User.objects.create(
+    	username="carla",
+        password=make_password("carla123"),
+        esInvitado=True,
+        cedula=26783765,
+        primer_nombre="Carla",
+        primer_apellido="Torres",
+        email="carlatorres@gmail.com",
+        telefono="0424634765",
+        type='Externo'
+    )                                    
+def createPropuestas(app,schema_editor):
+    Propuesta = app.get_model('gestorAppTG', 'Propuesta')
+    Propuesta.objects.create(
+        entrega_fecha='2019-12-19 00:00:00', 
+        titulo='Diseño de un sistema de control de operación de un automóvil alquilado a través de RFID',
+        estatus_id=1, 
+        escuela_id=2,
+        estudiante_1_id=5,
+        estudiante_2_id=4, 
+        tutor_academico_id= 8, 
+        tutor_empresa_id=9, 
+        termin_id=202015 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2019-12-19 00:00:00', 
+        titulo='Compresión de imágenes médicas basada en transformada ondícula (WAVELET) para aplicaciones en telemedicina',
+        estatus_id=1, 
+        escuela_id=2,
+        estudiante_1_id=6, 
+        tutor_academico_id= 8, 
+        tutor_empresa_id=10, 
+        termin_id=202015 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2019-12-19', 
+        titulo='Diseño de un sistema de monitorización en la lavanderia industriales utilizando tecnologa de identificacion por radio frecuencia (RFID)',
+        estatus_id=1, 
+        escuela_id=2,
+        estudiante_1_id=7,
+        tutor_academico_id= 9, 
+        tutor_empresa_id=11, 
+        termin_id=202015 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2019-12-19', 
+        titulo='Diseño de la red telemática del nuevo edificio de la Facultad de Ingeniería de la Universidad Católica Andrés Bello',
+        estatus_id=2, 
+        escuela_id=2,
+        estudiante_1_id=8,
+        tutor_academico_id= 9, 
+        tutor_empresa_id=11, 
+        termin_id=202015 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2019-12-19', 
+        titulo='diseño de un modelo de colas para gestionar la atencion de clientes en establecimientos comerciales',
+        estatus_id=2, 
+        escuela_id=1,
+        estudiante_1_id=9,
+        tutor_academico_id= 9, 
+        tutor_empresa_id=11, 
+        termin_id=202015 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2019-12-19', 
+        titulo='Herramienta Case multiplataforma para la transformación de una base de datos relacional a no relacional',
+        estatus_id=2, 
+        escuela_id=1,
+        estudiante_1_id=7,
+        tutor_academico_id= 9, 
+        tutor_empresa_id=11, 
+        termin_id=202025 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2019-12-19', 
+        titulo='Sistema de control de inventario y pedidos para la empresa Zona 3 Internacional CA',
+        estatus_id=3, 
+        escuela_id=1,
+        estudiante_1_id=7,
+        tutor_academico_id= 9, 
+        tutor_empresa_id=11, 
+        termin_id=202025 
+    )                                          
+    Propuesta.objects.create(
+        entrega_fecha='2019-12-19', 
+        titulo='Diseño e implementacion de un bot conversacional para la obtencion de información de apoyo a la gerencia de Venefoil CA',
+        estatus_id=3, 
+        escuela_id=1,
+        estudiante_1_id=7,
+        tutor_academico_id= 9, 
+        tutor_empresa_id=11, 
+        termin_id=202025 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2019-12-19', 
+        titulo='Creación de un programa de salud y seguridad laboral para los laboratorios-talleres, ubicados en el edificio de los laboratorios de una universidad privada en Caracas',
+        estatus_id=3, 
+        escuela_id=4,
+        estudiante_1_id=7,
+        tutor_academico_id= 9, 
+        tutor_empresa_id=11, 
+        termin_id=202025 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2019-12-19', 
+        titulo='Propuesta de mejora para la gestión de almacén de las bodegas de materia prima de una empresa del sector químico y calzado',
+        estatus_id=4, 
+        escuela_id=4,
+        estudiante_1_id=7,
+        tutor_academico_id= 9, 
+        tutor_empresa_id=11, 
+        termin_id=202025 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2019-12-19', 
+        titulo='Evaluación de los costos asociados a la gestión de un plan de mantenimiento preventivo para una flota de ambulancias de un servicio médico prepagado',
+        estatus_id=4, 
+        escuela_id=4,
+        estudiante_1_id=7,
+        tutor_academico_id= 9, 
+        tutor_empresa_id=11, 
+        termin_id=201915 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2019-12-19', 
+        titulo='Diseño de un modelo de gestión de inventario para una empresa fabricante de mobiliario para uso de hogar y oficina',
+        estatus_id=4, 
+        escuela_id=4,
+        estudiante_1_id=7,
+        tutor_academico_id= 9, 
+        tutor_empresa_id=11, 
+        termin_id=201925 
+    )
+
+
+
+def createTesis(app,schema_editor):
+    Tesis = app.get_model('gestorAppTG', 'Tesis')
 
 def createEstatusPropuesta(app, schema_editor):
     EstatusPropuesta = app.get_model('gestorAppTG', 'EstatusPropuesta')
@@ -67,7 +461,8 @@ def createEscuelas(app, schema_editor):
     Escuela.objects.create(nombre='Ingeneria Informatica')
     Escuela.objects.create(nombre='Ingeneria Telecomunicaciones')
     Escuela.objects.create(nombre='Ingeneria Civil')
-   
+    Escuela.objects.create(nombre='Ingeneria Industrial')
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -79,5 +474,7 @@ class Migration(migrations.Migration):
         migrations.RunPython(createUsers),
         migrations.RunPython(createEstatusPropuesta),
         migrations.RunPython(createEstatusTG),
-        migrations.RunPython(createEscuelas)
+        migrations.RunPython(createEscuelas),
+        migrations.RunPython(createPropuestas),
+        migrations.RunPython(createTesis)
     ]

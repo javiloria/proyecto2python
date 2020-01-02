@@ -82,7 +82,7 @@ class Propuesta(models.Model):
     estudiante_1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="propuesta_estudiante_1", verbose_name="estudiante 1")
     estudiante_2 = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="propuesta_estudiante_2", verbose_name="estudiante 2")
     tutor_academico = models.ForeignKey(User, on_delete=models.CASCADE, related_name="propuesta_tutor_academico", verbose_name="tutor académico")
-    tutor_empresa = models.ForeignKey(User, on_delete=models.CASCADE, related_name="propuesta_tutor_empresa", verbose_name="tutor empresarial")
+    tutor_empresa = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True,related_name="propuesta_tutor_empresa", verbose_name="tutor empresarial")
     termin = models.ForeignKey(Termin, on_delete=models.CASCADE, related_name="propuesta_termin", verbose_name="terminología en la que se entrego")
     def __str__(self):
         return self.titulo
