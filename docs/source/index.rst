@@ -10,6 +10,7 @@ Este es un proyecto desarrollado en Django 3.0.1 para la electiva Programación 
 
     introduccion
     ejecucion_proyecto
+    descripcion_general
     pantalla_proyecto
     credenciales_predeterminadas
     funcionalidad_adicional
