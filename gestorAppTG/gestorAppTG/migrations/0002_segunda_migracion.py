@@ -6,10 +6,10 @@ from django.contrib.auth.hashers import make_password #para encriptar contraseñ
 
 def createTermin(app, schema_editor):
     Termin = app.get_model('gestorAppTG','Termin')
-    Termin.objects.create(id="201915", descripcion='primer semestre del año académico')
-    Termin.objects.create(id="201925", descripcion='segundo semestre del año académico')
-    Termin.objects.create(id="202015", descripcion='primer semestre del año académico')
-    Termin.objects.create(id="202025", descripcion='segundo semestre del año académico')
+    Termin.objects.create(id="201915", descripcion='primer semestre del año académico 2019')
+    Termin.objects.create(id="201925", descripcion='segundo semestre del año académico 2019')
+    Termin.objects.create(id="202015", descripcion='primer semestre del año académico 2020')
+    Termin.objects.create(id="202025", descripcion='segundo semestre del año académico 2020')
 
 def createUsers(app, schema_editor):
     User = app.get_model('gestorAppTG','User')
@@ -22,19 +22,21 @@ def createUsers(app, schema_editor):
         primer_apellido="kdasjjdla",
         ucab_email="hdhad@est.ucab.edu.ve",
         email="heri@gmail.com",
-        telefono="01290391"
+        telefono="01290391",
+        type='Externo'
 
     )
     User.objects.create(
         username="gestor",
-        password="gestor123",
+        password=make_password("gestor123"),
         esGestor=True,
         cedula=1234,
         primer_nombre="hjashkf",
         primer_apellido="kdasjjdla",
         ucab_email="hdhasd@est.ucab.edu.ve",
         email="herdi@gmail.com",
-        telefono="01290391"
+        telefono="01290391",
+        type='Externo'
     )
     User.objects.create(
     	username="invitado",
@@ -45,7 +47,8 @@ def createUsers(app, schema_editor):
         primer_apellido="kkdasjjdla",
         ucab_email="hdhkad@est.ucab.edu.ve",
         email="hekri@gmail.com",
-        telefono="01290391"
+        telefono="01290391",
+        type='Externo'
     )
     User.objects.create(
     	username="jorge",
@@ -118,7 +121,103 @@ def createUsers(app, schema_editor):
         email="miguelaordonez@gmail.com",
         telefono="0412783456",
         type='Estudiante'
+    )
+    User.objects.create(
+    	username="mario",
+        password=make_password("mario123"),
+        esInvitado=True,
+        cedula=27890367,
+        primer_nombre="Mario",
+        primer_apellido="Martínez",
+        ucab_email="mmmartinez.18@est.ucab.edu.ve",
+        email="mariomartinez12@gmail.com",
+        telefono="0424245678",
+        type='Estudiante'
     )            
+    User.objects.create(
+    	username="maria",
+        password=make_password("maria123"),
+        esInvitado=True,
+        cedula=26789123,
+        primer_nombre="Maria",
+        primer_apellido="Da silva",
+        ucab_email="mddasilva.17@est.ucab.edu.ve",
+        email="mariadsd123@gmail.com",
+        telefono="0414573444",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="rebeca",
+        password=make_password("rebeca123"),
+        esInvitado=True,
+        cedula=28832431,
+        primer_nombre="Rebeca",
+        primer_apellido="Barbella",
+        ucab_email="rcbarbella.18@est.ucab.edu.ve",
+        email="rebebarbella2012@gmail.com",
+        telefono="0416783489",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="josem",
+        password=make_password("josem123"),
+        esInvitado=True,
+        cedula=25672674,
+        primer_nombre="José",
+        primer_apellido="De freitos",
+        ucab_email="jmdefreitos.15@est.ucab.edu.ve",
+        email="josemanueldf99@gmail.com",
+        telefono="0416783983",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="kelly",
+        password=make_password("kelly123"),
+        esInvitado=True,
+        cedula=26597676,
+        primer_nombre="Kelly",
+        primer_apellido="Peña",
+        ucab_email="kkpena.15@est.ucab.edu.ve",
+        email="kellykpena@gmail.com",
+        telefono="04261041228",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="maribel",
+        password=make_password("maribel123"),
+        esInvitado=True,
+        cedula=26897211,
+        primer_nombre="Maribel",
+        primer_apellido="Aranguren",
+        ucab_email="maaranguren.16@est.ucab.edu.ve",
+        email="maribelaranguren@gmail.com",
+        telefono="04242792715",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="julio",
+        password=make_password("julio123"),
+        esInvitado=True,
+        cedula=26777838,
+        primer_nombre="Julio",
+        primer_apellido="Rojas",
+        ucab_email="jjrojas.15@est.ucab.edu.ve",
+        email="juliorojas@gmail.com",
+        telefono="0416899365",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="miguel",
+        password=make_password("miguel123"),
+        esInvitado=True,
+        cedula=25992234,
+        primer_nombre="Miguel",
+        primer_apellido="Molina",
+        ucab_email="mamolina.16@est.ucab.edu.ve",
+        email="mamolinar1997@gmail.com",
+        telefono="0424321654",
+        type='Estudiante'
+    )                                                                                                                                            
     User.objects.create(
     	username="francisco",
         password=make_password("francisco123"),
@@ -197,7 +296,7 @@ def createUsers(app, schema_editor):
         cedula=19793429,
         primer_nombre="José",
         primer_apellido="Catalayud",
-        email="josecatalayud@gmail.com",
+        email="josecatalayud@pwc.com",
         telefono="0416782321",
         type='Externo'
     )
@@ -215,7 +314,7 @@ def createUsers(app, schema_editor):
 def createPropuestas(app,schema_editor):
     Propuesta = app.get_model('gestorAppTG', 'Propuesta')
     Propuesta.objects.create(
-        entrega_fecha='2019-12-19', 
+        entrega_fecha='2019-12-19 00:00:00', 
         titulo='Diseño de un sistema de control de operación de un automóvil alquilado a través de RFID',
         estatus_id=1, 
         escuela_id=2,
@@ -223,17 +322,17 @@ def createPropuestas(app,schema_editor):
         estudiante_2_id=4, 
         tutor_academico_id= 8, 
         tutor_empresa_id=9, 
-        termin_id=201925 
+        termin_id=202015 
     )
     Propuesta.objects.create(
-        entrega_fecha='2019-12-19', 
+        entrega_fecha='2019-12-19 00:00:00', 
         titulo='Compresión de imágenes médicas basada en transformada ondícula (WAVELET) para aplicaciones en telemedicina',
         estatus_id=1, 
         escuela_id=2,
         estudiante_1_id=6, 
         tutor_academico_id= 8, 
         tutor_empresa_id=10, 
-        termin_id=201925 
+        termin_id=202015 
     )
     Propuesta.objects.create(
         entrega_fecha='2019-12-19', 
@@ -243,7 +342,7 @@ def createPropuestas(app,schema_editor):
         estudiante_1_id=7,
         tutor_academico_id= 9, 
         tutor_empresa_id=11, 
-        termin_id=201925 
+        termin_id=202015 
     )
     Propuesta.objects.create(
         entrega_fecha='2019-12-19', 
@@ -253,7 +352,7 @@ def createPropuestas(app,schema_editor):
         estudiante_1_id=8,
         tutor_academico_id= 9, 
         tutor_empresa_id=11, 
-        termin_id=201925 
+        termin_id=202015 
     )
     Propuesta.objects.create(
         entrega_fecha='2019-12-19', 
@@ -263,7 +362,7 @@ def createPropuestas(app,schema_editor):
         estudiante_1_id=9,
         tutor_academico_id= 9, 
         tutor_empresa_id=11, 
-        termin_id=201925 
+        termin_id=202015 
     )
     Propuesta.objects.create(
         entrega_fecha='2019-12-19', 
@@ -273,7 +372,7 @@ def createPropuestas(app,schema_editor):
         estudiante_1_id=7,
         tutor_academico_id= 9, 
         tutor_empresa_id=11, 
-        termin_id=201925 
+        termin_id=202025 
     )
     Propuesta.objects.create(
         entrega_fecha='2019-12-19', 
@@ -283,7 +382,7 @@ def createPropuestas(app,schema_editor):
         estudiante_1_id=7,
         tutor_academico_id= 9, 
         tutor_empresa_id=11, 
-        termin_id=201925 
+        termin_id=202025 
     )                                          
     Propuesta.objects.create(
         entrega_fecha='2019-12-19', 
@@ -293,7 +392,7 @@ def createPropuestas(app,schema_editor):
         estudiante_1_id=7,
         tutor_academico_id= 9, 
         tutor_empresa_id=11, 
-        termin_id=201925 
+        termin_id=202025 
     )
     Propuesta.objects.create(
         entrega_fecha='2019-12-19', 
@@ -303,7 +402,7 @@ def createPropuestas(app,schema_editor):
         estudiante_1_id=7,
         tutor_academico_id= 9, 
         tutor_empresa_id=11, 
-        termin_id=201925 
+        termin_id=202025 
     )
     Propuesta.objects.create(
         entrega_fecha='2019-12-19', 
@@ -313,7 +412,7 @@ def createPropuestas(app,schema_editor):
         estudiante_1_id=7,
         tutor_academico_id= 9, 
         tutor_empresa_id=11, 
-        termin_id=201925 
+        termin_id=202025 
     )
     Propuesta.objects.create(
         entrega_fecha='2019-12-19', 
@@ -323,7 +422,7 @@ def createPropuestas(app,schema_editor):
         estudiante_1_id=7,
         tutor_academico_id= 9, 
         tutor_empresa_id=11, 
-        termin_id=201925 
+        termin_id=201915 
     )
     Propuesta.objects.create(
         entrega_fecha='2019-12-19', 
