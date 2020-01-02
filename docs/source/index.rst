@@ -9,6 +9,8 @@ Este es un proyecto desarrollado en Django 3.0.1 para la electiva Programación 
     :maxdepth: 2
 
     introduccion
+    ejecucion_proyecto
     pantalla_proyecto
     credenciales_predeterminadas
     funcionalidad_adicional
+    generar_documentacion
