@@ -3,9 +3,10 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.hashers import make_password #para encriptar contraseña
 
 class User(AbstractUser):
-    esAdmin = models.BooleanField(default=False)
-    esGestor = models.BooleanField(default=False)
-    esInvitado = models.BooleanField(default=False) 
+
+    esAdmin = models.BooleanField(default=False, verbose_name="¿Eres Admin?")
+    esGestor = models.BooleanField(default=False, verbose_name="¿Eres Gestor?")
+    esInvitado = models.BooleanField(default=False, verbose_name="¿Eres Invitado?") 
     username = models.CharField(error_messages={'unique': 'El usuario ya existe!!'}, max_length=150, unique=True, verbose_name='usuario')
     password = models.CharField(max_length=128, verbose_name='contraseña')
     def __init__(self, *args, **kwargs):
