@@ -217,7 +217,19 @@ def createUsers(app, schema_editor):
         email="mamolinar1997@gmail.com",
         telefono="0424321654",
         type='Estudiante'
-    )                                                                                                                                            
+    )
+    User.objects.create(
+    	username="barbara",
+        password=make_password("barbara123"),
+        esInvitado=True,
+        cedula=26978234,
+        primer_nombre="Barbara",
+        primer_apellido="Viloria",
+        ucab_email="bjviloria.16@est.ucab.edu.ve",
+        email="barbaraviloria221@gmail.com",
+        telefono="0412456890",
+        type='Estudiante'
+    )                                                                                                                                               
     User.objects.create(
     	username="francisco",
         password=make_password("francisco123"),
@@ -265,6 +277,18 @@ def createUsers(app, schema_editor):
         ucab_email="fannyh@est.ucab.edu.ve",
         email="fannyhernandez@gmail.com",
         telefono="0414759566",
+        type='Profesor'
+    )
+    User.objects.create(
+    	username="alexander",
+        password=make_password("alexander123"),
+        esInvitado=True,
+        cedula=10234890,
+        primer_nombre="Alexander",
+        primer_apellido="Cardenas",
+        ucab_email="acardenas@est.ucab.edu.ve",
+        email="acardenas.berroteran@hotmail.com",
+        telefono="0424332890",
         type='Profesor'
     )
     User.objects.create(
@@ -318,10 +342,10 @@ def createPropuestas(app,schema_editor):
         titulo='Diseño de un sistema de control de operación de un automóvil alquilado a través de RFID',
         estatus_id=1, 
         escuela_id=2,
-        estudiante_1_id=5,
-        estudiante_2_id=4, 
-        tutor_academico_id= 8, 
-        tutor_empresa_id=9, 
+        estudiante_1_id=4,
+        estudiante_2_id=5, 
+        tutor_academico_id= 19, 
+        tutor_empresa_id=24, 
         termin_id=202015 
     )
     Propuesta.objects.create(
@@ -330,108 +354,110 @@ def createPropuestas(app,schema_editor):
         estatus_id=1, 
         escuela_id=2,
         estudiante_1_id=6, 
-        tutor_academico_id= 8, 
-        tutor_empresa_id=10, 
+        tutor_academico_id= 20, 
+        tutor_empresa_id=25, 
         termin_id=202015 
     )
     Propuesta.objects.create(
-        entrega_fecha='2019-12-19', 
+        entrega_fecha='2019-12-19 00:00:00', 
         titulo='Diseño de un sistema de monitorización en la lavanderia industriales utilizando tecnologa de identificacion por radio frecuencia (RFID)',
         estatus_id=1, 
         escuela_id=2,
         estudiante_1_id=7,
-        tutor_academico_id= 9, 
-        tutor_empresa_id=11, 
+        tutor_academico_id= 21, 
+        tutor_empresa_id=26, 
         termin_id=202015 
     )
     Propuesta.objects.create(
-        entrega_fecha='2019-12-19', 
+        entrega_fecha='2019-12-19 00:00:00', 
         titulo='Diseño de la red telemática del nuevo edificio de la Facultad de Ingeniería de la Universidad Católica Andrés Bello',
         estatus_id=2, 
         escuela_id=2,
         estudiante_1_id=8,
-        tutor_academico_id= 9, 
-        tutor_empresa_id=11, 
+        tutor_academico_id= 22, 
+        tutor_empresa_id=27, 
         termin_id=202015 
     )
     Propuesta.objects.create(
-        entrega_fecha='2019-12-19', 
+        entrega_fecha='2019-12-19 00:00:00', 
         titulo='diseño de un modelo de colas para gestionar la atencion de clientes en establecimientos comerciales',
         estatus_id=2, 
         escuela_id=1,
         estudiante_1_id=9,
-        tutor_academico_id= 9, 
-        tutor_empresa_id=11, 
+        tutor_academico_id= 23, 
+        tutor_empresa_id=24, 
         termin_id=202015 
     )
     Propuesta.objects.create(
-        entrega_fecha='2019-12-19', 
+        entrega_fecha='2019-12-19 00:00:00', 
         titulo='Herramienta Case multiplataforma para la transformación de una base de datos relacional a no relacional',
         estatus_id=2, 
         escuela_id=1,
-        estudiante_1_id=7,
-        tutor_academico_id= 9, 
-        tutor_empresa_id=11, 
+        estudiante_1_id=10,
+        estudiante_2_id=11,
+        tutor_academico_id= 19, 
+        tutor_empresa_id=25, 
         termin_id=202025 
     )
     Propuesta.objects.create(
-        entrega_fecha='2019-12-19', 
+        entrega_fecha='2019-12-19 00:00:00', 
         titulo='Sistema de control de inventario y pedidos para la empresa Zona 3 Internacional CA',
         estatus_id=3, 
         escuela_id=1,
-        estudiante_1_id=7,
-        tutor_academico_id= 9, 
-        tutor_empresa_id=11, 
+        estudiante_1_id=12,
+        tutor_academico_id= 20, 
+        tutor_empresa_id=26, 
         termin_id=202025 
     )                                          
     Propuesta.objects.create(
-        entrega_fecha='2019-12-19', 
+        entrega_fecha='2019-12-19 00:00:00', 
         titulo='Diseño e implementacion de un bot conversacional para la obtencion de información de apoyo a la gerencia de Venefoil CA',
         estatus_id=3, 
         escuela_id=1,
-        estudiante_1_id=7,
-        tutor_academico_id= 9, 
-        tutor_empresa_id=11, 
+        estudiante_1_id=13,
+        tutor_academico_id= 21, 
+        tutor_empresa_id=27, 
         termin_id=202025 
     )
     Propuesta.objects.create(
-        entrega_fecha='2019-12-19', 
+        entrega_fecha='2019-12-19 00:00:00', 
         titulo='Creación de un programa de salud y seguridad laboral para los laboratorios-talleres, ubicados en el edificio de los laboratorios de una universidad privada en Caracas',
         estatus_id=3, 
         escuela_id=4,
-        estudiante_1_id=7,
-        tutor_academico_id= 9, 
-        tutor_empresa_id=11, 
+        estudiante_1_id=14,
+        tutor_academico_id= 22, 
+        tutor_empresa_id=24, 
         termin_id=202025 
     )
     Propuesta.objects.create(
-        entrega_fecha='2019-12-19', 
+        entrega_fecha='2019-12-19 00:00:00', 
         titulo='Propuesta de mejora para la gestión de almacén de las bodegas de materia prima de una empresa del sector químico y calzado',
         estatus_id=4, 
         escuela_id=4,
-        estudiante_1_id=7,
-        tutor_academico_id= 9, 
-        tutor_empresa_id=11, 
+        estudiante_1_id=15,
+        tutor_academico_id= 23, 
+        tutor_empresa_id=25, 
         termin_id=202025 
     )
     Propuesta.objects.create(
-        entrega_fecha='2019-12-19', 
+        entrega_fecha='2019-12-19 00:00:00', 
         titulo='Evaluación de los costos asociados a la gestión de un plan de mantenimiento preventivo para una flota de ambulancias de un servicio médico prepagado',
         estatus_id=4, 
         escuela_id=4,
-        estudiante_1_id=7,
-        tutor_academico_id= 9, 
-        tutor_empresa_id=11, 
+        estudiante_1_id=16,
+        tutor_academico_id= 19, 
+        tutor_empresa_id=26, 
         termin_id=201915 
     )
     Propuesta.objects.create(
-        entrega_fecha='2019-12-19', 
+        entrega_fecha='2019-12-19 00:00:00', 
         titulo='Diseño de un modelo de gestión de inventario para una empresa fabricante de mobiliario para uso de hogar y oficina',
         estatus_id=4, 
         escuela_id=4,
-        estudiante_1_id=7,
-        tutor_academico_id= 9, 
-        tutor_empresa_id=11, 
+        estudiante_1_id=17,
+        estudiante_2_id=18,
+        tutor_academico_id= 20, 
+        tutor_empresa_id=27, 
         termin_id=201925 
     )
 
