@@ -31,6 +31,7 @@ class CreatePropuestaView(generic.CreateView):
     def form_valid(self, form):
         propuesta = form.save(commit=False)
         propuesta.save()
+        print("estu1: id" + str(propuesta.estudiante_1.getId()))
         messages.success(self.request, 'La propuesta fue creada exitosamente')
         return redirect('propuestas:propuestas_list')
 
