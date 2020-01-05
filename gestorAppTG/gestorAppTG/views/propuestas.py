@@ -8,7 +8,9 @@ from django.contrib.auth.decorators import login_required
 from ..models import Propuesta
 from django.utils.decorators import method_decorator
 from ..decorador import *
-
+from django import forms
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class IndexView(generic.ListView):
@@ -28,12 +30,22 @@ class CreatePropuestaView(generic.CreateView):
     model = Propuesta
     fields = "__all__"
     template_name = 'propuestas/create.html'
+    def clean(self):
+        cleaned_data = super().clean()
+        raise forms.ValidationError(
+            "Did not send for 'help' in the subject despite "
+            "CC'ing yourself."
+        )
     def form_valid(self, form):
         propuesta = form.save(commit=False)
-        propuesta.save()
-        print("estu1: id" + str(propuesta.estudiante_1.getId()))
-        messages.success(self.request, 'La propuesta fue creada exitosamente')
-        return redirect('propuestas:propuestas_list')
+        if(propuesta.estudiante_1.getId()== propuesta.estudiante_2.getId()):
+            messages.error(self.request, 'Error no puede ser el mismo estudiante en la misma propuesta.')
+            def my_function(request, backend): data = "AJA" 
+            return redirect('propuestas:propuestas_create',my_function)
+        else:    
+            propuesta.save()
+            messages.success(self.request, 'La propuesta fue creada exitosamente')
+            return redirect('propuestas:propuestas_list')
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class UpdatePropuestaView(generic.UpdateView):
