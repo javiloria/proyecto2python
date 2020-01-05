@@ -30,17 +30,11 @@ class CreatePropuestaView(generic.CreateView):
     model = Propuesta
     fields = "__all__"
     template_name = 'propuestas/create.html'
-    def clean(self):
-        cleaned_data = super().clean()
-        raise forms.ValidationError(
-            "Did not send for 'help' in the subject despite "
-            "CC'ing yourself."
-        )
+
     def form_valid(self, form):
         propuesta = form.save(commit=False)
         if(propuesta.estudiante_1.getId()== propuesta.estudiante_2.getId()):
             messages.error(self.request, 'Error no puede ser el mismo estudiante en la misma propuesta.')
-            def my_function(request, backend): data = "AJA" 
             return redirect('propuestas:propuestas_create',my_function)
         else:    
             propuesta.save()
