@@ -38,12 +38,14 @@ class CreatePropuestaView(generic.CreateView):
         )
     def form_valid(self, form):
         propuesta = form.save(commit=False)
-        print("est 1:  "+str(propuesta.estudiante_1))
-        print("est 2:  "+str(propuesta.estudiante_2))
-        propuesta.save()
-        #messages.success(self.request, 'La propuesta fue creada exitosamente')
-        messages.error(self.request, 'Error no puede ser el mismo estudiante en la misma propuesta.')
-        return redirect('propuestas:propuestas_create')
+        if(propuesta.estudiante_1.getId()== propuesta.estudiante_2.getId()):
+            messages.error(self.request, 'Error no puede ser el mismo estudiante en la misma propuesta.')
+            def my_function(request, backend): data = "AJA" 
+            return redirect('propuestas:propuestas_create',my_function)
+        else:    
+            propuesta.save()
+            messages.success(self.request, 'La propuesta fue creada exitosamente')
+            return redirect('propuestas:propuestas_list')
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class UpdatePropuestaView(generic.UpdateView):

@@ -30,6 +30,8 @@ class User(AbstractUser):
     telefono = models.CharField(max_length=15, verbose_name="teléfono 1")
     telefono_1 = models.CharField(max_length=15, verbose_name="teléfono 2", null=True, blank=True)
     observaciones = models.CharField(max_length=100, verbose_name="observaciones", null=True, blank=True)
+    def getId(self):
+        return self.id
     def __str__(self):
         return self.primer_apellido + ", " + self.primer_nombre
     def save(self, *args, **kwargs):
