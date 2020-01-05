@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-    <title>proyecto python: gestor de Tesis</title>
+    <link rel="icon" href="https://i0.wp.com/raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/techstacks/django-logo.png?resize=450%2C450&ssl=1&crop=1">
+    <title>Gestor de Tesis</title>
     <!-- Bootstrap core CSS -->
     <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
   </head>
@@ -23,7 +23,7 @@
         {% if not user.is_authenticated %}
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+            <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
           </li>
         </ul>
         {% endif %}
@@ -43,18 +43,19 @@
     </nav>
 
     <main role="main" class="container" style=" text-align: center;">
-      <div class="starter-template">
+      <div class="starter-template" style="padding: 2%">
         <div class="row">
-            <div class="col-ml-5">
-              <img src="{% static 'logo-UCAB.jpg' %}" width="360" height="280">
+            <div class="col-ml-5 mr-5 p-3 card">
+              <img src="{% static 'logo-UCAB.jpg' %}" width="320" height="240">
             </div>
+
             <div class="col-ml-5">
               <br>
-              <h2>Proyecto de python para la gestion de TG</h2>
+              <h2>Proyecto de Python para la Gestion de TG</h2>
               {% if user.is_authenticated %}
                 <br>
                 <br>
-                  <p> Pagina principal del proyecto, Gracias por iniciar sesion  </p>
+                  <p> Pagina principal del proyecto, Gracias por iniciar sesion.  </p>
                   <br>
                   <p> Continue utilizando nuestra aplicacion! </p>
                 <a href="{% url 'propuestas:propuestas_list' %}" class="btn btn-outline-primary" role="button">
@@ -63,14 +64,78 @@
                 <br>
               {% else %}
                 <br>
-                <br>                  
-                  <p> Pagina principal del proyecto, por favor inicie sesion </p>
-                  <p> Aplicacion creada para la electiva de Python </p>
-                  <p>Herick Navarro<br> Jorge Viloria<br> Ysabel Ardila <br> Elias Barrientos<br></p>
-        
-                <a href="{% url 'login' %}" class="btn btn-outline-primary" role="button">
-                  Iniciar Sesión
-                </a>
+              
+                  <p> Pagina principal del proyecto, por favor inicie sesion. </p>
+                  <p> Aplicacion creada para la electiva de Python. </p>
+
+                  <style type="text/css">
+                    .JB-border{
+                      border: 1px solid #c0c1c1!important;
+                    }
+                  </style>
+                  
+                   <a href="{% url 'login' %}" class="btn btn-primary mb-3" role="button">
+                   Iniciar Sesión
+                   </a>
+                   <table class="table-100w table table-bordered">
+                            <tr>
+                                <th colspan="2" class="drf-th-center JB-border">
+                                    Nombre
+                                </th>
+                                <th colspan="3" class="drf-th-center JB-border">
+                                    Apellido
+                                </th>
+                                <th colspan="9" class="drf-th-center JB-border">
+                                    Cedula
+                                </th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="drf-td-center JB-border">
+                                    Herick
+                                </td>
+                                <td colspan="3" class="drf-td-center JB-border">
+                                    Navarro
+                                </td>
+                                <td colspan="9" class="drf-td-center JB-border">
+                                    24408999
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="drf-td-center JB-border">
+                                    Jorge
+                                </td>
+                                <td colspan="3" class="drf-td-center JB-border">
+                                    Viloria
+                                </td>
+                                <td colspan="9" class="drf-td-center JB-border">
+                                    27513724
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="drf-td-center JB-border">
+                                    Ysabel
+                                </td>
+                                <td colspan="3" class="drf-td-center JB-border">
+                                    Ardila
+                                </td>
+                                <td colspan="9" class="drf-td-center JB-border">
+                                    23826183
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="drf-td-center JB-border">
+                                    Elias
+                                </td>
+                                <td colspan="3" class="drf-td-center JB-border">
+                                    Barrientos
+                                </td>
+                                <td colspan="9" class="drf-td-center JB-border">
+                                    26089396
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+    
                 <br>
               {% endif %}
             </div>

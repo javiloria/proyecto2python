@@ -15,8 +15,8 @@ ELIAS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-    <title>proyecto python: gestor de Tesis</title>
+    <link rel="icon" href="https://i0.wp.com/raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/techstacks/django-logo.png?resize=450%2C450&ssl=1&crop=1">
+    <title>Gestor de Tesis</title>
     <!-- Bootstrap core CSS -->
     <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
   </head>
@@ -33,20 +33,20 @@ ELIAS -->
       <div class="starter-template">
 
         <div class="row">
-        <div class="container col-ml-8" style="width: 50%; float: left;padding-top: 10px;">
+        <div class="container col-ml-8 card p-5" style="width: 50%; float: left;padding-top: 10px;">
         <h2>Bienvenido</h2>
-          <form method="post" novalidate>
+          <form class ="text-left" method="post" novalidate>
               {% csrf_token %}
-              <input type="hidden" name="next" value="{{ next }}">
+              <b><input type="hidden" name="next" value="{{ next }}">
               {{ form.username|as_crispy_field }}
-              {{ form.password|as_crispy_field }}
+              {{ form.password|as_crispy_field }}</b>
               <button type="submit" class="btn btn-primary">Iniciar</button>
               <a href="{% url 'home' %}" class="btn btn-outline-info" role="button">
                 Volver
               </a>
           </form>
       </div>
-                  <div class="col-ml-5">
+              <div class="col-ml-5 card p-3">
               <img src="{% static 'logo-UCAB.jpg' %}" width="360" height="280">
             </div>
           </div>
