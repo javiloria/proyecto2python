@@ -20,7 +20,23 @@
         </button!-->
       </div>
     </div>
-    <!--h5>Agregar aaqui los filtros de búsqueda ELIAS!!</h5!-->
+    
+    <form action="{% url 'propuestas:propuestas_search' %}" method="GET" class="form-inline ml-3">
+            <div class="cntnr-padding" style="margin-bottom: 15px;margin-top:15px;">
+            <div class="row">
+               <div class="">
+                    <div class="input-group">
+                      <input name="search" type="search" value="{{cedula}}" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                      </span>
+                    </div>
+               </div>
+               <div class="col-md-8"></div>
+           </div>
+        </div>
+    </form>
+
     {% if propuestas_listass %}
         <div class="table-responsive">
             {% if messages %}
@@ -38,7 +54,7 @@
                         <th>Fecha de la propuesta</th>
                         {% if user.is_authenticated %}
                             {% if user.esAdmin or user.esGestor %}
-                                <th>Accciones</th>
+                                <th>Acciones</th>
                             {% endif %}
                         {% endif %}
                     </tr>

@@ -9,6 +9,7 @@ from ..models import Propuesta,EstatusPropuesta
 from django.utils.decorators import method_decorator
 from ..decorador import *
 from django import forms
+from django.db.models import Q
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 import xlwt
@@ -20,12 +21,23 @@ class IndexView(generic.ListView):
     context_object_name = 'propuestas_listass'
     
     def get_queryset(self):
-        return Propuesta.objects.order_by('entrega_fecha')[:5]
+        return Propuesta.objects.order_by('entrega_fecha')
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class DetailView(generic.DetailView):
     model = Propuesta
     template_name = 'propuestas/detail.html'
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class BusquedaPropuesta(generic.ListView):
+    template_name = 'propuestas/index.html'
+    context_object_name = 'propuestas_listass'
+    def get_queryset(self):
+        if self.request.GET:
+            search = self.request.GET.get('search')
+            if search == "":
+                return Propuesta.objects.order_by('entrega_fecha')
+        return Propuesta.objects.filter(Q(titulo = str(search)) | Q(estatus__nombre = str(search))) 
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class CreatePropuestaView(generic.CreateView):
