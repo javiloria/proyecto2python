@@ -41,7 +41,8 @@ urlpatterns = [
         path('<int:pk>/update/', propuestas.UpdatePropuestaView.as_view(), name='propuestas_update'),
         path('create/', propuestas.CreatePropuestaView.as_view(), name='propuestas_create'),
         path('<int:pk>/', propuestas.DetailView.as_view(), name='propuestas_details'),
-		path('<int:pk>/delete/', propuestas.DeletePropuestaView.as_view(), name='propuestas_delete')
+		path('<int:pk>/delete/', propuestas.DeletePropuestaView.as_view(), name='propuestas_delete'),
+        path('export/xls/', propuestas.Export_propuesta_xls.export_users_xls, name='export_users_xls'),
     ], 'gestorAppTG'), namespace='propuestas')),
 
     path('users/', include(([

@@ -5,12 +5,14 @@ from django.contrib import messages
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
-from ..models import Propuesta
+from ..models import Propuesta,EstatusPropuesta
 from django.utils.decorators import method_decorator
 from ..decorador import *
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
+import xlwt
+import datetime
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class IndexView(generic.ListView):
@@ -30,17 +32,11 @@ class CreatePropuestaView(generic.CreateView):
     model = Propuesta
     fields = "__all__"
     template_name = 'propuestas/create.html'
-    def clean(self):
-        cleaned_data = super().clean()
-        raise forms.ValidationError(
-            "Did not send for 'help' in the subject despite "
-            "CC'ing yourself."
-        )
+
     def form_valid(self, form):
         propuesta = form.save(commit=False)
         if(propuesta.estudiante_1.getId()== propuesta.estudiante_2.getId()):
             messages.error(self.request, 'Error no puede ser el mismo estudiante en la misma propuesta.')
-            def my_function(request, backend): data = "AJA" 
             return redirect('propuestas:propuestas_create',my_function)
         else:    
             propuesta.save()
@@ -63,3 +59,39 @@ class DeletePropuestaView(generic.DeleteView):
     model = Propuesta
     template_name = 'propuestas/delete.html'
     success_url = reverse_lazy('propuestas:propuestas_list')
+
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Export_propuesta_xls(generic.ArchiveIndexView):
+    def export_users_xls(request):
+        model = Propuesta
+        fields = "__all__"
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="propuesta.xls"'
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('Users')
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        columns = ['Título', 'Estatus', 'Escuela','Fecha','Estudiante 1 apellido','Estudiante 1 nombre','Estudiante 2 apellido','Estudiante 2 nombre','Tutor academico apellido','tutor academico nombre','Tutor empresarial apellido','Tutor empresarial nombre','Termin','Fecha de la propuesta', ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+        rows = Propuesta.objects.all().select_related('estatus','escuela','estudiante_1','estudiante_2','tutor_academico','tutor_empresa','termin').values_list('titulo','estatus__nombre','escuela__nombre','entrega_fecha','estudiante_1__primer_apellido','estudiante_1__primer_nombre','estudiante_2__primer_apellido','estudiante_2__primer_nombre','tutor_academico__primer_apellido','tutor_academico__primer_nombre','tutor_empresa__primer_apellido','tutor_empresa__primer_nombre','termin__descripcion').order_by('estatus_id')
+        
+        rows = [[x.strftime("%Y-%m-%d %H:%M") if isinstance(x, datetime.datetime) else x for x in row] for row in rows ]
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], font_style)
+
+        wb.save(response)
+        return response
