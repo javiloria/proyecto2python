@@ -47,6 +47,7 @@ urlpatterns = [
 
     path('users/', include(([
         path('', user.IndexView.as_view(), name='users_list'),
+        path('search/', user.BusquedaUsuario.as_view(), name='users_search'),
         path('<int:pk>/', user.DetailView.as_view(), name='users_details'),
         path('create/', user.CreateUserView.as_view(), name='users_create'),
         path('<int:pk>/update/', user.UpdateUserView.as_view(), name='users_update'),

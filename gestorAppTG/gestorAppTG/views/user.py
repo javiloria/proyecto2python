@@ -17,7 +17,7 @@ class IndexView(generic.ListView):
     template_name = 'user/index.html'
     context_object_name = 'list_users'
     def get_queryset(self):
-        return User.objects.order_by('cedula')[:10]
+        return User.objects.order_by('cedula')
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class DetailView(generic.DetailView):
@@ -25,6 +25,17 @@ class DetailView(generic.DetailView):
     template_name = 'user/detail.html'
 
 opciones=['cedula', 'esAdmin', 'esGestor', 'esInvitado', 'username', 'password', 'type', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 'ucab_email', 'email', 'telefono', 'telefono_1', 'observaciones']
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class BusquedaUsuario(generic.ListView):
+    template_name = 'user/index.html'
+    context_object_name = 'list_users'
+    def get_queryset(self):
+        if self.request.GET:
+            cedula = self.request.GET.get('search')
+            if cedula == "":
+                return User.objects.order_by('cedula')
+        return User.objects.filter(cedula = int(cedula))
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class CreateUserView(generic.CreateView):
@@ -36,7 +47,6 @@ class CreateUserView(generic.CreateView):
         user.save()
         messages.success(self.request,  'usuario creado exitosamente')
         return redirect('users:users_list')
-
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class UpdateUserView(generic.UpdateView):
