@@ -14,6 +14,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 import xlwt
 import datetime
+from django.utils import timezone
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class IndexReporte1View(generic.ListView):
@@ -42,8 +43,10 @@ class IndexReporte3View(generic.ListView):
     template_name = 'reporte/reporte3.html'
     context_object_name = 'propuesta_list_Reporte3'
     def get_queryset(self):
-        return Propuesta.objects.filter(estatus__nombre="Aprobada").order_by('estudiante_1__cedula')
-        #primer reporte filtar porque no sean aprobadas y por la cedula 
+        rows1 = Defensa.objects.filter(fecha_defensa__date__gt=timezone.now(), tesis__propuesta__estudiante_1__isnull=False).values_list('tesis__propuesta__estudiante_1__cedula','tesis__propuesta__estudiante_1__primer_apellido','tesis__propuesta__estudiante_1__segundo_apellido','tesis__propuesta__estudiante_1__primer_nombre','tesis__propuesta__estudiante_1__segundo_nombre','tesis__propuesta__termin__id','tesis__titulo', 'tesis__id') 
+        rows = Defensa.objects.filter(fecha_defensa__date__gt=timezone.now(), tesis__propuesta__estudiante_2__isnull=False).values_list('tesis__propuesta__estudiante_2__cedula','tesis__propuesta__estudiante_2__primer_apellido','tesis__propuesta__estudiante_2__segundo_apellido','tesis__propuesta__estudiante_2__primer_nombre','tesis__propuesta__estudiante_2__segundo_nombre','tesis__propuesta__termin__id','tesis__titulo', 'tesis__id').union(rows1) 
+        return rows
+        #reporte excluyendo a los que esten menores de esta fecha
 
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
