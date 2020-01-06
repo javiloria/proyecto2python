@@ -31,8 +31,8 @@ class IndexReporte2View(generic.ListView):
     template_name = 'reporte/reporte2.html'
     context_object_name = 'propuesta_list_Reporte2'
     def get_queryset(self):
-        rows1 = Tesis.objects.exclude( estatus__nombre="Aprobada" ).filter(estudiante_1__isnull=False).select_related('estatus','escuela','estudiante_1','titulo','termin').values_list('estudiante_1__cedula','estudiante_1__primer_apellido','estudiante_1__segundo_apellido','estudiante_1__primer_nombre','estudiante_1__segundo_nombre','termin__id','titulo') 
-        rows = Tesis.objects.exclude( estatus__nombre="Aprobada" ).filter(estudiante_2__isnull=False).select_related('estatus','escuela','estudiante_2','titulo','termin').values_list('estudiante_2__cedula','estudiante_2__primer_apellido','estudiante_2__segundo_apellido','estudiante_2__primer_nombre','estudiante_2__segundo_nombre','termin__id','titulo').union(rows1) 
+        rows1 = Tesis.objects.exclude( estatus__nombre="Aprobada" ).filter(propuesta__estudiante_1__isnull=False).values_list('propuesta__estudiante_1__cedula','propuesta__estudiante_1__primer_apellido','propuesta__estudiante_1__segundo_apellido','propuesta__estudiante_1__primer_nombre','propuesta__estudiante_1__segundo_nombre','propuesta__termin__id','titulo', 'id') 
+        rows = Tesis.objects.exclude( estatus__nombre="Aprobada" ).filter(propuesta__estudiante_2__isnull=False).values_list('propuesta__estudiante_2__cedula','propuesta__estudiante_2__primer_apellido','propuesta__estudiante_2__segundo_apellido','propuesta__estudiante_2__primer_nombre','propuesta__estudiante_2__segundo_nombre','propuesta__termin__id','titulo', 'id').union(rows1) 
         return rows
         #reporte excluyendo a los que esten aprobados y poniendo 
 

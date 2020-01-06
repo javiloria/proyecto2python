@@ -1,7 +1,7 @@
 {% extends 'template.html' %}
 {% block content %}
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">REporte 2: PRopuestas por cedula diferente a Aprobado</h1>
+      <h1 class="h2">Reporte 2: TG en ejecucion por cedula de estudiantes </h1>
       <div class="btn-toolbar mb-2 mb-md-0">
         <!--button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
           Exportar proximamente poner este boton Herick
@@ -14,24 +14,35 @@
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>Título</th>
-                        <th>Estatus</th>
-                        <th>Fecha de la propuesta</th>
+                        <th>Cedula</th>
+                        <th>Primer apellido</th>
+                        <th>Segundo apellido</th>
+                        <th>Primer Nombre</th>
+                        <th>Segundo Nombre</th>
+                        <th>Terminologia</th>
+                        <th>Titulo del TG</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    {% for p in propuesta_list_Reporte2 %}
+
+
+                    {% for p in propuesta_list_Reporte1 %}
                     <tr>
-                        <td><a href="{% url 'propuestas:propuestas_details' p.id %}">{{ p.titulo }}</a></td>
-                        <td>{{p.estatus}}</td>
-                        <td>{{p.entrega_fecha}}</td>
+                        <td>{{p.0}}</td>
+                        <td>{{p.1}}</td>
+                        <td>{{p.2}}</td>
+                        <td>{{p.3}}</td>
+                        <td>{{p.4}}</td>
+                        <td>{{p.5}}</td>
+                        <td class="text-left p-2" ><a href="{% url 'propuestas:propuestas_details' p.7 %}">{{ p.6 }}</a></td>     
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     {% else %}
-        <p>No hay propuestas de tesis todavia...</p>
+        <p>No hay tesis para hacer este reporte todavia...</p>
     {% endif %}
 {% endblock %}
 
