@@ -5,12 +5,13 @@ from django.http import Http404
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views import generic
+from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from ..decorador import *
 from django.contrib.auth.decorators import login_required
 from ..models import User
-
+import math
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class IndexView(generic.ListView):
@@ -35,6 +36,8 @@ class BusquedaUsuario(generic.ListView):
             cedula = self.request.GET.get('search')
             if cedula == "":
                 return User.objects.order_by('cedula')
+            if not str.isdigit(cedula):
+                return User.objects.filter(primer_nombre = str(cedula))
         return User.objects.filter(cedula = int(cedula))
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
