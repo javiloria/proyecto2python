@@ -21,6 +21,7 @@
                         <th>Segundo Nombre</th>
                         <th>Terminologia</th>
                         <th>Titulo de la propuesta</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -28,10 +29,13 @@
 
                     {% for p in propuesta_list_Reporte1 %}
                     <tr>
-                    {% for pi in p %}
-                        <td>{{pi}}</td>
-                    {% endfor %}
-
+                        <td>{{p.0}}</td>
+                        <td>{{p.1}}</td>
+                        <td>{{p.2}}</td>
+                        <td>{{p.3}}</td>
+                        <td>{{p.4}}</td>
+                        <td>{{p.5}}</td>
+                        <td class="text-left p-2" ><a href="{% url 'propuestas:propuestas_details' p.7 %}">{{ p.6 }}</a></td>     
                     </tr>
                     {% endfor %}
                 </tbody>
