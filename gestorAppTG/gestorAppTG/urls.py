@@ -39,6 +39,7 @@ urlpatterns = [
     path('propuestas/', include(([
         path('', propuestas.IndexView.as_view(), name='propuestas_list'),
         path('<int:pk>/update/', propuestas.UpdatePropuestaView.as_view(), name='propuestas_update'),
+        path('search/', propuestas.BusquedaPropuesta.as_view(), name='propuestas_search'),
         path('create/', propuestas.CreatePropuestaView.as_view(), name='propuestas_create'),
         path('<int:pk>/', propuestas.DetailView.as_view(), name='propuestas_details'),
 		path('<int:pk>/delete/', propuestas.DeletePropuestaView.as_view(), name='propuestas_delete')
