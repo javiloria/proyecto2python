@@ -4,10 +4,10 @@
   <br>
     <h4 class="mb-3">Editar tesis</h4>
     <div class="row">
-      <div class="col-md-6 col-sm-8 col-12">
+      <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
         <form method="post" novalidate>
         {% csrf_token %}
-        {{ form|crispy }}
+        <b>{{ form|crispy }}</b>
 <!-- 
 TODO: ELIAS: en el campo de estatus de la tesis poner un drownplist con los valores: 
 * Por entegar

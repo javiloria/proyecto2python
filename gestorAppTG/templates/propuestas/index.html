@@ -36,14 +36,22 @@
                 <tbody>
                     {% for p in propuestas_listass %}
                     <tr>
-                        <td><a href="{% url 'propuestas:propuestas_details' p.id %}">{{ p.titulo }}</a></td>
-                        <td>{{p.estatus}}</td>
+                        <td class="text-left p-2" ><a href="{% url 'propuestas:propuestas_details' p.id %}">{{ p.titulo }}</a></td>
+                        <td >{{p.estatus}}</td>
                         <td>{{p.entrega_fecha}}</td>
                         {% if user.is_authenticated %}
                             {% if user.esAdmin or user.esGestor %}
                             <td>
-                                <a href="{% url 'propuestas:propuestas_update' p.id %}">Actualizar</a>
-                                <a href="{% url 'propuestas:propuestas_delete' p.id %}">Eliminar</a>
+                                <a href="{% url 'propuestas:propuestas_update' p.id %}" style="text-decoration: none">
+                                    <button class="btn btn-primary">
+                                        Actualizar
+                                    </button>
+                                </a>
+                                <a href="{% url 'propuestas:propuestas_delete' p.id %}" style="text-decoration: none">
+                                    <button class="btn btn-danger">
+                                        Eliminar
+                                    </button>
+                                </a>
                             </td>
                             {% endif %}
                         {% endif %}
