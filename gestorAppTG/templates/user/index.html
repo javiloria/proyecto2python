@@ -17,7 +17,23 @@
         </button!-->
       </div>
     </div>
-    <!--h5>Agregar aaqui los filtros de búsqueda ELIAS!!</h5!-->
+
+    <form action="{% url 'users:users_search' %}" method="GET" class="form-inline ml-3">
+            <div class="cntnr-padding" style="margin-bottom: 15px;margin-top:15px;">
+            <div class="row">
+               <div class="">
+                    <div class="input-group">
+                      <input name="search" type="search" value="{{cedula}}" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                      </span>
+                    </div>
+               </div>
+               <div class="col-md-8"></div>
+           </div>
+        </div>
+    </form>
+
     {% if list_users %}
         <div class="table-responsive">
             {% if messages %}
@@ -37,7 +53,7 @@
 
                         {% if user.is_authenticated %}
                             {% if user.esAdmin or user.esGestor %}
-                                <th>Accciones</th>
+                                <th>Acciones</th>
                             {% endif %}
                         {% endif %}
                     </tr>
@@ -52,8 +68,16 @@
                         {% if user.is_authenticated %}
                             {% if user.esAdmin or user.esGestor %}
                             <td>
-                                <a href="{% url 'users:users_update' i.id %}">Actualizar</a>
-                                <a href="{% url 'users:users_delete' i.id %}">Eliminar</a>
+                                <a href="{% url 'users:users_update' i.id %}" style="text-decoration: none">
+                                <button class="btn btn-primary">
+                                Actualizar
+                                </button>
+                                </a>
+                                <a href="{% url 'users:users_delete' i.id %}" style="text-decoration: none">
+                                <button class="btn btn-danger">
+                                Eliminar
+                                </button>
+                                </a>
                             </td>
                             {% endif %}
                         {% endif %}

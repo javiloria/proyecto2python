@@ -45,8 +45,12 @@
                         {% if user.is_authenticated %}
                             {% if user.esAdmin or user.esGestor %}
                             <td>
-                                <a href="{% url 'escuelas:escuelas_update' p.id %}">Actualizar</a>
-                                <a href="{% url 'escuelas:escuelas_delete' p.id %}">Eliminar</a>
+                                <a href="{% url 'escuelas:escuelas_update' p.id %}" style="text-decoration: none"><button class="btn btn-primary ">
+                                Actualizar
+                                </button></a>
+                                <a href="{% url 'escuelas:escuelas_delete' p.id %}" style="text-decoration: none"><button class="btn btn-danger ">
+                                Eliminar
+                                </button></a>
                             </td>
                             {% endif %}
                         {% endif %}

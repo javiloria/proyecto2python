@@ -4,10 +4,10 @@
   <br>
     <h4 class="mb-3">Editar estatus de TG</h4>
     <div class="row">
-      <div class="col-md-6 col-sm-8 col-12">
+      <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
         <form method="post" novalidate>
         {% csrf_token %}
-        {{ form|crispy }}
+        <b>{{ form|crispy }}</b>
           <div style="margin-bottom: 50px;">
             <button type="submit" class="btn btn-info">Guardar</button>
             <a href="{% url 'estatusTGs:estatusTGs_list' %}" class="btn btn-outline-info" role="button">volver</a>
