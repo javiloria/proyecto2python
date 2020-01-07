@@ -75,7 +75,7 @@ class DeletePropuestaView(generic.DeleteView):
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class Export_propuesta_xls(generic.ArchiveIndexView):
-    def export_users_xls(request):
+    def export_propuesta_xls(request):
         model = Propuesta
         fields = "__all__"
         response = HttpResponse(content_type='application/ms-excel')

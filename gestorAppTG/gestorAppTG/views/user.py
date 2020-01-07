@@ -12,6 +12,7 @@ from ..decorador import *
 from django.contrib.auth.decorators import login_required
 from ..models import User
 import math
+import xlwt
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class IndexView(generic.ListView):
@@ -68,3 +69,37 @@ class DeleteUserView(generic.DeleteView):
     model = User
     template_name = 'user/delete.html'
     success_url = reverse_lazy('users:users_list')
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Export_users_xls(generic.ArchiveIndexView):
+    def export_users_xls(request):
+        model = User
+        fields = "__all__"
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="users.xls"'
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('Users')
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        columns = ['Cedula','Primer Apellido', 'Primer nombre', 'Usuario', 'Tipo','Email ucab', 'Email','Telefono' ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+        rows = User.objects.all().values_list('cedula','primer_apellido','primer_nombre','username','type','ucab_email','email','telefono').order_by('cedula')
+        
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], font_style)
+
+        wb.save(response)
+        return response

@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from ..models import Tesis
 from django.utils.decorators import method_decorator
 from ..decorador import *
+import xlwt
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class IndexView(generic.ListView):
@@ -48,3 +49,37 @@ class DeleteTesisView(generic.DeleteView):
     model = Tesis
     template_name = 'tesis/delete.html'
     success_url = reverse_lazy('tesis:tesis_list')
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Export_tesis_xls(generic.ArchiveIndexView):
+    def export_tesis_xls(request):
+        model = Tesis
+        fields = "__all__"
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="tesis.xls"'
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('tesis')
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        columns = ['NRC' ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+        rows = Tesis.objects.all().values_list('nrc').order_by('nrc')
+        
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], font_style)
+
+        wb.save(response)
+        return response    
