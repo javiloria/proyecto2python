@@ -107,24 +107,31 @@ urlpatterns = [
     ], 'gestorAppTG'), namespace='escuelas')),
 
     path('reporte1/', include(([
-        path('', reporte.IndexReporte1View.as_view(), name='reporte1s_list')
+        path('', reporte.IndexReporte1View.as_view(), name='reporte1s_list'),
+         path('export/xls/', reporte.Export_reporte1_xls.Export_reporte1_xls, name='export_reporte1_xls')
     ], 'gestorAppTG'), namespace='reporte1s')),
     path('reporte2/', include(([
-        path('', reporte.IndexReporte2View.as_view(), name='reporte2s_list')
+        path('', reporte.IndexReporte2View.as_view(), name='reporte2s_list'),
+         path('export/xls/', reporte.Export_reporte2_xls.Export_reporte2_xls, name='export_reporte2_xls')
     ], 'gestorAppTG'), namespace='reporte2s')),
     path('reporte3/', include(([
-        path('', reporte.IndexReporte3View.as_view(), name='reporte3s_list')
+        path('', reporte.IndexReporte3View.as_view(), name='reporte3s_list'),
+         path('export/xls/', reporte.Export_reporte3_xls.Export_reporte3_xls, name='export_reporte3_xls')
     ], 'gestorAppTG'), namespace='reporte3s')),
     path('reporte4/', include(([
-        path('', reporte.IndexReporte4View.as_view(), name='reporte4s_list')
+        path('', reporte.IndexReporte4View.as_view(), name='reporte4s_list'),
+         path('export/xls/', reporte.Export_reporte4_xls.Export_reporte4_xls, name='export_reporte4_xls')
     ], 'gestorAppTG'), namespace='reporte4s')),
     path('reporte5/', include(([
-        path('', reporte.IndexReporte5View.as_view(), name='reporte5s_list')
+        path('', reporte.IndexReporte5View.as_view(), name='reporte5s_list'),
+         path('export/xls/', reporte.Export_reporte5_xls.Export_reporte5_xls, name='export_reporte5_xls')
     ], 'gestorAppTG'), namespace='reporte5s')),
     path('reporte6/', include(([
-        path('', reporte.IndexReporte6View.as_view(), name='reporte6s_list')
+        path('', reporte.IndexReporte6View.as_view(), name='reporte6s_list'),
+         path('export/xls/', reporte.Export_reporte6_xls.Export_reporte6_xls, name='export_reporte6_xls')
     ], 'gestorAppTG'), namespace='reporte6s')),
     path('reporte7/', include(([
-        path('', reporte.IndexReporte7View.as_view(), name='reporte7s_list')
+        path('', reporte.IndexReporte7View.as_view(), name='reporte7s_list'),
+         path('export/xls/', reporte.Export_reporte7_xls.Export_reporte7_xls, name='export_reporte7_xls')
     ], 'gestorAppTG'), namespace='reporte7s')),
 ]

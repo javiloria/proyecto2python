@@ -81,3 +81,252 @@ class IndexReporte7View(generic.ListView):
     def get_queryset(self):
         return Propuesta.objects.filter(estatus__nombre="Aprobada").order_by('estudiante_1__cedula')
         #segundo reporte filtar porque no sean aprobadas y por la cedula 
+
+#EXPORTAR A EXCEL DE TODOS LOS REPORTEEEEEEEEEEEEEEEEEEEEEES
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Export_reporte1_xls(generic.ArchiveIndexView):
+    def Export_reporte1_xls(request):
+        model = EstatusTG
+        fields = "__all__"
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="reporte1.xls"'
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('estatusTG')
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        columns = ['nombre' ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+        rows = EstatusTG.objects.all().values_list('nombre').order_by('nombre')
+        
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], font_style)
+
+        wb.save(response)
+        return response  
+
+#reporte 2
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Export_reporte2_xls(generic.ArchiveIndexView):
+    def Export_reporte2_xls(request):
+        model = EstatusTG
+        fields = "__all__"
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="reporte2.xls"'
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('estatusTG')
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        columns = ['nombre' ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+        rows = EstatusTG.objects.all().values_list('nombre').order_by('nombre')
+        
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], font_style)
+
+        wb.save(response)
+        return response  
+#reporte 3
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Export_reporte3_xls(generic.ArchiveIndexView):
+    def Export_reporte3_xls(request):
+        model = EstatusTG
+        fields = "__all__"
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="reporte3.xls"'
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('estatusTG')
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        columns = ['nombre' ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+        rows = EstatusTG.objects.all().values_list('nombre').order_by('nombre')
+        
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], font_style)
+
+        wb.save(response)
+        return response  
+
+#reporte 4
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Export_reporte4_xls(generic.ArchiveIndexView):
+    def Export_reporte4_xls(request):
+        model = EstatusTG
+        fields = "__all__"
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="reporte4.xls"'
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('estatusTG')
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        columns = ['nombre' ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+        rows = EstatusTG.objects.all().values_list('nombre').order_by('nombre')
+        
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], font_style)
+
+        wb.save(response)
+        return response  
+
+#reporte 5
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Export_reporte5_xls(generic.ArchiveIndexView):
+    def Export_reporte5_xls(request):
+        model = EstatusTG
+        fields = "__all__"
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="reporte5.xls"'
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('estatusTG')
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        columns = ['nombre' ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+        rows = EstatusTG.objects.all().values_list('nombre').order_by('nombre')
+        
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], font_style)
+
+        wb.save(response)
+        return response  
+
+#reporte 6
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Export_reporte6_xls(generic.ArchiveIndexView):
+    def Export_reporte6_xls(request):
+        model = EstatusTG
+        fields = "__all__"
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="reporte6.xls"'
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('estatusTG')
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        columns = ['nombre' ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+        rows = EstatusTG.objects.all().values_list('nombre').order_by('nombre')
+        
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], font_style)
+
+        wb.save(response)
+        return response  
+
+#reporte 7
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Export_reporte7_xls(generic.ArchiveIndexView):
+    def Export_reporte7_xls(request):
+        model = EstatusTG
+        fields = "__all__"
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="reporte7.xls"'
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('estatusTG')
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        columns = ['nombre' ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+        rows = EstatusTG.objects.all().values_list('nombre').order_by('nombre')
+        
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], font_style)
+
+        wb.save(response)
+        return response  
+
+        
