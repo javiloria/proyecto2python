@@ -43,7 +43,7 @@ urlpatterns = [
         path('create/', propuestas.CreatePropuestaView.as_view(), name='propuestas_create'),
         path('<int:pk>/', propuestas.DetailView.as_view(), name='propuestas_details'),
 		path('<int:pk>/delete/', propuestas.DeletePropuestaView.as_view(), name='propuestas_delete'),
-        path('export/xls/', propuestas.Export_propuesta_xls.export_users_xls, name='export_users_xls'),
+        path('export/xls/', propuestas.Export_propuesta_xls.export_propuesta_xls, name='export_propuesta_xls'),
     ], 'gestorAppTG'), namespace='propuestas')),
 
     path('users/', include(([
@@ -52,7 +52,8 @@ urlpatterns = [
         path('<int:pk>/', user.DetailView.as_view(), name='users_details'),
         path('create/', user.CreateUserView.as_view(), name='users_create'),
         path('<int:pk>/update/', user.UpdateUserView.as_view(), name='users_update'),
-        path('<int:pk>/delete/', user.DeleteUserView.as_view(), name='users_delete')
+        path('<int:pk>/delete/', user.DeleteUserView.as_view(), name='users_delete'),
+        path('export/xls/', user.Export_users_xls.export_users_xls, name='export_users_xls'),
     ], 'gestorAppTG'), namespace='users')),
 
     path('tesis/', include(([
@@ -61,6 +62,7 @@ urlpatterns = [
         path('<str:pk>/', tesis.DetailView.as_view(), name='tesis_details'),
         path('<str:pk>/update/', tesis.UpdateTesisView.as_view(), name='tesis_update'),
         path('<str:pk>/delete/', tesis.DeleteTesisView.as_view(), name='tesis_delete'),
+        path('export/xls/', tesis.Export_tesis_xls.export_tesis_xls, name='export_tesis_xls'),
     ], 'gestorAppTG'), namespace='tesis')),
 
     path('defensas/', include(([
@@ -69,55 +71,67 @@ urlpatterns = [
         path('<str:pk>/', defensa.DetailView.as_view(), name='defensas_details'),
         path('<str:pk>/update/', defensa.UpdateDefensaView.as_view(), name='defensas_update'),
         path('<str:pk>/delete/', defensa.DeleteDefensaView.as_view(), name='defensas_delete'),
+        path('export/xls/', defensa.Export_defensa_xls.export_defensa_xls, name='export_defensa_xls'),
     ], 'gestorAppTG'), namespace='defensas')),
 
     path('termin/', include(([
         path('', termin.IndexView.as_view(), name='termins_list'),
         path('create/', termin.CreateTerminView.as_view(), name='termin_create'),
         path('<int:pk>/update/', termin.UpdateTerminView.as_view(), name='termin_update'),
-        path('<int:pk>/delete/', termin.DeleteTerminView.as_view(), name='termin_delete')
+        path('<int:pk>/delete/', termin.DeleteTerminView.as_view(), name='termin_delete'),
+        path('export/xls/', termin.Export_termin_xls.export_termin_xls, name='export_termin_xls')
     ], 'gestorAppTG'), namespace='termin')),
 
     path('estatusPropuestas/', include(([
         path('', estatusPropuesta.IndexView.as_view(), name='estatusPropuestas_list'),
         path('create/', estatusPropuesta.CreateEstatusPropuestaView.as_view(), name='estatusPropuestas_create'),
         path('<int:pk>/update/', estatusPropuesta.UpdateEstatusPropuestaView.as_view(), name='estatusPropuestas_update'),
-        path('<int:pk>/delete/', estatusPropuesta.DeleteEstatusPropuestaView.as_view(), name='estatusPropuestas_delete')
+        path('<int:pk>/delete/', estatusPropuesta.DeleteEstatusPropuestaView.as_view(), name='estatusPropuestas_delete'),
+        path('export/xls/', estatusPropuesta.Export_estatusPropuesta_xls.export_estatusPropuesta_xls, name='export_estatusPropuesta_xls')
     ], 'gestorAppTG'), namespace='estatusPropuestas')),
 
     path('estatusTGs/', include(([
         path('', estatusTG.IndexView.as_view(), name='estatusTGs_list'),
         path('create/', estatusTG.CreateEstatusTGView.as_view(), name='estatusTGs_create'),
         path('<int:pk>/update/', estatusTG.UpdateEstatusTGView.as_view(), name='estatusTGs_update'),
-        path('<int:pk>/delete/', estatusTG.DeleteEstatusTGView.as_view(), name='estatusTGs_delete')
+        path('<int:pk>/delete/', estatusTG.DeleteEstatusTGView.as_view(), name='estatusTGs_delete'),
+         path('export/xls/', estatusTG.Export_estatusTGs_xls.Export_estatusTGs_xls, name='export_estatusTGs_xls')
     ], 'gestorAppTG'), namespace='estatusTGs')),
 
     path('escuelas/', include(([
         path('', escuela.IndexView.as_view(), name='escuelas_list'),
         path('create/', escuela.CreateEscuelaView.as_view(), name='escuelas_create'),
         path('<int:pk>/update/', escuela.UpdateEscuelaView.as_view(), name='escuelas_update'),
-        path('<int:pk>/delete/', escuela.DeleteEscuelaView.as_view(), name='escuelas_delete')
+        path('<int:pk>/delete/', escuela.DeleteEscuelaView.as_view(), name='escuelas_delete'),
+        path('export/xls/', escuela.Export_escuela_xls.Export_escuela_xls, name='export_escuela_xls')
     ], 'gestorAppTG'), namespace='escuelas')),
 
     path('reporte1/', include(([
-        path('', reporte.IndexReporte1View.as_view(), name='reporte1s_list')
+        path('', reporte.IndexReporte1View.as_view(), name='reporte1s_list'),
+         path('export/xls/', reporte.Export_reporte1_xls.Export_reporte1_xls, name='export_reporte1_xls')
     ], 'gestorAppTG'), namespace='reporte1s')),
     path('reporte2/', include(([
-        path('', reporte.IndexReporte2View.as_view(), name='reporte2s_list')
+        path('', reporte.IndexReporte2View.as_view(), name='reporte2s_list'),
+         path('export/xls/', reporte.Export_reporte2_xls.Export_reporte2_xls, name='export_reporte2_xls')
     ], 'gestorAppTG'), namespace='reporte2s')),
     path('reporte3/', include(([
-        path('', reporte.IndexReporte3View.as_view(), name='reporte3s_list')
+        path('', reporte.IndexReporte3View.as_view(), name='reporte3s_list'),
+         path('export/xls/', reporte.Export_reporte3_xls.Export_reporte3_xls, name='export_reporte3_xls')
     ], 'gestorAppTG'), namespace='reporte3s')),
     path('reporte4/', include(([
-        path('', reporte.IndexReporte4View.as_view(), name='reporte4s_list')
+        path('', reporte.IndexReporte4View.as_view(), name='reporte4s_list'),
+         path('export/xls/', reporte.Export_reporte4_xls.Export_reporte4_xls, name='export_reporte4_xls')
     ], 'gestorAppTG'), namespace='reporte4s')),
     path('reporte5/', include(([
-        path('', reporte.IndexReporte5View.as_view(), name='reporte5s_list')
+        path('', reporte.IndexReporte5View.as_view(), name='reporte5s_list'),
+         path('export/xls/', reporte.Export_reporte5_xls.Export_reporte5_xls, name='export_reporte5_xls')
     ], 'gestorAppTG'), namespace='reporte5s')),
     path('reporte6/', include(([
-        path('', reporte.IndexReporte6View.as_view(), name='reporte6s_list')
+        path('', reporte.IndexReporte6View.as_view(), name='reporte6s_list'),
+         path('export/xls/', reporte.Export_reporte6_xls.Export_reporte6_xls, name='export_reporte6_xls')
     ], 'gestorAppTG'), namespace='reporte6s')),
     path('reporte7/', include(([
-        path('', reporte.IndexReporte7View.as_view(), name='reporte7s_list')
+        path('', reporte.IndexReporte7View.as_view(), name='reporte7s_list'),
+         path('export/xls/', reporte.Export_reporte7_xls.Export_reporte7_xls, name='export_reporte7_xls')
     ], 'gestorAppTG'), namespace='reporte7s')),
 ]

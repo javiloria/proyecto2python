@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from ..models import Defensa
 from django.utils.decorators import method_decorator
 from ..decorador import *
-
+import xlwt
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class IndexView(generic.ListView):
@@ -49,3 +49,37 @@ class DeleteDefensaView(generic.DeleteView):
     model = Defensa
     template_name = 'defensa/delete.html'
     success_url = reverse_lazy('defensas:defensas_list')
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Export_defensa_xls(generic.ArchiveIndexView):
+    def export_defensa_xls(request):
+        model = Defensa
+        fields = "__all__"
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="defensa.xls"'
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('defensa')
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        columns = ['Observaciones' ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+        rows = Defensa.objects.all().values_list('observaciones').order_by('observaciones')
+        
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], font_style)
+
+        wb.save(response)
+        return response    
