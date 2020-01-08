@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
-from ..models import EstatusTG
+from ..models import EstatusTG, Tranzabilidad
 from django.utils.decorators import method_decorator
 from ..decorador import *
 import xlwt
@@ -16,7 +16,9 @@ class IndexView(generic.ListView):
     template_name = 'estatusTG/index.html'
     context_object_name = 'estatusTGs_list'    
     def get_queryset(self):
-        return EstatusTG.objects.order_by('id')[:10]
+        p = Tranzabilidad(tipo_de_acccion='consulto el panel de los estatus de TG', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
+        return EstatusTG.objects.order_by('id')
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
 class CreateEstatusTGView(generic.CreateView):
@@ -26,6 +28,8 @@ class CreateEstatusTGView(generic.CreateView):
     def form_valid(self, form):
         estatusTG = form.save(commit=False)
         estatusTG.save()
+        p = Tranzabilidad(tipo_de_acccion='creo un estatus de TG', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         messages.success(self.request, 'El estatus del TG se creo exitosamente')
         return redirect('estatusTGs:estatusTGs_list')
 
@@ -37,6 +41,8 @@ class UpdateEstatusTGView(generic.UpdateView):
     def form_valid(self, form):
         estatusTG = form.save(commit=False)
         estatusTG.save()
+        p = Tranzabilidad(tipo_de_acccion='actualizo un estatus de TG', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         messages.success(self.request, 'El estatus del TG se actualizo exitosamente')
         return redirect('estatusTGs:estatusTGs_list')
 
@@ -44,7 +50,10 @@ class UpdateEstatusTGView(generic.UpdateView):
 class DeleteEstatusTGView(generic.DeleteView):
     model = EstatusTG
     template_name = 'estatusTG/delete.html'
-    success_url = reverse_lazy('estatusTGs:estatusTGs_list')
+    def get_success_url(self):
+        p = Tranzabilidad(tipo_de_acccion='elimino un estatus de TG', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
+        return reverse_lazy('estatusTGs:estatusTGs_list')
 
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
@@ -77,6 +86,7 @@ class Export_estatusTGs_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel los estatus de TG', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response    

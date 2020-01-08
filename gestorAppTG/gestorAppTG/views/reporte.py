@@ -24,6 +24,8 @@ class IndexReporte1View(generic.ListView):
     def get_queryset(self):
         rows1 = Propuesta.objects.exclude( estatus__nombre="Aprobada" ).filter(estudiante_1__isnull=False).values_list('estudiante_1__cedula','estudiante_1__primer_apellido','estudiante_1__segundo_apellido','estudiante_1__primer_nombre','estudiante_1__segundo_nombre','termin__id','titulo', 'id') 
         rows = Propuesta.objects.exclude( estatus__nombre="Aprobada" ).filter(estudiante_2__isnull=False).values_list('estudiante_2__cedula','estudiante_2__primer_apellido','estudiante_2__segundo_apellido','estudiante_2__primer_nombre','estudiante_2__segundo_nombre','termin__id','titulo', 'id').union(rows1) 
+        p = Tranzabilidad(tipo_de_acccion='se consulto el reporte 1', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         return rows
         #reporte excluyendo a los que esten aprobados y poniendo 
 
@@ -35,6 +37,8 @@ class IndexReporte2View(generic.ListView):
     def get_queryset(self):
         rows1 = Tesis.objects.exclude( estatus__nombre="Aprobada" ).filter(propuesta__estudiante_1__isnull=False).values_list('propuesta__estudiante_1__cedula','propuesta__estudiante_1__primer_apellido','propuesta__estudiante_1__segundo_apellido','propuesta__estudiante_1__primer_nombre','propuesta__estudiante_1__segundo_nombre','propuesta__termin__id','titulo', 'id') 
         rows = Tesis.objects.exclude( estatus__nombre="Aprobada" ).filter(propuesta__estudiante_2__isnull=False).values_list('propuesta__estudiante_2__cedula','propuesta__estudiante_2__primer_apellido','propuesta__estudiante_2__segundo_apellido','propuesta__estudiante_2__primer_nombre','propuesta__estudiante_2__segundo_nombre','propuesta__termin__id','titulo', 'id').union(rows1) 
+        p = Tranzabilidad(tipo_de_acccion='se consulto el reporte 2', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         return rows
         #reporte excluyendo a los que esten aprobados y poniendo 
 
@@ -46,6 +50,8 @@ class IndexReporte3View(generic.ListView):
     def get_queryset(self):
         rows1 = Defensa.objects.filter(fecha_defensa__date__gt=timezone.now(), tesis__propuesta__estudiante_1__isnull=False).values_list('tesis__propuesta__estudiante_1__cedula','tesis__propuesta__estudiante_1__primer_apellido','tesis__propuesta__estudiante_1__segundo_apellido','tesis__propuesta__estudiante_1__primer_nombre','tesis__propuesta__estudiante_1__segundo_nombre','tesis__propuesta__termin__id','tesis__titulo', 'tesis__id') 
         rows = Defensa.objects.filter(fecha_defensa__date__gt=timezone.now(), tesis__propuesta__estudiante_2__isnull=False).values_list('tesis__propuesta__estudiante_2__cedula','tesis__propuesta__estudiante_2__primer_apellido','tesis__propuesta__estudiante_2__segundo_apellido','tesis__propuesta__estudiante_2__primer_nombre','tesis__propuesta__estudiante_2__segundo_nombre','tesis__propuesta__termin__id','tesis__titulo', 'tesis__id').union(rows1) 
+        p = Tranzabilidad(tipo_de_acccion='se consulto el reporte 3', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         return rows
         #reporte excluyendo a los que esten menores de esta fecha
 
@@ -55,6 +61,8 @@ class IndexReporte4View(generic.ListView):
     template_name = 'reporte/reporte4.html'
     context_object_name = 'propuesta_list_Reporte4'
     def get_queryset(self):
+        p = Tranzabilidad(tipo_de_acccion='se consulto el reporte 4', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         return Propuesta.objects.filter(estatus__nombre="Aprobada").order_by('estudiante_1__cedula')
         #segundo reporte filtar porque no sean aprobadas y por la cedula 
 
@@ -67,6 +75,8 @@ class IndexReporte5View(generic.ListView):
         rows1 = Defensa.objects.values_list('id','tesis__titulo', 'tesis__titulo' , 'tesis__titulo')  
         rows4 = Tesis.objects.values_list('id','titulo','titulo','titulo').union(rows1) 
         rows5 = Propuesta.objects.values_list('id','titulo','titulo','titulo').union(rows4)
+        p = Tranzabilidad(tipo_de_acccion='se consulto el reporte 5', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         return rows5
  
 @method_decorator([login_required, gestor_permisos], name='dispatch')
@@ -96,6 +106,8 @@ class Busqueda5(generic.ListView):
         for x in rows5:
             x.tipo = "Propuesta"
             x.cargo= "tutor academico" 
+        p = Tranzabilidad(tipo_de_acccion='se busco en en el reporte 5', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         return rows5
         #reporte excluyendo a los que esten menores de esta fecha
 
@@ -104,6 +116,8 @@ class IndexReporte6View(generic.ListView):
     template_name = 'reporte/reporte6.html'
     context_object_name = 'propuesta_list_Reporte6'
     def get_queryset(self):
+        p = Tranzabilidad(tipo_de_acccion='se consulto el reporte 6', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         return Propuesta.objects.filter(estatus__nombre="Aprobada").order_by('estudiante_1__cedula')
         #primer reporte filtar porque no sean aprobadas y por la cedula 
 
@@ -112,6 +126,8 @@ class IndexReporte7View(generic.ListView):
     template_name = 'reporte/reporte7.html'
     context_object_name = 'propuesta_list_Reporte7'
     def get_queryset(self):
+        p = Tranzabilidad(tipo_de_acccion='se consulto el reporte 7', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         return Propuesta.objects.filter(estatus__nombre="Aprobada").order_by('estudiante_1__cedula')
         #segundo reporte filtar porque no sean aprobadas y por la cedula 
 
@@ -147,7 +163,8 @@ class Export_reporte1_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel el reporte 1', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response  
 
@@ -183,7 +200,8 @@ class Export_reporte2_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel el reporte 2', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response  
 #reporte 3
@@ -217,7 +235,8 @@ class Export_reporte3_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel el reporte 3', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response  
 
@@ -252,7 +271,8 @@ class Export_reporte4_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel el reporte 4', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response  
 
@@ -287,7 +307,8 @@ class Export_reporte5_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel el reporte 5', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response  
 
@@ -322,7 +343,8 @@ class Export_reporte6_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel el reporte 6', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response  
 
@@ -358,7 +380,8 @@ class Export_reporte7_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel el reporte 7', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response  
 

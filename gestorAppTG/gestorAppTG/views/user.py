@@ -10,15 +10,20 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from ..decorador import *
 from django.contrib.auth.decorators import login_required
-from ..models import User
+from ..models import User, Tranzabilidad
 import math
 import xlwt
+import datetime
+
+
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class IndexView(generic.ListView):
     template_name = 'user/index.html'
     context_object_name = 'list_users'
     def get_queryset(self):
+        p = Tranzabilidad(tipo_de_acccion='abrio el panel de usuario', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         return User.objects.order_by('cedula')
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
@@ -27,6 +32,7 @@ class DetailView(generic.DetailView):
     template_name = 'user/detail.html'
 
 opciones=['cedula', 'esAdmin', 'esGestor', 'esInvitado', 'username', 'type', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 'ucab_email', 'email', 'telefono', 'telefono_1', 'observaciones']
+opciones1=['cedula', 'esAdmin', 'esGestor', 'esInvitado', 'username', 'password','type', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 'ucab_email', 'email', 'telefono', 'telefono_1', 'observaciones']
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class BusquedaUsuario(generic.ListView):
@@ -36,19 +42,25 @@ class BusquedaUsuario(generic.ListView):
         if self.request.GET:
             cedula = self.request.GET.get('search')
             if cedula == "":
+                p = Tranzabilidad(tipo_de_acccion='consulta de usuario por cedular', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+                p.save()
                 return User.objects.order_by('cedula')
             if not str.isdigit(cedula):
+                p = Tranzabilidad(tipo_de_acccion='consulta de usuario por primer nombre', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+                p.save()
                 return User.objects.filter(primer_nombre = str(cedula))
         return User.objects.filter(cedula = int(cedula))
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class CreateUserView(generic.CreateView):
     model = User
-    fields = opciones
+    fields = opciones1
     template_name = 'user/create.html'
     def form_valid(self, form):
         user = form.save(commit=False)
         user.save()
+        p = Tranzabilidad(tipo_de_acccion='creo a un usuario', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         messages.success(self.request,  'usuario creado exitosamente')
         return redirect('users:users_list')
 
@@ -60,6 +72,8 @@ class UpdateUserView(generic.UpdateView):
     def form_valid(self, form):
         user = form.save(commit=False)
         user.save()
+        p = Tranzabilidad(tipo_de_acccion='actualizo a un usuario', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         messages.success(self.request, 'usuario actualizado exitosamente')
         return redirect('users:users_list')
 
@@ -71,6 +85,8 @@ class UpdateUserPassView(generic.UpdateView):
     def form_valid(self, form):
         user = form.save(commit=False)
         user.savePass()
+        p = Tranzabilidad(tipo_de_acccion='actualizo la contraseña de un usuario', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         messages.success(self.request, 'contraseña actualizada exitosamente')
         return redirect('users:users_list')
 
@@ -79,7 +95,10 @@ class UpdateUserPassView(generic.UpdateView):
 class DeleteUserView(generic.DeleteView):
     model = User
     template_name = 'user/delete.html'
-    success_url = reverse_lazy('users:users_list')
+    def get_success_url(self):
+        p = Tranzabilidad(tipo_de_acccion='elimino a un usuario', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
+        return reverse_lazy('users:users_list')
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class Export_users_xls(generic.ArchiveIndexView):
@@ -111,6 +130,7 @@ class Export_users_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel los usuario', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response

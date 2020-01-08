@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
-from ..models import Escuela
+from ..models import Escuela, Tranzabilidad
 from django.utils.decorators import method_decorator
 from ..decorador import *
 import xlwt
@@ -15,7 +15,9 @@ class IndexView(generic.ListView):
     template_name = 'escuela/index.html'
     context_object_name = 'escuelas_list'    
     def get_queryset(self):
-        return Escuela.objects.order_by('id')[:5]
+        p = Tranzabilidad(tipo_de_acccion='se abrio el panel de escuela', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
+        return Escuela.objects.order_by('id')
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
 class CreateEscuelaView(generic.CreateView):
@@ -25,6 +27,8 @@ class CreateEscuelaView(generic.CreateView):
     def form_valid(self, form):
         escuela = form.save(commit=False)
         escuela.save()
+        p = Tranzabilidad(tipo_de_acccion='creo una escuela', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         messages.success(self.request, 'La escuela se creo exitosamente')
         return redirect('escuelas:escuelas_list')
 
@@ -36,6 +40,8 @@ class UpdateEscuelaView(generic.UpdateView):
     def form_valid(self, form):
         escuela = form.save(commit=False)
         escuela.save()
+        p = Tranzabilidad(tipo_de_acccion='actualizo una escuela', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         messages.success(self.request, 'La escuela se actualizada exitosamente')
         return redirect('escuelas:escuelas_list')
 
@@ -43,7 +49,10 @@ class UpdateEscuelaView(generic.UpdateView):
 class DeleteEscuelaView(generic.DeleteView):
     model = Escuela
     template_name = 'escuela/delete.html'
-    success_url = reverse_lazy('escuelas:escuelas_list')
+    def get_success_url(self):
+        p = Tranzabilidad(tipo_de_acccion='elimino una escuela', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
+        return reverse_lazy('escuelas:escuelas_list')
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class Export_escuela_xls(generic.ArchiveIndexView):
@@ -75,6 +84,7 @@ class Export_escuela_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel las escuelas', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response    
