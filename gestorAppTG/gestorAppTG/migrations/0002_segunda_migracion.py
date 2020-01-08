@@ -663,11 +663,12 @@ def createTesis(app,schema_editor):
     Tesis.objects.create(
         id='TG7' , 
         titulo='Sistema de control de inventario y pedidos para la empresa Zona 3 Internacional CA',
+        empresa_Nombre='Zona 3 Internacional CA',
         estatus_id=1,
         escuela_id=1,
         nrc=25000,
-        descriptors="prueba",
-        categoriaTema="prueba",
+        descriptors="Se desarrollara un sistema de inventarios modelo de inventarios",
+        categoriaTema="Empresarial",
         fechaTope="2020-10-20",
         termin_id=202015,
         propuesta_id=7
@@ -675,11 +676,12 @@ def createTesis(app,schema_editor):
     Tesis.objects.create(
         id='TG8' , 
         titulo='Diseño e implementacion de un bot conversacional para la obtencion de información de apoyo a la gerencia de Venefoil CA',
+        empresa_Nombre='Venefoil CA',
         estatus_id=1,
         escuela_id=1,
-        nrc=25000,
-        descriptors="prueba",
-        categoriaTema="prueba",
+        nrc=25500,
+        descriptors="Bot para dar apoyo y ahorrar costos",
+        categoriaTema="Toma de decisiones",
         fechaTope="2020-10-20",
         termin_id=202015,
         propuesta_id=8
@@ -689,21 +691,21 @@ def createTesis(app,schema_editor):
         titulo='Creación de un programa de salud y seguridad laboral para los laboratorios-talleres, ubicados en el edificio de los laboratorios de una universidad privada en Caracas',
         estatus_id=2,
         escuela_id=4,
-        nrc=25000,
-        descriptors="prueba",
-        categoriaTema="prueba",
+        nrc=25550,
+        descriptors="salud para la seguridad en laboratorios",
+        categoriaTema="Salud y seguridad",
         fechaTope="2020-10-20",
         termin_id=202015,
         propuesta_id=9
     )
     Tesis.objects.create(
         id='TG13' , 
-        titulo='Aplicación de las tecnologías CAD/CAE en el ambito de la ingeniería concurrente : caso de un equipo médico',
+        titulo='Aplicación de las tecnologías CAD/CAE en el ambito de la ingeniería concurrente: caso de un equipo médico',
         estatus_id=2,
         escuela_id=1,
-        nrc=25000,
-        descriptors="prueba",
-        categoriaTema="prueba",
+        nrc=25005,
+        descriptors="Apoyo a equipo medico mediante Ingenieria concurrente",
+        categoriaTema="Ingenieria concurrente",
         fechaTope="2020-10-20",
         termin_id=202015,
         propuesta_id=13
@@ -713,9 +715,9 @@ def createTesis(app,schema_editor):
         titulo='Propuestas de mejoras en los procesos logísticos del centro de distribución de una empresa de alimentos ubicadas en Caracas',
         estatus_id=3,
         escuela_id=2,
-        nrc=25000,
-        descriptors="prueba",
-        categoriaTema="prueba",
+        nrc=24538,
+        descriptors="Mejora de procesos logisticos de una empresa ubicado en caracas",
+        categoriaTema="Mejora de Procesos",
         fechaTope="2020-10-20",
         termin_id=202015,
         propuesta_id=14
@@ -725,9 +727,9 @@ def createTesis(app,schema_editor):
         titulo='Diseño de un sistema integrado de vigilancia y apoyo para trenes basado en tecnología IP',
         estatus_id=3,
         escuela_id=3,
-        nrc=25000,
-        descriptors="prueba",
-        categoriaTema="prueba",
+        nrc=25001,
+        descriptors="vigilancia y trenes ",
+        categoriaTema="Mejora de procesos",
         fechaTope="2020-10-20",
         termin_id=202015,
         propuesta_id=15
@@ -737,9 +739,9 @@ def createTesis(app,schema_editor):
         titulo='Diseño de un sistema de reconocimiento del habla para controlar dispositivos elèctricos',
         estatus_id=4,
         escuela_id=4,
-        nrc=25000,
-        descriptors="prueba",
-        categoriaTema="prueba",
+        nrc=25010,
+        descriptors="Uso de dispositivos electronicos",
+        categoriaTema="Reconocimiento del habla",
         fechaTope="2020-10-20",
         termin_id=202015,
         propuesta_id=16
@@ -749,9 +751,9 @@ def createTesis(app,schema_editor):
         titulo='Ambiente de evaluación de arquitecturas de software',
         estatus_id=4,
         escuela_id=1,
-        nrc=25000,
-        descriptors="prueba",
-        categoriaTema="prueba",
+        nrc=25985,
+        descriptors="se evaluara ambientes de arquitecturas",
+        categoriaTema="Auditoria de arquitecturas de software",
         fechaTope="2020-10-20",
         termin_id=202015,
         propuesta_id=17
@@ -759,11 +761,12 @@ def createTesis(app,schema_editor):
     Tesis.objects.create(
         id='TG18' , 
         titulo='Business inteligence en ABB Venezuela',
+        empresa_Nombre='ABB Venezuela',
         estatus_id=5,
         escuela_id=2,
-        nrc=25000,
-        descriptors="prueba",
-        categoriaTema="prueba",
+        nrc=25980,
+        descriptors="inteligencia en los procesos de negocio",
+        categoriaTema="Inteligencia de Negocios",
         fechaTope="2020-10-20",
         termin_id=202015,
         propuesta_id=18
@@ -773,9 +776,9 @@ def createTesis(app,schema_editor):
         titulo='Arquitectura eficiente, estable y segura para el soporte de un sistema de integración de redes inmobiliarias MLS',
         estatus_id=5,
         escuela_id=3,
-        nrc=25000,
-        descriptors="prueba",
-        categoriaTema="prueba",
+        nrc=25850,
+        descriptors="integracion de redes y equipos caseros",
+        categoriaTema="Redes caseras",
         fechaTope="2020-10-20",
         termin_id=202015,
         propuesta_id=19
@@ -785,9 +788,9 @@ def createTesis(app,schema_editor):
         titulo='Análisis del sistema de cloacas de la Universidad Católica Andrés Bello y su función futura',
         estatus_id=6,
         escuela_id=4,
-        nrc=25000,
-        descriptors="prueba",
-        categoriaTema="prueba",
+        nrc=25330,
+        descriptors="Evaluacion de sistema de cloacas",
+        categoriaTema="Auditoria de Sistemas",
         fechaTope="2020-10-20",
         termin_id=202015,
         propuesta_id=20
@@ -797,9 +800,9 @@ def createTesis(app,schema_editor):
         titulo='Aplicación de los microcomputadores para el diseño de redes colectoras de aguas servidas',
         estatus_id=6,
         escuela_id=1,
-        nrc=25000,
-        descriptors="prueba",
-        categoriaTema="prueba",
+        nrc=25870,
+        descriptors="Uso de microcomputadores",
+        categoriaTema="Mejora de procesos",
         fechaTope="2020-10-20",
         termin_id=202015,
         propuesta_id=21
@@ -832,18 +835,87 @@ def createEscuelas(app, schema_editor):
 def createDefensa(app,schema_editor):
 	Defensa = app.get_model('gestorAppTG', 'Defensa')
 	Defensa.objects.create(
-    id='DTG7',
+    id='DTG9',
     fecha_defensa='2020-10-10' ,
+    jurado_1= True,
+    jurado_2= True,
+    jurado_3= True,
+    calificacion= 18,
+    mencion_publicacion= True,
+    mencion_honorifica = True,
+    correcciones= True ,
+    fecha_correciones='2020-10-20' ,
+    tesis_id='TG9'
+    )
+
+	Defensa.objects.create(
+    id='DTG13',
+    fecha_defensa='2020-10-10' ,
+    jurado_1= True,
+    jurado_2= True,
+    jurado_3= True,
+    calificacion= 20,
+    mencion_publicacion= False,
+    mencion_honorifica = False,
+    correcciones= False ,
+    fecha_correciones='2020-10-20' ,
+    tesis_id='TG13'
+    )
+
+	Defensa.objects.create(
+    id='DTG16',
+    fecha_defensa='2020-01-20' ,
     jurado_1= True,
     jurado_2= True,
     jurado_3= True,
     calificacion= 18,
     mencion_publicacion= False,
     mencion_honorifica = False,
-    correcciones= True ,
+    correcciones= False ,
     fecha_correciones='2020-10-20' ,
-    tesis_id='TG7'
+    tesis_id='TG16'
     )
+
+	Defensa.objects.create(
+    id='DTG17',
+    fecha_defensa='2020-09-25' ,
+    jurado_1= True,
+    jurado_2= True,
+    jurado_3= True,
+    calificacion= 18,
+    mencion_publicacion= True,
+    mencion_honorifica = True,
+    correcciones= True ,
+    fecha_correciones='2020-09-20' ,
+    tesis_id='TG17'
+    )    	
+	Defensa.objects.create(
+    id='DTG18',
+    fecha_defensa='2020-11-10' ,
+    jurado_1= True,
+    jurado_2= True,
+    jurado_3= True,
+    calificacion= 18,
+    mencion_publicacion= True,
+    mencion_honorifica = False,
+    correcciones= True ,
+    fecha_correciones='2020-11-20' ,
+    tesis_id='TG18'
+    )
+
+	Defensa.objects.create(
+    id='DTG19',
+    fecha_defensa='2020-01-18' ,
+    jurado_1= True,
+    jurado_2= True,
+    jurado_3= True,
+    calificacion= 18,
+    mencion_publicacion= True,
+    mencion_honorifica = False,
+    correcciones= True ,
+    fecha_correciones='2020-01-20' ,
+    tesis_id='TG19'
+    )    
 
 class Migration(migrations.Migration):
 

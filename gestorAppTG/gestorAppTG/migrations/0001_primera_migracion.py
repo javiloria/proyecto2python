@@ -131,7 +131,7 @@ class Migration(migrations.Migration):
 			    ('descriptors', models.CharField(max_length=50, verbose_name="descriptores")),
 			    ('categoriaTema', models.CharField(max_length=50, verbose_name="categoría temática")),
 			    ('fechaTope', models.DateTimeField(verbose_name="fecha tope de entrega")),
-			    ('EmpresaNombre', models.CharField(max_length=100, verbose_name="nombre de la empresa")),
+			    ('empresa_Nombre', models.CharField(max_length=100, verbose_name="nombre de la empresa")),
 			    ('termin', models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="termin_tesis", to='gestorAppTG.Termin', verbose_name="terminología")),
 			    ('propuesta', models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="propuestaTesis",to='gestorAppTG.Propuesta', verbose_name="propuesta asociada")),
 	          ],
