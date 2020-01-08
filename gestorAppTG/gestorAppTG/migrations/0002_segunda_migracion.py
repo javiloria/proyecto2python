@@ -663,7 +663,7 @@ def createTesis(app,schema_editor):
     Tesis.objects.create(
         id='TG7' , 
         titulo='Sistema de control de inventario y pedidos para la empresa Zona 3 Internacional CA',
-        empresa_Nombre='Zona 3 Internacional CA',
+        EmpresaNombre='Zona 3 Internacional CA',
         estatus_id=1,
         escuela_id=1,
         nrc=25000,
@@ -676,7 +676,7 @@ def createTesis(app,schema_editor):
     Tesis.objects.create(
         id='TG8' , 
         titulo='Diseño e implementacion de un bot conversacional para la obtencion de información de apoyo a la gerencia de Venefoil CA',
-        empresa_Nombre='Venefoil CA',
+        EmpresaNombre='Venefoil CA',
         estatus_id=1,
         escuela_id=1,
         nrc=25500,
@@ -761,7 +761,7 @@ def createTesis(app,schema_editor):
     Tesis.objects.create(
         id='TG18' , 
         titulo='Business inteligence en ABB Venezuela',
-        empresa_Nombre='ABB Venezuela',
+        EmpresaNombre='ABB Venezuela',
         estatus_id=5,
         escuela_id=2,
         nrc=25980,
@@ -837,9 +837,9 @@ def createDefensa(app,schema_editor):
 	Defensa.objects.create(
     id='DTG9',
     fecha_defensa='2020-10-10' ,
-    jurado_1= True,
-    jurado_2= True,
-    jurado_3= True,
+    jurado_1_id= 19,
+    jurado_2_id= 20,
+    jurado_auxiliar_id= 21,
     calificacion= 18,
     mencion_publicacion= True,
     mencion_honorifica = True,
@@ -847,13 +847,12 @@ def createDefensa(app,schema_editor):
     fecha_correciones='2020-10-20' ,
     tesis_id='TG9'
     )
-
 	Defensa.objects.create(
     id='DTG13',
     fecha_defensa='2020-10-10' ,
-    jurado_1= True,
-    jurado_2= True,
-    jurado_3= True,
+    jurado_1_id= 20,
+    jurado_2_id= 21,
+    jurado_auxiliar_id= 22,
     calificacion= 20,
     mencion_publicacion= False,
     mencion_honorifica = False,
@@ -865,9 +864,9 @@ def createDefensa(app,schema_editor):
 	Defensa.objects.create(
     id='DTG16',
     fecha_defensa='2020-01-20' ,
-    jurado_1= True,
-    jurado_2= True,
-    jurado_3= True,
+    jurado_1_id= 21,
+    jurado_2_id= 22,
+    jurado_auxiliar_id= 23,
     calificacion= 18,
     mencion_publicacion= False,
     mencion_honorifica = False,
@@ -879,10 +878,10 @@ def createDefensa(app,schema_editor):
 	Defensa.objects.create(
     id='DTG17',
     fecha_defensa='2020-09-25' ,
-    jurado_1= True,
-    jurado_2= True,
-    jurado_3= True,
-    calificacion= 18,
+    jurado_1_id= 19,
+    jurado_2_id= 20,
+    jurado_auxiliar_id= 21,
+    calificacion= 17,
     mencion_publicacion= True,
     mencion_honorifica = True,
     correcciones= True ,
@@ -892,10 +891,10 @@ def createDefensa(app,schema_editor):
 	Defensa.objects.create(
     id='DTG18',
     fecha_defensa='2020-11-10' ,
-    jurado_1= True,
-    jurado_2= True,
-    jurado_3= True,
-    calificacion= 18,
+    jurado_1_id= 22,
+    jurado_2_id= 23,
+    jurado_auxiliar_id= 19,
+    calificacion= 19,
     mencion_publicacion= True,
     mencion_honorifica = False,
     correcciones= True ,
@@ -906,9 +905,9 @@ def createDefensa(app,schema_editor):
 	Defensa.objects.create(
     id='DTG19',
     fecha_defensa='2020-01-18' ,
-    jurado_1= True,
-    jurado_2= True,
-    jurado_3= True,
+    jurado_1_id= 19,
+    jurado_2_id= 20,
+    jurado_auxiliar_id= 21,
     calificacion= 18,
     mencion_publicacion= True,
     mencion_honorifica = False,
@@ -916,6 +915,7 @@ def createDefensa(app,schema_editor):
     fecha_correciones='2020-01-20' ,
     tesis_id='TG19'
     )    
+
 
 class Migration(migrations.Migration):
 
