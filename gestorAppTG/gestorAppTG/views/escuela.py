@@ -9,6 +9,8 @@ from ..models import Escuela, Tranzabilidad
 from django.utils.decorators import method_decorator
 from ..decorador import *
 import xlwt
+import datetime
+
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
 class IndexView(generic.ListView):
