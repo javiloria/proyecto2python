@@ -4,16 +4,16 @@
     <h4>Detalles del usuario</h4>  
     <p>
         <br>
-        <strong>Cédula de identidad:&nbsp;</strong> <i>{{ persona.cedula }}</i><br>
-        <strong>Username:&nbsp;</strong> <i>{{ persona.username }}</i><br>
-        <strong>Contraseñad:&nbsp;</strong> <i>{{ persona.password }}</i><br>
-        <strong>primer nombre:&nbsp;</strong> <i>{{ persona.primer_nombre }}</i><br>
-        <strong>segundo nombre:&nbsp;</strong> <i>{{ persona.segundo_nombre }}</i><br>
-        <strong>primer apellido:&nbsp;</strong> <i>{{ persona.primer_apellido }}</i><br>
-        <strong>segundo apellido:&nbsp;</strong> <i>{{ persona.segundo_apellido }}</i><br>
-        <strong>Correo:&nbsp;</strong> <i>{{ persona.email }}</i><br>
-        <strong>Correo de la UCAB:&nbsp;</strong> <i>{{ persona.ucab_email }}</i><br>
-        <strong>Teléfono principal:&nbsp;</strong> <i>{{ persona.telefono }}</i><br>
+        <strong>Cédula de identidad:&nbsp;</strong> <i>{{ user.cedula }}</i><br>
+        <strong>Username:&nbsp;</strong> <i>{{ user.username }}</i><br>
+        <strong>Contraseñad:&nbsp;</strong> <i>{{ user.password }}</i><br>
+        <strong>primer nombre:&nbsp;</strong> <i>{{ user.primer_nombre }}</i><br>
+        <strong>segundo nombre:&nbsp;</strong> <i>{{ user.segundo_nombre }}</i><br>
+        <strong>primer apellido:&nbsp;</strong> <i>{{ user.primer_apellido }}</i><br>
+        <strong>segundo apellido:&nbsp;</strong> <i>{{ user.segundo_apellido }}</i><br>
+        <strong>Correo:&nbsp;</strong> <i>{{ user.email }}</i><br>
+        <strong>Correo de la UCAB:&nbsp;</strong> <i>{{ user.ucab_email }}</i><br>
+        <strong>Teléfono principal:&nbsp;</strong> <i>{{ user.telefono }}</i><br>
     </p>
     <a href="{% url 'users:users_list' %}" class="btn btn-outline-info" role="button">
         Volver

@@ -46,6 +46,10 @@
 
 * ver como utilizar readthedocs
 
+* Acomodar detail defensas y tesis
+
+* revisar reporte numero 2
+
 ### consultas que hay que hacer:
 * Lista de propuestas en estado diferentes de aprobadas, ordenadas por número de CI del
 alumno y mostrar apellidos y nombres del alumno, TERM y nombre de la propuesta.

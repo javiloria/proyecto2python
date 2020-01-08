@@ -8,23 +8,43 @@
         </button!-->
       </div>
     </div>
-    <!--h5>Agregar aaqui los filtros de búsqueda ELIAS!!</h5!-->
+        <form action="{% url 'reporte5s:reporte5_search' %}" method="GET" class="form-inline ml-3">
+            <div class="cntnr-padding" style="margin-bottom: 15px;margin-top:15px;">
+            <div class="row">
+               <div class="">
+                    <div class="input-group">
+                      <input name="search" type="search" value="{{cedula}}" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                      </span>
+                    </div>
+               </div>
+               <div class="col-md-8"></div>
+           </div>
+        </div>
+    </form>
+
     {% if propuesta_list_Reporte5 %}
         <div class="table-responsive">
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>Título</th>
-                        <th>Estatus</th>
-                        <th>Fecha de la propuesta</th>
+                        <th>id</th>
+                        <th>titulo</th>
+                        <th>tipo (Propuesta, TG, Defensa )</th>
+                        <th>Labor del profesor</th>
                     </tr>
                 </thead>
                 <tbody>
+
+
                     {% for p in propuesta_list_Reporte5 %}
                     <tr>
-                        <td><a href="{% url 'propuestas:propuestas_details' p.id %}">{{ p.titulo }}</a></td>
-                        <td>{{p.estatus}}</td>
-                        <td>{{p.entrega_fecha}}</td>
+                        <td>{{p.0}}</td>
+                        <td>{{p.1}}</td>
+                        <td>{{p.tipo}}</td>
+                        <td>{{p.cargo}}</td>
+                        <td class="text-left p-2" ><a href="{% url 'tesis:tesis_details' p.7 %}">{{ p.6 }}</a></td>     
                     </tr>
                     {% endfor %}
                 </tbody>

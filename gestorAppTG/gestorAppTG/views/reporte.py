@@ -15,6 +15,7 @@ from django.utils.translation import gettext as _
 import xlwt
 import datetime
 from django.utils import timezone
+from django.db.models import Count, F, Value
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class IndexReporte1View(generic.ListView):
@@ -63,8 +64,40 @@ class IndexReporte5View(generic.ListView):
     template_name = 'reporte/reporte5.html'
     context_object_name = 'propuesta_list_Reporte5'
     def get_queryset(self):
-        return Propuesta.objects.filter(estatus__nombre="Aprobada").order_by('estudiante_1__cedula')
-        #primer reporte filtar porque no sean aprobadas y por la cedula 
+        rows1 = Defensa.objects.values_list('id','tesis__titulo', 'tesis__titulo' , 'tesis__titulo')  
+        rows4 = Tesis.objects.values_list('id','titulo','titulo','titulo').union(rows1) 
+        rows5 = Propuesta.objects.values_list('id','titulo','titulo','titulo').union(rows4)
+        return rows5
+ 
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Busqueda5(generic.ListView):
+    template_name = 'reporte/reporte5.html'
+    context_object_name = 'propuesta_list_Reporte5'
+    def get_queryset(self):
+        if self.request.GET:
+            search = self.request.GET.get('search')
+        rows1 = Defensa.objects.filter(Q(jurado_1 = str(search))).values_list('id','tesis__titulo')
+        for x in rows1:
+            x.tipo = "Defensa"
+            x.cargo= "Jurado 1"    
+        rows2 = Defensa.objects.filter(Q(jurado_2 = str(search))).values_list('id','tesis__titulo').union(rows1)
+        for x in rows2:
+            x.tipo = "Defensa"
+            x.cargo= "Jurado 2" 
+        rows3 = Defensa.objects.filter(Q(jurado_auxiliar= str(search))).values_list('id','tesis__titulo').union(rows2)
+        for x in rows3:
+            x.tipo = "Defensa"
+            x.cargo= "Jurado auxiliar" 
+        rows4 = Tesis.objects.filter(Q(propuesta__tutor_academico = str(search))).values_list('id','titulo').union(rows3)
+        for x in rows4:
+            x.tipo = "Tesis"
+            x.cargo= "tutor academico" 
+        rows5 = Propuesta.objects.filter(Q(tutor_academico = str(search))).values_list('id','titulo').union(rows4)
+        for x in rows5:
+            x.tipo = "Propuesta"
+            x.cargo= "tutor academico" 
+        return rows5
+        #reporte excluyendo a los que esten menores de esta fecha
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class IndexReporte6View(generic.ListView):

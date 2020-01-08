@@ -125,9 +125,9 @@ class Tesis(models.Model):
 class Defensa(models.Model):   
     id = models.CharField(max_length=100,primary_key=True)
     fecha_defensa = models.DateTimeField(verbose_name="fecha de la defensa")
-    jurado_1 = models.BooleanField(default=False,verbose_name="jurado 1 ")
-    jurado_2 = models.BooleanField(default=False,verbose_name="jurado 2 ")
-    jurado_3 = models.BooleanField(default=False,verbose_name="jurado 3 ")
+    jurado_1 =  models.ForeignKey(User, on_delete=models.CASCADE, related_name="jurado_1", verbose_name="jurado 1")
+    jurado_2 =  models.ForeignKey(User, on_delete=models.CASCADE, related_name="jurado_2", verbose_name="jurado 2")
+    jurado_auxiliar =  models.ForeignKey(User, on_delete=models.CASCADE, related_name="jurado_auxiliar", verbose_name="jurado auxiliar")
     calificacion = models.IntegerField(verbose_name="calificación") 
     mencion_publicacion = models.BooleanField(default=False,verbose_name="mención publicación")
     mencion_honorifica = models.BooleanField(default=False,verbose_name="mención honorífica")

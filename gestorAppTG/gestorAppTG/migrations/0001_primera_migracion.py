@@ -145,9 +145,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.CharField(max_length=100, primary_key=True, serialize=False, verbose_name='ID')),
 			    ('fecha_defensa', models.DateTimeField(verbose_name="fecha de la defensa")),
-			    ('jurado_1',models.BooleanField(default=False,verbose_name="jurado 1 ")),
-			    ('jurado_2', models.BooleanField(default=False,verbose_name="jurado 2 ")),
-			    ('jurado_3', models.BooleanField(default=False,verbose_name="jurado 3 ")),
+			    ('jurado_1',models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="jurado_1", to='gestorAppTG.User', verbose_name="jurado 1")),
+			    ('jurado_2', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="jurado_2", to='gestorAppTG.User', verbose_name="jurado 2")),
+			    ('jurado_auxiliar', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="jurado_auxiliar", to='gestorAppTG.User', verbose_name="jurado auxiliar")),
 			    ('calificacion', models.IntegerField(verbose_name="calificación")),
 			    ('mencion_publicacion', models.BooleanField(default=False,verbose_name="mención publicación")),
 			    ('mencion_honorifica', models.BooleanField(default=False,verbose_name="mención honorífica")),
