@@ -5,15 +5,71 @@
     <h4 class="mb-3">Editar persona</h4>
     <div class="row">
       <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
-        <form method="post" novalidate>
+        <form id="formUpdate" method="post" novalidate>
         {% csrf_token %}
         <b>{{ form|crispy }}</b>
           <div style="margin-bottom: 50px;">
-            <button type="submit" class="btn btn-info">Guardar</button>
-            <a href="{% url 'users:users_list' %}" class="btn btn-outline-info" role="button">volver</a>
+            <button id ="enviar" type="submit" class="btn btn-info">Guardar</button>
+            <a href="{% url 'users:users_list' %}" class="btn btn-outline-info" role="button">Volver</a>
           </div>
         </form>
         </form>
       </div>
+
+   <script type="text/javascript">
+     $('#enviar').on('click', function(e){
+
+      idCedula = document.getElementById('id_cedula').value;
+      idUser = document.getElementById('id_username').value;
+      idPass = document.getElementById('id_password').value;
+      idTipo = document.getElementById('id_type').value;
+      idNombre = document.getElementById('id_primer_nombre').value;
+      idNombreS = document.getElementById('id_segundo_nombre').value;
+      idApellido = document.getElementById('id_primer_apellido').value;
+      idApellidoS = document.getElementById('id_segundo_apellido').value;
+      idCorreo = document.getElementById('id_email').value;
+      idTelefono = document.getElementById('id_telefono').value;
+      idTelefono1 = document.getElementById('id_telefono_1').value;
+
+      if(idCedula == ""){ swal("Error", "Falta la cedula", "error"); return false;}
+      if(idUser == ""){ swal("Error", "Falta el usuario", "error");  return false;}
+      if(idTipo == ""){ swal("Error", "Falta el tipo de usuario", "error");  return false;}
+      if(idPass == ""){ swal("Error", "Falta la contraseña", "error"); return false;}
+      if(idNombre == ""){ swal("Error", "Falta el primer nombre", "error");  return false;}
+      if(idApellido == ""){swal("Error", "Falta el primer apellido", "error");return false;}
+      if(idCorreo == ""){swal("Error", "Falta el correo", "error");return false;}
+      if(idTelefono == ""){swal("Error", "Escriba algun numero de telefono", "error");return false;}
+
+      e.preventDefault();
+      var $thisForm = $(this).parents('form');
+      swal({
+        title: 'Estas seguro?',
+        text: "Los datos del usuario seran modificados!",
+        icon: 'warning',
+        buttons: [
+          'No',
+          'Yes'
+       ],
+      dangerMode: true,
+      }).then(function (isConfirm) {
+          if(isConfirm){
+            swal({
+            title: 'Actualizado',
+            text: 'El usuario fue actualizado satisfactoriamente!',
+            icon: 'success'
+            }).then(function() {
+             $('#formUpdate').submit();
+            });
+          }
+          else{
+            //
+          }
+      })
+      });
+
+    </script>
+      
     </div>
 {% endblock %}
+
+

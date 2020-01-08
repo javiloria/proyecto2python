@@ -74,7 +74,7 @@ class UpdateUserView(generic.UpdateView):
         user.save()
         p = Tranzabilidad(tipo_de_acccion='actualizo a un usuario', usuario=self.request.user,fecha_accion=datetime.datetime.now())
         p.save()
-        messages.success(self.request, 'usuario actualizado exitosamente')
+        messages.success(self.request, 'Usuario actualizado exitosamente')
         return redirect('users:users_list')
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')

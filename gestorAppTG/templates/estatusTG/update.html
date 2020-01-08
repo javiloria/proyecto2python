@@ -5,15 +5,44 @@
     <h4 class="mb-3">Editar estatus de TG</h4>
     <div class="row">
       <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
-        <form method="post" novalidate>
+        <form id="formUpdate" method="post" novalidate>
         {% csrf_token %}
         <b>{{ form|crispy }}</b>
           <div style="margin-bottom: 50px;">
-            <button type="submit" class="btn btn-info">Guardar</button>
+            <button  id="enviar" type="submit" class="btn btn-info">Guardar</button>
             <a href="{% url 'estatusTGs:estatusTGs_list' %}" class="btn btn-outline-info" role="button">volver</a>
           </div>
         </form>
         </form>
       </div>
+      <script type="text/javascript">
+         $('#enviar').on('click', function(e){
+          e.preventDefault();
+          var $thisForm = $(this).parents('form');
+          swal({
+            title: 'Estas seguro?',
+            text: "El estado de la Tesis de Grado sera cambiado!",
+            icon: 'warning',
+            buttons: [
+              'No',
+              'Yes'
+           ],
+          dangerMode: true,
+          }).then(function (isConfirm) {
+              if(isConfirm){
+                swal({
+                title: 'Actualizado',
+                text: 'El estatus fue actualizado satisfactoriamente!',
+                icon: 'success'
+                }).then(function() {
+                 $('#formUpdate').submit();
+                });
+              }
+              else{
+                //
+              }
+          })
+          });
+      </script>
     </div>
 {% endblock %}
