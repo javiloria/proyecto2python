@@ -17,7 +17,7 @@ import datetime
 
 
 
-@method_decorator([login_required, invitado_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class IndexView(generic.ListView):
     template_name = 'user/index.html'
     context_object_name = 'list_users'

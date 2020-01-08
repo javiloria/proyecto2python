@@ -27,6 +27,7 @@ from .views import escuela
 from .views import estatusTG
 from .views import estatusPropuesta
 from .views import reporte
+from .views import tranzabilidad
 
 urlpatterns = [
     
@@ -106,6 +107,12 @@ urlpatterns = [
         path('<int:pk>/delete/', escuela.DeleteEscuelaView.as_view(), name='escuelas_delete'),
         path('export/xls/', escuela.Export_escuela_xls.Export_escuela_xls, name='export_escuela_xls')
     ], 'gestorAppTG'), namespace='escuelas')),
+
+    path('tranzabilidad/', include(([
+        path('', tranzabilidad.IndexView.as_view(), name='tranzabilidads_list'),
+        path('search/', tranzabilidad.BusquedaTranzabilidad.as_view(), name='tranzabilidads_search'),
+        path('export/xls/', tranzabilidad.Export_tranzabilidad_xls.Export_tranzabilidad_xls, name='export_tranzabilidad_xls')
+    ], 'gestorAppTG'), namespace='tranzabilidads')),
 
     path('reporte1/', include(([
         path('', reporte.IndexReporte1View.as_view(), name='reporte1s_list'),

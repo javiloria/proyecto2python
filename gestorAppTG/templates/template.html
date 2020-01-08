@@ -48,6 +48,18 @@
           {% endif %}
 
           {% if user.is_authenticated %}
+            {% if user.esAdmin %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'tranzabilidads:tranzabilidads_list' %}">
+                <span data-feather="users"></span>
+                Tranzabilidad usuarios
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
+
+
+          {% if user.is_authenticated %}
             {% if user.esInvitado or user.esAdmin or user.esGestor %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'propuestas:propuestas_list' %}">
