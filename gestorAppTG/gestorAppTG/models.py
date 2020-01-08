@@ -35,6 +35,8 @@ class User(AbstractUser):
     def __str__(self):
         return self.primer_apellido + ", " + self.primer_nombre
     def save(self, *args, **kwargs):
+        super(User, self).save(*args, **kwargs)
+    def savePass(self, *args, **kwargs):
         self.password = make_password(self.password)
         super(User, self).save(*args, **kwargs)
     class Meta:
@@ -53,7 +55,7 @@ class Termin(models.Model):
         verbose_name_plural = "Terminologías"
 
 class EstatusPropuesta(models.Model):    
-    nombre = models.CharField(max_length=20, verbose_name="nombre")
+    nombre = models.CharField(max_length=100, verbose_name="nombre")
     def __str__(self):
         return self.nombre
     class Meta:
@@ -61,7 +63,7 @@ class EstatusPropuesta(models.Model):
         verbose_name_plural = "EstatusPropuestas"
 
 class EstatusTG(models.Model):    
-    nombre = models.CharField(max_length=20, verbose_name="nombre")
+    nombre = models.CharField(max_length=100, verbose_name="nombre")
     def __str__(self):
         return self.nombre
     class Meta:
@@ -69,7 +71,7 @@ class EstatusTG(models.Model):
         verbose_name_plural = "EstatusTGs"
 
 class Escuela(models.Model):    
-    nombre = models.CharField(max_length=20, verbose_name="nombre")
+    nombre = models.CharField(max_length=100, verbose_name="nombre")
     def __str__(self):
         return self.nombre
     class Meta:
@@ -102,8 +104,8 @@ class Tesis(models.Model):
     escuela= models.ForeignKey(Escuela, on_delete=models.CASCADE, related_name="TG_Escuela", verbose_name="escuela asociada") 
     estatus = models.ForeignKey(EstatusTG, on_delete=models.CASCADE, related_name="TG_estatus",verbose_name="estatus del TG")
     nrc = models.IntegerField(verbose_name="código NRC")
-    descriptors = models.CharField(max_length=50, verbose_name="descriptores")
-    categoriaTema = models.CharField(max_length=50, verbose_name="categoría temática")
+    descriptors = models.CharField(max_length=200, verbose_name="descriptores")
+    categoriaTema = models.CharField(max_length=150, verbose_name="categoría temática")
     fechaTope = models.DateTimeField(verbose_name="fecha tope de entrega")
     EmpresaNombre = models.CharField(max_length=100, verbose_name="nombre de la empresa")
     termin = models.ForeignKey(Termin, on_delete=models.CASCADE, related_name="termin_tesis", verbose_name="terminología")
@@ -146,3 +148,15 @@ class Defensa(models.Model):
         verbose_name = "Defensa"
         verbose_name_plural = "Defensas"
 
+class Tranzabilidad(models.Model):   
+    id = models.AutoField(primary_key=True, serialize=False, verbose_name='ID')
+    fecha_accion = models.DateTimeField(verbose_name="fecha de la accion")
+    usuario =  models.ForeignKey(User, on_delete=models.CASCADE, related_name="trans_usuario", verbose_name="usuario")
+    tipo_de_acccion = models.CharField(max_length=500,verbose_name="tipo de accion", null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        super(Tranzabilidad, self).save(*args, **kwargs)
+    #para setear el verbose_name 
+    class Meta:
+        verbose_name = "Tranzabilidad"
+        verbose_name_plural = "Tranzabilidads"

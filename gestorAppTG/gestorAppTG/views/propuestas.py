@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
-from ..models import Propuesta,EstatusPropuesta
+from ..models import Propuesta,EstatusPropuesta, Tranzabilidad
 from django.utils.decorators import method_decorator
 from ..decorador import *
 from django import forms
@@ -20,7 +20,9 @@ class IndexView(generic.ListView):
     template_name = 'propuestas/index.html'
     context_object_name = 'propuestas_listass'
     
-    def get_queryset(self):
+    def get_queryset(self):    
+        p = Tranzabilidad(tipo_de_acccion='consulto el panel de propuesta', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         return Propuesta.objects.order_by('entrega_fecha')
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
@@ -33,6 +35,9 @@ class BusquedaPropuesta(generic.ListView):
     template_name = 'propuestas/index.html'
     context_object_name = 'propuestas_listass'
     def get_queryset(self):
+
+        p = Tranzabilidad(tipo_de_acccion='busco una propuesta', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         if self.request.GET:
             search = self.request.GET.get('search')
             if search == "":
@@ -52,6 +57,8 @@ class CreatePropuestaView(generic.CreateView):
             return redirect('propuestas:propuestas_create',my_function)
         else:    
             propuesta.save()
+            p = Tranzabilidad(tipo_de_acccion='creo una propuesta', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+            p.save()
             messages.success(self.request, 'La propuesta fue creada exitosamente')
             return redirect('propuestas:propuestas_list')
 
@@ -63,6 +70,8 @@ class UpdatePropuestaView(generic.UpdateView):
     def form_valid(self, form):
         propuesta = form.save(commit=False)
         propuesta.save()
+        p = Tranzabilidad(tipo_de_acccion='actualizo una propuesta', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         messages.success(self.request, 'La propuesta fue actualizada exitosamente')
         return redirect('propuestas:propuestas_list')
 
@@ -70,7 +79,10 @@ class UpdatePropuestaView(generic.UpdateView):
 class DeletePropuestaView(generic.DeleteView):
     model = Propuesta
     template_name = 'propuestas/delete.html'
-    success_url = reverse_lazy('propuestas:propuestas_list')
+    def get_success_url(self):
+        p = Tranzabilidad(tipo_de_acccion='elimino una tesis', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
+        return reverse_lazy('propuestas:propuestas_list')
 
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
@@ -104,6 +116,7 @@ class Export_propuesta_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel las propuestas', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response

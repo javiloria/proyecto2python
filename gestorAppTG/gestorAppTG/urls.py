@@ -52,6 +52,7 @@ urlpatterns = [
         path('<int:pk>/', user.DetailView.as_view(), name='users_details'),
         path('create/', user.CreateUserView.as_view(), name='users_create'),
         path('<int:pk>/update/', user.UpdateUserView.as_view(), name='users_update'),
+        path('<int:pk>/updatePass/', user.UpdateUserPassView.as_view(), name='users_updatePass'),
         path('<int:pk>/delete/', user.DeleteUserView.as_view(), name='users_delete'),
         path('export/xls/', user.Export_users_xls.export_users_xls, name='export_users_xls'),
     ], 'gestorAppTG'), namespace='users')),

@@ -72,7 +72,7 @@ class Migration(migrations.Migration):
             name='Escuela',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID')),
-                ('nombre', models.CharField(max_length=50, verbose_name="nombre")),
+                ('nombre', models.CharField(max_length=100, verbose_name="nombre")),
             ],
             options={
                 'verbose_name': 'Escuela',
@@ -83,7 +83,7 @@ class Migration(migrations.Migration):
             name='EstatusPropuesta',
             fields=[
             ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-             ('nombre', models.CharField(max_length=50, verbose_name="nombre")),
+             ('nombre', models.CharField(max_length=100, verbose_name="nombre")),
             ],
             options={
                 'verbose_name': 'EstatusPropuesta',
@@ -94,7 +94,7 @@ class Migration(migrations.Migration):
             name='EstatusTG',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False, verbose_name="ID")),
-                ('nombre', models.CharField(max_length=50, verbose_name="nombre")),
+                ('nombre', models.CharField(max_length=100, verbose_name="nombre")),
             ],
             options={
                 'verbose_name': 'EstatusTG',
@@ -128,8 +128,8 @@ class Migration(migrations.Migration):
                 ('estatus', models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="escuela_estatus",  to='gestorAppTG.EstatusTG' , verbose_name="estatus del TG")),
                 ('escuela', models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="escuela_escuela",  to='gestorAppTG.Escuela' , verbose_name="escuela del TG")),
 			    ('nrc', models.IntegerField(verbose_name="código NRC")),
-			    ('descriptors', models.CharField(max_length=50, verbose_name="descriptores")),
-			    ('categoriaTema', models.CharField(max_length=50, verbose_name="categoría temática")),
+			    ('descriptors', models.CharField(max_length=200, verbose_name="descriptores")),
+			    ('categoriaTema', models.CharField(max_length=100, verbose_name="categoría temática")),
 			    ('fechaTope', models.DateTimeField(verbose_name="fecha tope de entrega")),
 			    ('EmpresaNombre', models.CharField(max_length=100, verbose_name="nombre de la empresa")),
 			    ('termin', models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="termin_tesis", to='gestorAppTG.Termin', verbose_name="terminología")),
@@ -160,6 +160,19 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'Defensa',
                 'verbose_name_plural': 'Defensas',
+            },
+        ),
+        migrations.CreateModel(
+            name='Tranzabilidad',
+            fields=[
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID')),
+                ('tipo_de_acccion', models.CharField(max_length=200, verbose_name="tipo de accion")),
+                ('usuario' ,models.ForeignKey( on_delete=django.db.models.deletion.CASCADE, related_name="trans_usuario", to='gestorAppTG.User', verbose_name="usuario")),
+                ('fecha_accion', models.DateTimeField(verbose_name="fecha de la accion")),                
+            ],
+            options={
+                'verbose_name': 'Tranzabilidad',
+                'verbose_name_plural': 'Tranzabilidads',
             },
         ),
     ]

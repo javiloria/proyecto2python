@@ -5,17 +5,21 @@ from django.contrib import messages
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
-from ..models import Defensa
+from ..models import Defensa, Tranzabilidad
 from django.utils.decorators import method_decorator
 from ..decorador import *
 import xlwt
+import datetime
+
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class IndexView(generic.ListView):
     template_name = 'defensa/index.html'
     context_object_name = 'defensa_listass'
     def get_queryset(self):
-        return Defensa.objects.order_by('id')[:5]
+        p = Tranzabilidad(tipo_de_acccion='se abrio el panel de defensa', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
+        return Defensa.objects.order_by('id')
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class DetailView(generic.DetailView):
@@ -30,6 +34,8 @@ class CreateDefensaView(generic.CreateView):
     def form_valid(self, form):
         defensa = form.save(commit=False)
         defensa.save()
+        p = Tranzabilidad(tipo_de_acccion='creo una defensa', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         messages.success(self.request, 'La defensa fue creada exitosamente')
         return redirect('defensas:defensas_list')
 
@@ -41,6 +47,8 @@ class UpdateDefensaView(generic.UpdateView):
     def form_valid(self, form):
         defensa = form.save(commit=False)
         defensa.save()
+        p = Tranzabilidad(tipo_de_acccion='actualizo uan defensa', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         messages.success(self.request, 'La defensa fue actualizada exitosamente')
         return redirect('defensas:defensas_list')
 
@@ -48,7 +56,10 @@ class UpdateDefensaView(generic.UpdateView):
 class DeleteDefensaView(generic.DeleteView):
     model = Defensa
     template_name = 'defensa/delete.html'
-    success_url = reverse_lazy('defensas:defensas_list')
+    def get_success_url(self):
+        p = Tranzabilidad(tipo_de_acccion='elimino una defensa', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
+        return reverse_lazy('defensas:defensas_list')
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class Export_defensa_xls(generic.ArchiveIndexView):
@@ -80,6 +91,7 @@ class Export_defensa_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel las defensas', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response    

@@ -75,10 +75,15 @@
                                 <button class="btn btn-primary">
                                 Actualizar
                                 </button>
-                                </a>
+                                </a>                                
                                 <a href="{% url 'users:users_delete' i.id %}" style="text-decoration: none">
                                 <button class="btn btn-danger">
                                 Eliminar
+                                </button>
+                                </a>
+                                <a href="{% url 'users:users_updatePass' i.id %}" style="text-decoration: none">
+                                <button class="btn btn-primary">
+                                Cambiar Contraseña
                                 </button>
                                 </a>
                             </td>

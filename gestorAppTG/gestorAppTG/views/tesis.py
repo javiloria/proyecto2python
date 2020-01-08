@@ -5,16 +5,20 @@ from django.contrib import messages
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
-from ..models import Tesis
+from ..models import Tesis, Tranzabilidad
 from django.utils.decorators import method_decorator
 from ..decorador import *
 import xlwt
+import datetime
+
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class IndexView(generic.ListView):
     template_name = 'tesis/index.html'
     context_object_name = 'tesis_list'    
     def get_queryset(self):
+        p = Tranzabilidad(tipo_de_acccion='abrio el panel de tesis', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         return Tesis.objects.order_by('id')
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
@@ -30,6 +34,8 @@ class CreateTesisView(generic.CreateView):
     def form_valid(self, form):
         tesis = form.save(commit=False)
         tesis.save()
+        p = Tranzabilidad(tipo_de_acccion='creo una tesis', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         messages.success(self.request, 'La tesis se creoo exitosamente')
         return redirect('tesis:tesis_list')
 
@@ -41,6 +47,8 @@ class UpdateTesisView(generic.UpdateView):
     def form_valid(self, form):
         tesis = form.save(commit=False)
         tesis.save()
+        p = Tranzabilidad(tipo_de_acccion='actualizo una tesis', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         messages.success(self.request, 'La propuesta se actualizo exitosamente')
         return redirect('tesis:tesis_list')
 
@@ -48,7 +56,10 @@ class UpdateTesisView(generic.UpdateView):
 class DeleteTesisView(generic.DeleteView):
     model = Tesis
     template_name = 'tesis/delete.html'
-    success_url = reverse_lazy('tesis:tesis_list')
+    def get_success_url(self):
+        p = Tranzabilidad(tipo_de_acccion='elimino una tesis', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
+        return reverse_lazy('tesis:tesis_list')
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class Export_tesis_xls(generic.ArchiveIndexView):
@@ -80,6 +91,8 @@ class Export_tesis_xls(generic.ArchiveIndexView):
             row_num += 1
             for col_num in range(len(row)):
                 ws.write(row_num, col_num, row[col_num], font_style)
-
+                
+        p = Tranzabilidad(tipo_de_acccion='exporto en excel las tesis', usuario=request.user,fecha_accion=datetime.datetime.now())
+        p.save()
         wb.save(response)
         return response    
