@@ -59,6 +59,7 @@ urlpatterns = [
 
     path('tesis/', include(([
         path('', tesis.IndexView.as_view(), name='tesis_list'),
+        path('search/', tesis.BusquedaTesis.as_view(), name='tesis_search'),
         path('create/', tesis.CreateTesisView.as_view(), name='tesis_create'),
         path('<str:pk>/', tesis.DetailView.as_view(), name='tesis_details'),
         path('<str:pk>/update/', tesis.UpdateTesisView.as_view(), name='tesis_update'),
