@@ -26,7 +26,7 @@ class DetailView(generic.DetailView):
     model = User
     template_name = 'user/detail.html'
 
-opciones=['cedula', 'esAdmin', 'esGestor', 'esInvitado', 'username', 'password', 'type', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 'ucab_email', 'email', 'telefono', 'telefono_1', 'observaciones']
+opciones=['cedula', 'esAdmin', 'esGestor', 'esInvitado', 'username', 'type', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 'ucab_email', 'email', 'telefono', 'telefono_1', 'observaciones']
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class BusquedaUsuario(generic.ListView):
@@ -61,6 +61,17 @@ class UpdateUserView(generic.UpdateView):
         user = form.save(commit=False)
         user.save()
         messages.success(self.request, 'usuario actualizado exitosamente')
+        return redirect('users:users_list')
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class UpdateUserPassView(generic.UpdateView):
+    model = User
+    fields = ['username', 'password']
+    template_name = 'user/updatePass.html'
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.savePass()
+        messages.success(self.request, 'contraseña actualizada exitosamente')
         return redirect('users:users_list')
 
 

@@ -35,6 +35,8 @@ class User(AbstractUser):
     def __str__(self):
         return self.primer_apellido + ", " + self.primer_nombre
     def save(self, *args, **kwargs):
+        super(User, self).save(*args, **kwargs)
+    def savePass(self, *args, **kwargs):
         self.password = make_password(self.password)
         super(User, self).save(*args, **kwargs)
     class Meta:
