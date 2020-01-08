@@ -15,7 +15,7 @@ class IndexView(generic.ListView):
     template_name = 'tesis/index.html'
     context_object_name = 'tesis_list'    
     def get_queryset(self):
-        return Tesis.objects.order_by('id')[:10]
+        return Tesis.objects.order_by('id')
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
 class DetailView(generic.DetailView):
