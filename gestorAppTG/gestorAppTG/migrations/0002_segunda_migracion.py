@@ -334,7 +334,115 @@ def createUsers(app, schema_editor):
         email="carlatorres@gmail.com",
         telefono="0424634765",
         type='Externo'
-    )                                    
+    )
+    User.objects.create(
+    	username="mariom",
+        password=make_password("mariom123"),
+        esInvitado=True,
+        cedula=26778898,
+        primer_nombre="Mario",
+        primer_apellido="Balotelli",
+        ucab_email="mabaoltelli.15@est.ucab.edu.ve",
+        email="mariobalotelli@hotmail.com",
+        telefono="0416897885",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="jhonatan",
+        password=make_password("jhonatan123"),
+        esInvitado=True,
+        cedula=25632788,
+        primer_nombre="Jhonatan",
+        primer_apellido="Aranguren",
+        ucab_email="jjaranguren.16@est.ucab.edu.ve",
+        email="jjarangurenv123@yahoo.com",
+        telefono="0426783945",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="pablo",
+        password=make_password("pablo123"),
+        esInvitado=True,
+        cedula=27890838,
+        primer_nombre="Pablo",
+        primer_apellido="Fernandez",
+        ucab_email="pofernandeza.16@est.ucab.edu.ve",
+        email="pablooferandez@gmail.com",
+        telefono="0414800369",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="america",
+        password=make_password("america123"),
+        esInvitado=True,
+        cedula=26987234,
+        primer_nombre="America",
+        primer_apellido="Rojas",
+        ucab_email="ammrojas.15@est.ucab.edu.ve",
+        email="americarojas@gmail.com",
+        telefono="0426548902",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="carmen",
+        password=make_password("carmen123"),
+        esInvitado=True,
+        cedula=27888999,
+        primer_nombre="Carmen",
+        primer_apellido="Rojas",
+        ucab_email="cmrojas.16@est.ucab.edu.ve",
+        email="carmenmariarojas@gmail.com",
+        telefono="0426578890",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="ana",
+        password=make_password("ana123"),
+        esInvitado=True,
+        cedula=27899938,
+        primer_nombre="Ana",
+        primer_apellido="Fernandez",
+        ucab_email="anaafernandez.16@est.ucab.edu.ve",
+        email="anamariafernandez@gmail.com",
+        telefono="0424328789",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="sara",
+        password=make_password("sara123"),
+        esInvitado=True,
+        cedula=27900123,
+        primer_nombre="Sara",
+        primer_apellido="Dentale",
+        ucab_email="smdentale.16@est.ucab.edu.ve",
+        email="saramdentale@gmail.com",
+        telefono="0412789091",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="josefina",
+        password=make_password("josefina123"),
+        esInvitado=True,
+        cedula=25666999,
+        primer_nombre="Josefina",
+        primer_apellido="Navarro",
+        ucab_email="janavarro.14@est.ucab.edu.ve",
+        email="josefamaria190@gmail.com",
+        telefono="0426781098",
+        type='Estudiante'
+    )
+    User.objects.create(
+    	username="manuela",
+        password=make_password("manuela123"),
+        esInvitado=True,
+        cedula=27788900,
+        primer_nombre="Manuela",
+        primer_apellido="Rodriguez",
+        ucab_email="marodriguez.14@est.ucab.edu.ve",
+        email="manuelaarodriguez@gmail.com",
+        telefono="0414321890",
+        type='Estudiante'
+    )                                 
 def createPropuestas(app,schema_editor):
     Propuesta = app.get_model('gestorAppTG', 'Propuesta')
     Propuesta.objects.create(
@@ -460,11 +568,243 @@ def createPropuestas(app,schema_editor):
         tutor_empresa_id=27, 
         termin_id=201925 
     )
+    Propuesta.objects.create(
+        entrega_fecha='2020-01-19 00:00:00', 
+        titulo='Aplicación de las tecnologías CAD/CAE en el ambito de la ingeniería concurrente : caso de un equipo médico',
+        estatus_id=3, 
+        escuela_id=1,
+        estudiante_1_id=28, 
+        tutor_academico_id= 19, 
+        tutor_empresa_id=25, 
+        termin_id=202015 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2020-01-23 00:00:00', 
+        titulo='Propuestas de mejoras en los procesos logísticos del centro de distribución de una empresa de alimentos ubicadas en Caracas',
+        estatus_id=3, 
+        escuela_id=2,
+        estudiante_1_id=29, 
+        tutor_academico_id= 20, 
+        termin_id=202015 
+    )
 
+    Propuesta.objects.create(
+        entrega_fecha='2020-02-15 00:00:00', 
+        titulo='Diseño de un sistema integrado de vigilancia y apoyo para trenes basado en tecnología IP ',
+        estatus_id=3, 
+        escuela_id=3,
+        estudiante_1_id=30, 
+        tutor_academico_id= 21,  
+        termin_id=202015 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2020-02-23 00:00:00', 
+        titulo='Diseño de un sistema de reconocimiento del habla para controlar dispositivos elèctricos',
+        estatus_id=3, 
+        escuela_id=4,
+        estudiante_1_id=31, 
+        tutor_academico_id= 22, 
+        tutor_empresa_id=25, 
+        termin_id=202015 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2020-02-10 00:00:00', 
+        titulo='Ambiente de evaluación de arquitecturas de software',
+        estatus_id=3, 
+        escuela_id=1,
+        estudiante_1_id=32, 
+        tutor_academico_id= 23, 
+        tutor_empresa_id=26, 
+        termin_id=202015 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2020-04-23 00:00:00', 
+        titulo='Business inteligence en ABB Venezuela',
+        estatus_id=3, 
+        escuela_id=2,
+        estudiante_1_id=33, 
+        tutor_academico_id= 19, 
+        tutor_empresa_id=24, 
+        termin_id=202025 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2020-04-19 00:00:00', 
+        titulo='Arquitectura eficiente, estable y segura para el soporte de un sistema de integración de redes inmobiliarias MLS',
+        estatus_id=3, 
+        escuela_id=3,
+        estudiante_1_id=34, 
+        tutor_academico_id= 20, 
+        termin_id=202025 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2020-05-21 00:00:00', 
+        titulo='Análisis del sistema de cloacas de la Universidad Católica Andrés Bello y su función futura',
+        estatus_id=3, 
+        escuela_id=4,
+        estudiante_1_id=35, 
+        tutor_academico_id= 21, 
+        tutor_empresa_id=23, 
+        termin_id=202025 
+    )
+    Propuesta.objects.create(
+        entrega_fecha='2020-05-14 00:00:00', 
+        titulo='Aplicación de los microcomputadores para el diseño de redes colectoras de aguas servidas',
+        estatus_id=3, 
+        escuela_id=1,
+        estudiante_1_id=36, 
+        tutor_academico_id= 22, 
+        termin_id=202025 
+    )
 
 
 def createTesis(app,schema_editor):
     Tesis = app.get_model('gestorAppTG', 'Tesis')
+    
+    Tesis.objects.create(
+        id='TG7' , 
+        titulo='Sistema de control de inventario y pedidos para la empresa Zona 3 Internacional CA',
+        estatus_id=1,
+        escuela_id=1,
+        nrc=25000,
+        descriptors="prueba",
+        categoriaTema="prueba",
+        fechaTope="2020-10-20",
+        termin_id=202015,
+        propuesta_id=7
+    )
+    Tesis.objects.create(
+        id='TG8' , 
+        titulo='Diseño e implementacion de un bot conversacional para la obtencion de información de apoyo a la gerencia de Venefoil CA',
+        estatus_id=1,
+        escuela_id=1,
+        nrc=25000,
+        descriptors="prueba",
+        categoriaTema="prueba",
+        fechaTope="2020-10-20",
+        termin_id=202015,
+        propuesta_id=8
+    )
+    Tesis.objects.create(
+        id='TG9' , 
+        titulo='Creación de un programa de salud y seguridad laboral para los laboratorios-talleres, ubicados en el edificio de los laboratorios de una universidad privada en Caracas',
+        estatus_id=2,
+        escuela_id=4,
+        nrc=25000,
+        descriptors="prueba",
+        categoriaTema="prueba",
+        fechaTope="2020-10-20",
+        termin_id=202015,
+        propuesta_id=9
+    )
+    Tesis.objects.create(
+        id='TG13' , 
+        titulo='Aplicación de las tecnologías CAD/CAE en el ambito de la ingeniería concurrente : caso de un equipo médico',
+        estatus_id=2,
+        escuela_id=1,
+        nrc=25000,
+        descriptors="prueba",
+        categoriaTema="prueba",
+        fechaTope="2020-10-20",
+        termin_id=202015,
+        propuesta_id=13
+    )
+    Tesis.objects.create(
+        id='TG14' , 
+        titulo='Propuestas de mejoras en los procesos logísticos del centro de distribución de una empresa de alimentos ubicadas en Caracas',
+        estatus_id=3,
+        escuela_id=2,
+        nrc=25000,
+        descriptors="prueba",
+        categoriaTema="prueba",
+        fechaTope="2020-10-20",
+        termin_id=202015,
+        propuesta_id=14
+    )
+    Tesis.objects.create(
+        id='TG15' , 
+        titulo='Diseño de un sistema integrado de vigilancia y apoyo para trenes basado en tecnología IP',
+        estatus_id=3,
+        escuela_id=3,
+        nrc=25000,
+        descriptors="prueba",
+        categoriaTema="prueba",
+        fechaTope="2020-10-20",
+        termin_id=202015,
+        propuesta_id=15
+    )
+    Tesis.objects.create(
+        id='TG16' , 
+        titulo='Diseño de un sistema de reconocimiento del habla para controlar dispositivos elèctricos',
+        estatus_id=4,
+        escuela_id=4,
+        nrc=25000,
+        descriptors="prueba",
+        categoriaTema="prueba",
+        fechaTope="2020-10-20",
+        termin_id=202015,
+        propuesta_id=16
+    )
+    Tesis.objects.create(
+        id='TG17' , 
+        titulo='Ambiente de evaluación de arquitecturas de software',
+        estatus_id=4,
+        escuela_id=1,
+        nrc=25000,
+        descriptors="prueba",
+        categoriaTema="prueba",
+        fechaTope="2020-10-20",
+        termin_id=202015,
+        propuesta_id=17
+    )
+    Tesis.objects.create(
+        id='TG18' , 
+        titulo='Business inteligence en ABB Venezuela',
+        estatus_id=5,
+        escuela_id=2,
+        nrc=25000,
+        descriptors="prueba",
+        categoriaTema="prueba",
+        fechaTope="2020-10-20",
+        termin_id=202015,
+        propuesta_id=18
+    )
+    Tesis.objects.create(
+        id='TG19' , 
+        titulo='Arquitectura eficiente, estable y segura para el soporte de un sistema de integración de redes inmobiliarias MLS',
+        estatus_id=5,
+        escuela_id=3,
+        nrc=25000,
+        descriptors="prueba",
+        categoriaTema="prueba",
+        fechaTope="2020-10-20",
+        termin_id=202015,
+        propuesta_id=19
+    )
+    Tesis.objects.create(
+        id='TG20' , 
+        titulo='Análisis del sistema de cloacas de la Universidad Católica Andrés Bello y su función futura',
+        estatus_id=6,
+        escuela_id=4,
+        nrc=25000,
+        descriptors="prueba",
+        categoriaTema="prueba",
+        fechaTope="2020-10-20",
+        termin_id=202015,
+        propuesta_id=20
+    )
+    Tesis.objects.create(
+        id='TG21' , 
+        titulo='Aplicación de los microcomputadores para el diseño de redes colectoras de aguas servidas',
+        estatus_id=6,
+        escuela_id=1,
+        nrc=25000,
+        descriptors="prueba",
+        categoriaTema="prueba",
+        fechaTope="2020-10-20",
+        termin_id=202015,
+        propuesta_id=21
+    )
+    
 
 def createEstatusPropuesta(app, schema_editor):
     EstatusPropuesta = app.get_model('gestorAppTG', 'EstatusPropuesta')
@@ -489,6 +829,22 @@ def createEscuelas(app, schema_editor):
     Escuela.objects.create(nombre='Ingeneria Civil')
     Escuela.objects.create(nombre='Ingeneria Industrial')
 
+def createDefensa(app,schema_editor):
+	Defensa = app.get_model('gestorAppTG', 'Defensa')
+	Defensa.objects.create(
+    id='DTG7',
+    fecha_defensa='2020-10-10' ,
+    jurado_1= True,
+    jurado_2= True,
+    jurado_3= True,
+    calificacion= 18,
+    mencion_publicacion= False,
+    mencion_honorifica = False,
+    correcciones= True ,
+    fecha_correciones='2020-10-20' ,
+    tesis_id='TG7'
+    )
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -502,5 +858,6 @@ class Migration(migrations.Migration):
         migrations.RunPython(createEstatusTG),
         migrations.RunPython(createEscuelas),
         migrations.RunPython(createPropuestas),
-        migrations.RunPython(createTesis)
+        migrations.RunPython(createTesis),
+        migrations.RunPython(createDefensa)
     ]
