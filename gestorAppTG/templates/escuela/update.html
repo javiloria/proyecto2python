@@ -5,15 +5,44 @@
     <h4 class="mb-3">Editar escuela</h4>
     <div class="row">
       <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
-        <form method="post" novalidate>
+        <form id="formUpdate" method="post" novalidate>
         {% csrf_token %}
         {{ form|crispy }}
           <div style="margin-bottom: 50px;">
-            <button type="submit" class="btn btn-success">Guardar</button>
+            <button id="enviar" type="submit" class="btn btn-success">Guardar</button>
             <a href="{% url 'escuelas:escuelas_list' %}" class="btn btn-outline-info" role="button">volver</a>
           </div>
         </form>
         </form>
       </div>
+      <script type="text/javascript">
+         $('#enviar').on('click', function(e){
+          e.preventDefault();
+          var $thisForm = $(this).parents('form');
+          swal({
+            title: 'Estas seguro?',
+            text: "Los datos de la escuela seran modificados!",
+            icon: 'warning',
+            buttons: [
+              'No',
+              'Yes'
+           ],
+          dangerMode: true,
+          }).then(function (isConfirm) {
+              if(isConfirm){
+                swal({
+                title: 'Actualizado',
+                text: 'Escuela actualizada satisfactoriamente!',
+                icon: 'success'
+                }).then(function() {
+                 $('#formUpdate').submit();
+                });
+              }
+              else{
+                //
+              }
+          })
+          });
+      </script>
     </div>
 {% endblock %}
