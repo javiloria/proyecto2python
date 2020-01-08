@@ -35,14 +35,13 @@ class BusquedaPropuesta(generic.ListView):
     template_name = 'propuestas/index.html'
     context_object_name = 'propuestas_listass'
     def get_queryset(self):
-
-        p = Tranzabilidad(tipo_de_acccion='busco una propuesta', usuario=self.request.user,fecha_accion=datetime.datetime.now())
-        p.save()
         if self.request.GET:
             search = self.request.GET.get('search')
+            p = Tranzabilidad(tipo_de_acccion='busco una propuesta', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+            p.save()
             if search == "":
                 return Propuesta.objects.order_by('entrega_fecha')
-        return Propuesta.objects.filter(Q(titulo = str(search)) | Q(estatus__nombre = str(search))) 
+        return Propuesta.objects.filter(Q(titulo__contains = str(search)) | Q(estatus__nombre__contains = str(search))) 
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class CreatePropuestaView(generic.CreateView):

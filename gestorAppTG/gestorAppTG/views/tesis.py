@@ -10,6 +10,7 @@ from django.utils.decorators import method_decorator
 from ..decorador import *
 import xlwt
 import datetime
+from django.db.models import Q
 
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
@@ -25,6 +26,21 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Tesis
     template_name = 'tesis/detail.html'
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class BusquedaTesis(generic.ListView):
+    template_name = 'tesis/index.html'
+    context_object_name = 'tesis_list'
+    def get_queryset(self):
+        if self.request.GET:
+            search = self.request.GET.get('search')
+            p = Tranzabilidad(tipo_de_acccion='consulta de tesis por NRC', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+            p.save()
+            if search == "":
+                return Tesis.objects.order_by('id')
+            if not str.isdigit(search):
+                return Tesis.objects.filter(titulo__contains = str(search))
+        return Tesis.objects.filter(nrc__contains = int(search)) 
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class CreateTesisView(generic.CreateView):
