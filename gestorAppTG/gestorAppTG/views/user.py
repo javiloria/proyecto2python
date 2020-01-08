@@ -60,7 +60,7 @@ class UpdateUserView(generic.UpdateView):
     def form_valid(self, form):
         user = form.save(commit=False)
         user.save()
-        messages.success(self.request, 'usuario actualizado exitosamente')
+        messages.success(self.request, 'Usuario actualizado exitosamente')
         return redirect('users:users_list')
 
 

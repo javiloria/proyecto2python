@@ -1,17 +1,45 @@
 {% extends 'template.html' %}
 {% block content %}
-    <form method="post">
+    <form id="deleteForm" method="post">
         {% csrf_token %}
         <p>
             <br>
             <h4 class="mb-3">Eliminar terminologia</h4>
             ¿Quieres eliminar esta terminologia?
             <div style="margin-bottom: 50px; margin-top:10px">
-                <button type="submit" class="btn btn-info">Guardar</button>
+                <button id="enviar" type="submit" class="btn btn-info">Guardar</button>
                 <a href="{% url 'termin:termins_list' %}" class="btn btn-outline-info" role="button">
                     Volver
                 </a>
             </div>
+            <script type="text/javascript">
+                 $('#enviar').on('click', function(e){
+                  e.preventDefault();
+                  swal({
+                    title: 'Estas seguro?',
+                    text: "Los datos de esta terminologia seran eliminados!",
+                    icon: 'warning',
+                    buttons: [
+                      'No',
+                      'Yes'
+                   ],
+                  dangerMode: true,
+                  }).then(function (isConfirm) {
+                      if(isConfirm){
+                        swal({
+                        title: 'Actualizado',
+                        text: 'Terminologia eliminada satisfactoriamente!',
+                        icon: 'success'
+                        }).then(function() {
+                         $('#deleteForm').submit();
+                        });
+                      }
+                      else{
+                        //
+                      }
+                  })
+                  });
+              </script>
         </p>
     </form>
 {% endblock %}
