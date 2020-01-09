@@ -16,6 +16,23 @@
         </form>
       </div>
       <script type="text/javascript">
+
+        id = document.getElementById('id_id').value;
+        jurado1 = document.getElementById('id_jurado_1').value;
+        jurado2 = document.getElementById('id_jurado_2').value;
+        juradoAuxiliar = document.getElementById('id_jurado_auxiliar').value;
+        calificacion = document.getElementById('id_calificacion').value;
+        fechaCorrecciones = document.getElementById('id_fecha_correciones').value;
+        categoriatema = document.getElementById('id_tesis').value;
+
+        if(id == ""){ swal("Error", "Falta el id", "error"); return false;}
+        if(jurado1 == ""){ swal("Error", "Falta el jurado 1", "error");  return false;}
+        if(jurado2 == ""){ swal("Error", "Falta el jurado 2", "error");  return false;}
+        if(juradoAuxiliar == ""){ swal("Error", "Falta el jurado auxiliar", "error"); return false;}
+        if(calificacion == ""){ swal("Error", "Falta la calificacion", "error");  return false;}
+        if(fechaCorrecciones == ""){swal("Error", "Falta la fecha de correcciones", "error");return false;}
+        if(categoriatema == ""){swal("Error", "Falta la categoria del tema", "error");return false;}
+
          $('#enviar').on('click', function(e){
           e.preventDefault();
           var $thisForm = $(this).parents('form');

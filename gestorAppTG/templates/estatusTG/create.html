@@ -5,17 +5,47 @@
   <h4 class="mb-3">Crear estatus de TG</h4>
   <div class="row">
     <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
-      <form method="post" novalidate>
+      <form id="formCreate" method="post" novalidate>
         {% csrf_token %}
         <b>{{ form|crispy }}</b>
         <div style="margin-bottom: 50px;">
-            <button type="submit" class="btn btn-info">Guardar</button>
+            <button id="enviar" type="submit" class="btn btn-info">Guardar</button>
             <a href="{% url 'estatusTGs:estatusTGs_list' %}" class="btn btn-outline-info" role="button">
                 Volver
             </a>
         </div>
         </form>
-      </form>
+      <script type="text/javascript">
+         $('#enviar').on('click', function(e){
+           id = document.getElementById('id_nombre').value;
+          if(id == ""){ swal("Error", "Falta el nombre", "error"); return false;}
+          e.preventDefault();
+          var $thisForm = $(this).parents('form');
+          swal({
+            title: 'Estas seguro?',
+            text: "El estado de la Tesis de Grado sera guardado!",
+            icon: 'warning',
+            buttons: [
+              'No',
+              'Yes'
+           ],
+          dangerMode: true,
+          }).then(function (isConfirm) {
+              if(isConfirm){
+                swal({
+                title: 'Creado',
+                text: 'El estatus fue creado satisfactoriamente!',
+                icon: 'success'
+                }).then(function() {
+                 $('#formCreate').submit();
+                });
+              }
+              else{
+                //
+              }
+          })
+          });
+      </script>
     </div>
   </div>
 {% endblock %}
