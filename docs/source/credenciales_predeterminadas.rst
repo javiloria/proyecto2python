@@ -1,15 +1,18 @@
 Credenciales predeterminadas
 ============================
-user: admin
 
-Es el encargado de administrar el sitio web.
+El sistema tiene usuarios de prueba en el cual sus contraseñas por defecto tienen el nombreusuario123
+
+Los usuarios basicos son los siguientes:
+
+• Usuario: admin
 
 password: admin123
 
-user: Gestor
+• Usuario: gestor
 
 password: gestor123
 
-user:invitado
+• Usuario: invitado
 
-password:invitado123
+password: invitado123
