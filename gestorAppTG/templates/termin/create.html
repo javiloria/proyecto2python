@@ -5,17 +5,52 @@
   <h4 class="mb-3">Crear terminologia</h4>
   <div class="row">
     <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
-      <form method="post" novalidate>
+      <form id ="formCreate" method="post" novalidate>
         {% csrf_token %}
         <b>{{ form|crispy }}</b>
         <div style="margin-bottom: 50px;">
-            <button type="submit" class="btn btn-info">Guardar</button>
+            <button id="enviar" type="submit" class="btn btn-info">Guardar</button>
             <a href="{% url 'termin:termins_list' %}" class="btn btn-outline-info" role="button">
                 Volver
             </a>
         </div>
         </form>
-      </form>
+      <script type="text/javascript">
+     $('#enviar').on('click', function(e){
+      id = document.getElementById('id_id').value;
+      descripcion = document.getElementById('id_descripcion').value;
+
+      if(id == ""){ swal("Error", "Falta el id", "error"); return false;}
+      if(descripcion == ""){ swal("Error", "Falta la descripcion", "error");  return false;}
+
+      e.preventDefault();
+      var $thisForm = $(this).parents('form');
+      swal({
+        title: 'Estas seguro?',
+        text: "Los datos de la terminologia seran guardados!",
+        icon: 'warning',
+        buttons: [
+          'No',
+          'Yes'
+       ],
+      dangerMode: true,
+      }).then(function (isConfirm) {
+          if(isConfirm){
+            swal({
+            title: 'Creado',
+            text: 'La terminologia fue creada satisfactoriamente!',
+            icon: 'success'
+            }).then(function() {
+             $('#formCreate').submit();
+            });
+          }
+          else{
+            //
+          }
+      })
+      });
+
+    </script>
     </div>
   </div>
 {% endblock %}

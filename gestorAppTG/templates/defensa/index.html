@@ -72,7 +72,7 @@
                         {% if user.is_authenticated %}
                             {% if user.esAdmin or user.esGestor %}
                             <td>
-                                <a href="{% url 'defensas:defensas_update' p.id %}" style="text-decoration: none"><button class="btn btn-primary">
+                                <a href="{% url 'defensas:defensas_update' p.id %}" style="text-decoration: none"><button class="btn btn-primary mb-2">
                                 Actualizar
                                 </button></a>
                                 <a href="{% url 'defensas:defensas_delete' p.id %}" style="text-decoration: none"><button class="btn btn-danger">
