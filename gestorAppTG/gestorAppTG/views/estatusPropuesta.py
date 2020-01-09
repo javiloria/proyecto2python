@@ -75,14 +75,14 @@ class Export_estatusPropuesta_xls(generic.ArchiveIndexView):
         font_style = xlwt.XFStyle()
         font_style.font.bold = True
 
-        columns = ['nombre' ]
+        columns = ['Id','Nombre' ]
 
         for col_num in range(len(columns)):
             ws.write(row_num, col_num, columns[col_num], font_style)
 
         # Sheet body, remaining rows
         font_style = xlwt.XFStyle()
-        rows = EstatusPropuesta.objects.all().values_list('nombre').order_by('nombre')
+        rows = EstatusPropuesta.objects.all().values_list('id','nombre').order_by('id')
         
         for row in rows:
             row_num += 1

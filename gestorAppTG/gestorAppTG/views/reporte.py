@@ -150,14 +150,15 @@ class Export_reporte1_xls(generic.ArchiveIndexView):
         font_style = xlwt.XFStyle()
         font_style.font.bold = True
 
-        columns = ['nombre' ]
+        columns = ['Cedula','Primer apellido','Segundo apellido','Primer Nombre','Segundo Nombre','Terminologia','Titulo','Id']
 
         for col_num in range(len(columns)):
             ws.write(row_num, col_num, columns[col_num], font_style)
 
         # Sheet body, remaining rows
         font_style = xlwt.XFStyle()
-        rows = EstatusTG.objects.all().values_list('nombre').order_by('nombre')
+        rows1 = Propuesta.objects.exclude( estatus__nombre="Aprobada" ).filter(estudiante_1__isnull=False).values_list('estudiante_1__cedula','estudiante_1__primer_apellido','estudiante_1__segundo_apellido','estudiante_1__primer_nombre','estudiante_1__segundo_nombre','termin__id','titulo', 'id') 
+        rows = Propuesta.objects.exclude( estatus__nombre="Aprobada" ).filter(estudiante_2__isnull=False).values_list('estudiante_2__cedula','estudiante_2__primer_apellido','estudiante_2__segundo_apellido','estudiante_2__primer_nombre','estudiante_2__segundo_nombre','termin__id','titulo', 'id').union(rows1) 
         
         for row in rows:
             row_num += 1
@@ -187,14 +188,15 @@ class Export_reporte2_xls(generic.ArchiveIndexView):
         font_style = xlwt.XFStyle()
         font_style.font.bold = True
 
-        columns = ['nombre' ]
+        columns = ['Cedula','Primer apellido','Segundo apellido','Primer Nombre','Segundo Nombre','Terminologia','Titulo TG','Id']
 
         for col_num in range(len(columns)):
             ws.write(row_num, col_num, columns[col_num], font_style)
 
         # Sheet body, remaining rows
         font_style = xlwt.XFStyle()
-        rows = EstatusTG.objects.all().values_list('nombre').order_by('nombre')
+        rows1 = Tesis.objects.exclude( estatus__nombre="Aprobada" ).filter(propuesta__estudiante_1__isnull=False).values_list('propuesta__estudiante_1__cedula','propuesta__estudiante_1__primer_apellido','propuesta__estudiante_1__segundo_apellido','propuesta__estudiante_1__primer_nombre','propuesta__estudiante_1__segundo_nombre','propuesta__termin__id','titulo', 'id') 
+        rows = Tesis.objects.exclude( estatus__nombre="Aprobada" ).filter(propuesta__estudiante_2__isnull=False).values_list('propuesta__estudiante_2__cedula','propuesta__estudiante_2__primer_apellido','propuesta__estudiante_2__segundo_apellido','propuesta__estudiante_2__primer_nombre','propuesta__estudiante_2__segundo_nombre','propuesta__termin__id','titulo', 'id').union(rows1) 
         
         for row in rows:
             row_num += 1
@@ -222,14 +224,15 @@ class Export_reporte3_xls(generic.ArchiveIndexView):
         font_style = xlwt.XFStyle()
         font_style.font.bold = True
 
-        columns = ['nombre' ]
+        columns =  ['Cedula','Primer apellido','Segundo apellido','Primer Nombre','Segundo Nombre','Terminologia','Titulo','Id']
 
         for col_num in range(len(columns)):
             ws.write(row_num, col_num, columns[col_num], font_style)
 
         # Sheet body, remaining rows
         font_style = xlwt.XFStyle()
-        rows = EstatusTG.objects.all().values_list('nombre').order_by('nombre')
+        rows1 = Defensa.objects.filter(fecha_defensa__date__gt=timezone.now(), tesis__propuesta__estudiante_1__isnull=False).values_list('tesis__propuesta__estudiante_1__cedula','tesis__propuesta__estudiante_1__primer_apellido','tesis__propuesta__estudiante_1__segundo_apellido','tesis__propuesta__estudiante_1__primer_nombre','tesis__propuesta__estudiante_1__segundo_nombre','tesis__propuesta__termin__id','tesis__titulo', 'tesis__id') 
+        rows = Defensa.objects.filter(fecha_defensa__date__gt=timezone.now(), tesis__propuesta__estudiante_2__isnull=False).values_list('tesis__propuesta__estudiante_2__cedula','tesis__propuesta__estudiante_2__primer_apellido','tesis__propuesta__estudiante_2__segundo_apellido','tesis__propuesta__estudiante_2__primer_nombre','tesis__propuesta__estudiante_2__segundo_nombre','tesis__propuesta__termin__id','tesis__titulo', 'tesis__id').union(rows1) 
         
         for row in rows:
             row_num += 1
@@ -244,7 +247,7 @@ class Export_reporte3_xls(generic.ArchiveIndexView):
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class Export_reporte4_xls(generic.ArchiveIndexView):
     def Export_reporte4_xls(request):
-        model = EstatusTG
+        model = Propuesta
         fields = "__all__"
         response = HttpResponse(content_type='application/ms-excel')
         response['Content-Disposition'] = 'attachment; filename="reporte4.xls"'
@@ -265,7 +268,7 @@ class Export_reporte4_xls(generic.ArchiveIndexView):
 
         # Sheet body, remaining rows
         font_style = xlwt.XFStyle()
-        rows = EstatusTG.objects.all().values_list('nombre').order_by('nombre')
+        rows = Propuesta.objects.filter(estatus__nombre="Aprobada").order_by('estudiante_1__cedula')
         
         for row in rows:
             row_num += 1

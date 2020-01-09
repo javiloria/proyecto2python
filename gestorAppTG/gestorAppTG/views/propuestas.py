@@ -91,7 +91,7 @@ class Export_propuesta_xls(generic.ArchiveIndexView):
         model = Propuesta
         fields = "__all__"
         response = HttpResponse(content_type='application/ms-excel')
-        response['Content-Disposition'] = 'attachment; filename="propuesta.xls"'
+        response['Content-Disposition'] = 'attachment; filename="propuestas.xls"'
 
         wb = xlwt.Workbook(encoding='utf-8')
         ws = wb.add_sheet('Users')
@@ -102,7 +102,7 @@ class Export_propuesta_xls(generic.ArchiveIndexView):
         font_style = xlwt.XFStyle()
         font_style.font.bold = True
 
-        columns = ['Título', 'Estatus', 'Escuela','Fecha','Estudiante 1 apellido','Estudiante 1 nombre','Estudiante 2 apellido','Estudiante 2 nombre','Tutor academico apellido','tutor academico nombre','Tutor empresarial apellido','Tutor empresarial nombre','Termin','Fecha de la propuesta', ]
+        columns = ['Título', 'Estatus', 'Escuela','Fecha de entrega','Estudiante 1 apellido','Estudiante 1 nombre','Estudiante 2 apellido','Estudiante 2 nombre','Tutor academico apellido','tutor academico nombre','Tutor empresarial apellido','Tutor empresarial nombre','Termin', ]
 
         for col_num in range(len(columns)):
             ws.write(row_num, col_num, columns[col_num], font_style)

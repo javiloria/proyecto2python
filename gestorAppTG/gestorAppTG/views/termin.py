@@ -73,14 +73,14 @@ class Export_termin_xls(generic.ArchiveIndexView):
         font_style = xlwt.XFStyle()
         font_style.font.bold = True
 
-        columns = ['descripcion' ]
+        columns = ['Id','Descripcion' ]
 
         for col_num in range(len(columns)):
             ws.write(row_num, col_num, columns[col_num], font_style)
 
         # Sheet body, remaining rows
         font_style = xlwt.XFStyle()
-        rows = Termin.objects.all().values_list('descripcion').order_by('descripcion')
+        rows = Termin.objects.all().values_list('id','descripcion').order_by('id')
         
         for row in rows:
             row_num += 1
