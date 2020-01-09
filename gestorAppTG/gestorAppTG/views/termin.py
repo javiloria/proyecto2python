@@ -22,6 +22,21 @@ class IndexView(generic.ListView):
         return Termin.objects.order_by('id')
 
 @method_decorator([login_required, admin_permisos], name='dispatch')
+class BusquedaTermin(generic.ListView):
+    template_name = 'termin/index.html'
+    context_object_name = 'termins_list'
+    def get_queryset(self):
+        if self.request.GET:
+            search = self.request.GET.get('search')
+            p = Tranzabilidad(tipo_de_acccion='consulta de termin', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+            p.save()
+            if search == "":
+                return Termin.objects.order_by('id')
+            if not str.isdigit(search):
+                return Termin.objects.filter(descripcion__contains = str(search))
+        return Termin.objects.filter(id__contains = int(search)) 
+
+@method_decorator([login_required, admin_permisos], name='dispatch')
 class CreateTerminView(generic.CreateView):
     model = Termin
     fields = "__all__"

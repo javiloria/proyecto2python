@@ -6,7 +6,10 @@
         <div class="btn-group mr-2">
         {% if user.is_authenticated %}
             {% if user.esAdmin or user.esGestor %}
-            <a href="{% url 'escuelas:export_escuela_xls' %}" class="btn btn-outline-info" role="button">
+            <a href="" class="btn btn-outline-info" role="button">
+                    Exportar pdf
+                </a>
+            <a href="{% url 'escuelas:export_escuela_xls' %}" class="btn btn-outline-info" role="button" style="border-radius: 0 0.25rem 0.25rem 0">
                 Exportar excel
             </a>
             <a href="{% url 'escuelas:escuelas_create' %}" class="btn btn-outline-info ml-4" role="button">

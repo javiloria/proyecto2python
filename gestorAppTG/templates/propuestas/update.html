@@ -24,7 +24,27 @@ TODO: ELIAS: en el campo de estatus de la propuesta poner un droplist con los va
       </div>
 
     <script type="text/javascript">
+
      $('#enviar').on('click', function(e){
+
+      idFecha = document.getElementById('id_entrega_fecha').value;
+      idTitulo = document.getElementById('id_titulo').value;
+      idEscuela = document.getElementById('id_escuela').value;
+      idStatus = document.getElementById('id_estatus').value;
+      idEst = document.getElementById('id_estudiante_1').value;
+      idTutorAcademico = document.getElementById('id_tutor_academico').value;
+      idTutorEmpresa = document.getElementById('id_tutor_empresa').value;
+      idTerm = document.getElementById('id_termin').value;
+
+      if(idFecha == ""){ swal("Error", "Falta la fecha de entrega", "error"); return false;}
+      if(idTitulo == ""){ swal("Error", "Falta el titulo", "error");  return false;}
+      if(idStatus == ""){ swal("Error", "Falta el estatus", "error");  return false;}
+      if(idEscuela == ""){ swal("Error", "Falta la escuela asociada", "error"); return false;}
+      if(idEst == ""){ swal("Error", "Escriba por lo menos un estudiante", "error");  return false;}
+      if(idTutorAcademico == ""){swal("Error", "Falta el tutor academico", "error");return false;}
+      if(idTutorEmpresa == ""){swal("Error", "Falta el tutor de empresa", "error");return false;}
+      if(idTerm == ""){swal("Error", "Seleccione alguna terminologia", "error");return false;}
+      
       e.preventDefault();
       var $thisForm = $(this).parents('form');
       swal({

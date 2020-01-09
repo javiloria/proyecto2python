@@ -70,6 +70,7 @@ urlpatterns = [
 
     path('defensas/', include(([
         path('', defensa.IndexView.as_view(), name='defensas_list'),
+        path('search/', defensa.BusquedaDefensa.as_view(), name='defensas_search'),
         path('create/', defensa.CreateDefensaView.as_view(), name='defensas_create'),
         path('<str:pk>/', defensa.DetailView.as_view(), name='defensas_details'),
         path('<str:pk>/update/', defensa.UpdateDefensaView.as_view(), name='defensas_update'),
@@ -80,6 +81,7 @@ urlpatterns = [
     path('termin/', include(([
         path('', termin.IndexView.as_view(), name='termins_list'),
         path('create/', termin.CreateTerminView.as_view(), name='termin_create'),
+        path('search/', termin.BusquedaTermin.as_view(), name='termin_search'),
         path('<int:pk>/update/', termin.UpdateTerminView.as_view(), name='termin_update'),
         path('<int:pk>/delete/', termin.DeleteTerminView.as_view(), name='termin_delete'),
         path('export/xls/', termin.Export_termin_xls.export_termin_xls, name='export_termin_xls')
