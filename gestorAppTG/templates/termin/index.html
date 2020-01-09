@@ -6,7 +6,10 @@
         <div class="btn-group mr-2">
         {% if user.is_authenticated %}
             {% if user.esAdmin or user.esGestor %}
-            <a href="{% url 'termin:export_termin_xls' %}" class="btn btn-outline-info" role="button">
+            <a href="" class="btn btn-outline-info" role="button">
+                    Exportar pdf
+                </a>
+            <a href="{% url 'termin:export_termin_xls' %}" class="btn btn-outline-info" role="button" style="border-radius: 0 0.25rem 0.25rem 0">
                 Exportar excel
             </a>
             <a href="{% url 'termin:termin_create' %}" class="btn btn-outline-info ml-4" role="button">
@@ -20,7 +23,22 @@
         </button!-->
       </div>
     </div>
-    <!--h5>Agregar aaqui los filtros de búsqueda ELIAS!!</h5!-->
+    <form action="{% url 'termin:termin_search' %}" method="GET" class="form-inline ml-3">
+            <div class="cntnr-padding" style="margin-bottom: 15px;margin-top:15px;">
+            <div class="row">
+               <div class="">
+                    <div class="input-group">
+                      <input name="search" type="search" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                      </span>
+                    </div>
+               </div>
+               <div class="col-md-8"></div>
+           </div>
+        </div>
+       </form>
+
     {% if termins_list %}
         <div class="table-responsive">
             <!-- {% if messages %}

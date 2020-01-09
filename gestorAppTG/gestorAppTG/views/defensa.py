@@ -10,6 +10,7 @@ from django.utils.decorators import method_decorator
 from ..decorador import *
 import xlwt
 import datetime
+from django.db.models import Q
 
 
 @method_decorator([login_required, invitado_permisos], name='dispatch')
@@ -25,6 +26,19 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Defensa
     template_name = 'defensa/detail.html'
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class BusquedaDefensa(generic.ListView):
+    template_name = 'defensa/index.html'
+    context_object_name = 'defensa_listass'
+    def get_queryset(self):
+        if self.request.GET:
+            search = self.request.GET.get('search')
+            p = Tranzabilidad(tipo_de_acccion='consulta de defensa', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+            p.save()
+            if search == "":
+                return Defensa.objects.order_by('id')
+        return Defensa.objects.filter(Q(id__contains = str(search)) | Q(tesis__titulo__contains = str(search))) 
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class CreateDefensaView(generic.CreateView):
