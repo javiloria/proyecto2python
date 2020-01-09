@@ -17,7 +17,7 @@ import datetime
 
 
 
-@method_decorator([login_required, invitado_permisos], name='dispatch')
+@method_decorator([login_required, gestor_permisos], name='dispatch')
 class IndexView(generic.ListView):
     template_name = 'user/index.html'
     context_object_name = 'list_users'
@@ -41,15 +41,13 @@ class BusquedaUsuario(generic.ListView):
     def get_queryset(self):
         if self.request.GET:
             cedula = self.request.GET.get('search')
+            p = Tranzabilidad(tipo_de_acccion='consulta de usuario por cedular', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+            p.save()
             if cedula == "":
-                p = Tranzabilidad(tipo_de_acccion='consulta de usuario por cedular', usuario=self.request.user,fecha_accion=datetime.datetime.now())
-                p.save()
                 return User.objects.order_by('cedula')
             if not str.isdigit(cedula):
-                p = Tranzabilidad(tipo_de_acccion='consulta de usuario por primer nombre', usuario=self.request.user,fecha_accion=datetime.datetime.now())
-                p.save()
-                return User.objects.filter(primer_nombre = str(cedula))
-        return User.objects.filter(cedula = int(cedula))
+                return User.objects.filter(primer_nombre__contains = str(cedula))
+        return User.objects.filter(cedula__contains = int(cedula))
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class CreateUserView(generic.CreateView):
@@ -74,7 +72,7 @@ class UpdateUserView(generic.UpdateView):
         user.save()
         p = Tranzabilidad(tipo_de_acccion='actualizo a un usuario', usuario=self.request.user,fecha_accion=datetime.datetime.now())
         p.save()
-        messages.success(self.request, 'usuario actualizado exitosamente')
+        messages.success(self.request, 'Usuario actualizado exitosamente')
         return redirect('users:users_list')
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')

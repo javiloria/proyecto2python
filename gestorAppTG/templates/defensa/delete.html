@@ -1,16 +1,44 @@
 {% extends 'template.html' %}
 {% block content %}
-    <form method="post">
+    <form id="deleteForm" method="post">
         {% csrf_token %}
         <p>
             <br>
             <h4 class="mb-3">Eliminar defensa</h4>
             ¿Quieres eliminar esta defensa? 
             <div style="margin-bottom: 50px; margin-top:10px">
-                <button type="submit" class="btn btn-info">Guardar</button>
+                <button id="enviar" type="submit" class="btn btn-info">Guardar</button>
                 <a href="{% url 'defensas:defensas_list' %}" class="btn btn-outline-secondary" role="button">Volver
                 </a>
             </div>
+               <script type="text/javascript">
+                 $('#enviar').on('click', function(e){
+                  e.preventDefault();
+                  swal({
+                    title: 'Estas seguro?',
+                    text: "Los datos de esta defensa seran eliminados!",
+                    icon: 'warning',
+                    buttons: [
+                      'No',
+                      'Yes'
+                   ],
+                  dangerMode: true,
+                  }).then(function (isConfirm) {
+                      if(isConfirm){
+                        swal({
+                        title: 'Actualizado',
+                        text: 'Defensa eliminada satisfactoriamente!',
+                        icon: 'success'
+                        }).then(function() {
+                         $('#deleteForm').submit();
+                        });
+                      }
+                      else{
+                        //
+                      }
+                  })
+                  });
+              </script>
         </p>
     </form>
 {% endblock %}

@@ -5,7 +5,7 @@
   <h4 class="mb-3">Crear tesis</h4>
   <div class="row">
     <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
-      <form method="post" novalidate>
+      <form id="formCreate" method="post" novalidate>
         {% csrf_token %}
         <b>{{ form|crispy }}</b>
 
@@ -19,7 +19,7 @@ TODO: ELIAS: en el campo de estatus de la tesis poner un drownplist con los valo
 *Rechazada
   </!-->
         <div style="margin-bottom: 50px;">
-            <button type="submit" class="btn btn-info">Guardar</button>
+            <button id="enviar" type="submit" class="btn btn-info">Guardar</button>
             <a href="{% url 'tesis:tesis_list' %}" class="btn btn-outline-info" role="button">
                 Volver
             </a>
@@ -27,5 +27,35 @@ TODO: ELIAS: en el campo de estatus de la tesis poner un drownplist con los valo
         </form>
       </form>
     </div>
+     <script type="text/javascript">
+     $('#enviar').on('click', function(e){
+      e.preventDefault();
+      var $thisForm = $(this).parents('form');
+      swal({
+        title: 'Estas seguro?',
+        text: "Los datos de la tesis seran guardados!",
+        icon: 'warning',
+        buttons: [
+          'No',
+          'Yes'
+       ],
+      dangerMode: true,
+      }).then(function (isConfirm) {
+          if(isConfirm){
+            swal({
+            title: 'Actualizado',
+            text: 'La tesis fue creada satisfactoriamente!',
+            icon: 'success'
+            }).then(function() {
+             $('#formCreate').submit();
+            });
+          }
+          else{
+            //
+          }
+      })
+      });
+
+    </script>
   </div>
 {% endblock %}

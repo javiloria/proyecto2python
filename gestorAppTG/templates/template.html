@@ -15,6 +15,9 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
     <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="{% static 'sweetalert.min.js' %}"></script>
+    
 
   <link href="{% static 'dashboard.css' %}" rel="stylesheet">
   <style type="text/css">/* Chart.js */
@@ -46,6 +49,18 @@
             </li>
             {% endif %}
           {% endif %}
+
+          {% if user.is_authenticated %}
+            {% if user.esAdmin %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'tranzabilidads:tranzabilidads_list' %}">
+                <span data-feather="users"></span>
+                Tranzabilidad usuarios
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
+
 
           {% if user.is_authenticated %}
             {% if user.esInvitado or user.esAdmin or user.esGestor %}
@@ -157,7 +172,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'reporte2s:reporte2s_list' %}">
                 <span data-feather="clock"></span>
-                Reporte 2
+                Reporte 3
               </a>
             </li>
             {% endif %}
@@ -167,7 +182,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'reporte3s:reporte3s_list' %}">
                 <span data-feather="clock"></span>
-                Reporte 3
+                Reporte 4
               </a>
             </li>
             {% endif %}
@@ -178,7 +193,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'reporte4s:reporte4s_list' %}">
                 <span data-feather="clock"></span>
-                Reporte 4
+                Reporte 5
               </a>
             </li>
             {% endif %}
@@ -189,7 +204,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'reporte5s:reporte5s_list' %}">
                 <span data-feather="clock"></span>
-                Reporte 5
+                Reporte 6
               </a>
             </li>
             {% endif %}
@@ -200,7 +215,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'reporte6s:reporte6s_list' %}">
                 <span data-feather="clock"></span>
-                Reporte 6
+                Reporte 7
               </a>
             </li>
             {% endif %}
@@ -211,7 +226,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'reporte7s:reporte7s_list' %}">
                 <span data-feather="clock"></span>
-                Reporte 7
+                Reporte 8
               </a>
             </li>
             {% endif %}
