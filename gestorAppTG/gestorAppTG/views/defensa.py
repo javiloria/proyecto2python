@@ -78,15 +78,15 @@ class Export_defensa_xls(generic.ArchiveIndexView):
         font_style = xlwt.XFStyle()
         font_style.font.bold = True
 
-        columns = ['Observaciones' ]
+        columns = ['Id','Fecha Defensa','Jurado 1','Jurado 2','Jurado auxiliar','calificacion','Observaciones','Tesis', ]
 
         for col_num in range(len(columns)):
             ws.write(row_num, col_num, columns[col_num], font_style)
 
         # Sheet body, remaining rows
         font_style = xlwt.XFStyle()
-        rows = Defensa.objects.all().values_list('observaciones').order_by('observaciones')
-        
+        rows = Defensa.objects.all().select_related('jurado_1','jurado_2','jurado_auxiliar','tesis').values_list('id','fecha_defensa','jurado_1__primer_nombre','jurado_2__primer_nombre','jurado_auxiliar__primer_nombre','calificacion','observaciones','tesis__titulo').order_by('observaciones')
+        rows = [[x.strftime("%Y-%m-%d %H:%M") if isinstance(x, datetime.datetime) else x for x in row] for row in rows ]
         for row in rows:
             row_num += 1
             for col_num in range(len(row)):

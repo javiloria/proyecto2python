@@ -94,15 +94,15 @@ class Export_tesis_xls(generic.ArchiveIndexView):
         font_style = xlwt.XFStyle()
         font_style.font.bold = True
 
-        columns = ['NRC' ]
+        columns = ['Id','Titulo','Estado','NRC','Fecha tope','Propuesta', ]
 
         for col_num in range(len(columns)):
             ws.write(row_num, col_num, columns[col_num], font_style)
 
         # Sheet body, remaining rows
         font_style = xlwt.XFStyle()
-        rows = Tesis.objects.all().values_list('nrc').order_by('nrc')
-        
+        rows = Tesis.objects.all().select_related('estatus','propuesta').values_list('id','titulo','estatus__nombre','nrc','fechaTope','propuesta__titulo').order_by('id')
+        rows = [[x.strftime("%Y-%m-%d %H:%M") if isinstance(x, datetime.datetime) else x for x in row] for row in rows ]
         for row in rows:
             row_num += 1
             for col_num in range(len(row)):
