@@ -140,7 +140,8 @@ urlpatterns = [
     ], 'gestorAppTG'), namespace='reporte5s')),
     path('reporte6/', include(([
         path('', reporte.IndexReporte6View.as_view(), name='reporte6s_list'),
-         path('export/xls/', reporte.Export_reporte6_xls.Export_reporte6_xls, name='export_reporte6_xls')
+        path('export/xls/', reporte.Export_reporte6_xls.Export_reporte6_xls, name='export_reporte6_xls'),
+        path('search/', reporte.Busqueda6.as_view(), name='reporte6_search'),
     ], 'gestorAppTG'), namespace='reporte6s')),
     path('reporte7/', include(([
         path('', reporte.IndexReporte7View.as_view(), name='reporte7s_list'),
