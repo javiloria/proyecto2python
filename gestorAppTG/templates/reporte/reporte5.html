@@ -1,7 +1,7 @@
 {% extends 'template.html' %}
 {% block content %}
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">REporte 5: PRopuestas por cedula diferente a Aprobado</h1>
+      <h1 class="h2">Reporte 5: Defensa, TG o Propuesta a la que esta asociada un profesor</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
         <!--button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
           Exportar proximamente poner este boton Herick
@@ -13,7 +13,7 @@
             <div class="row">
                <div class="">
                     <div class="input-group">
-                      <input name="search" type="search" value="{{cedula}}" class="form-control" placeholder="Search for...">
+                      <input name="search" type="search" class="form-control" placeholder="Buscar por primer nombre...">
                       <span class="input-group-btn">
                         <button class="btn btn-primary" type="submit">Search</button>
                       </span>
@@ -30,10 +30,14 @@
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>titulo</th>
-                        <th>tipo (Propuesta, TG, Defensa )</th>
-                        <th>Labor del profesor</th>
+                        <th>Defensa</th>
+                        <th>Tesis</th>
+                        <th>Propuesta </th>
+                        <th>Jurado Principal</th>
+                        <th>Jurado Secundario</th>
+                        <th>Jurado Auxiliar</th>
+                        <th>Tutor Academico</th>
+                        <th>Tutor Empresa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,11 +45,18 @@
 
                     {% for p in propuesta_list_Reporte5 %}
                     <tr>
-                        <td>{{p.0}}</td>
-                        <td>{{p.1}}</td>
-                        <td>{{p.tipo}}</td>
-                        <td>{{p.cargo}}</td>
-                        <td class="text-left p-2" ><a href="{% url 'tesis:tesis_details' p.7 %}">{{ p.6 }}</a></td>     
+                        <td><a href="{% url 'defensas:defensas_details' p.id %}">{{p.id}}</a></td>
+                        <td><a href="{% url 'tesis:tesis_details' p.tesis.id %}">{{p.tesis}}</a></td>
+                        <td><a href="{% url 'propuestas:propuestas_details' p.tesis.propuesta.id  %}">{{p.tesis.propuesta.id}}</td>
+                        <td>{{p.jurado_1}}</td>
+                        <td>{{p.jurado_2}}</td>
+                        <td>{{p.jurado_auxiliar}}</td>
+                        <td>{{p.tesis.propuesta.tutor_academico.primer_nombre}}</td>
+                        <td>{{p.tesis.propuesta.tutor_empresa.primer_nombre}}</td>
+                        <!-- <td>{{p.username}}</td>
+                        <td>{{p.type}}</td>
+                        <td>{{p.email}}</td> -->
+                        <!-- <td class="text-left p-2" ><a href="{% url 'tesis:tesis_details' p.id %}">{{ p.6 }}</a></td>  -->    
                     </tr>
                     {% endfor %}
                 </tbody>
