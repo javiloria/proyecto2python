@@ -38,6 +38,11 @@ Este proyecto se denomina "GestorAppTG". Esta aplicación se desarrollara con la
 sistema de gestion de trabajos de grado para todas las escuela de Ingeniería de la Universidad 
 Católica Andrés Bello
 
+Diagrama Entidad-Relación
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: E-r.jpeg
+
 Visión general del documento
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
