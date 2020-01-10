@@ -7,6 +7,9 @@
 * Herick Navarro --> herick1
 * Jorge Viloria --> javiloria
 
+## Documentacion del proyecto
+https://proyecto2python.readthedocs.io/es/latest/
+
 ## ¿ Como ejecutar este proyecto?
 1. clone este repositorio
 
