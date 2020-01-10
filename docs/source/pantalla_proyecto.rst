@@ -103,3 +103,9 @@ Solo pueden ser vistos por el Rol Gestor y Admin
 
 .. image:: reporte5.png
 
+Reporte 6
+^^^^^^^^^^
+
+Solo pueden ser vistos por el Rol Gestor y Admin
+
+.. image:: reporte6.png
