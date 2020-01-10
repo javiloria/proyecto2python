@@ -177,16 +177,6 @@
             </li>
             {% endif %}
           {% endif %}
-                     {% if user.is_authenticated %}
-            {% if user.esAdmin  or user.esGestor %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'reporte4s:reporte4s_list' %}">
-                <span data-feather="clock"></span>
-                Reporte 4
-              </a>
-            </li>
-            {% endif %}
-          {% endif %}
           
           {% if user.is_authenticated %}
             {% if user.esAdmin  or user.esGestor %}
@@ -209,17 +199,6 @@
             </li>
             {% endif %}
           {% endif %}           
-
-          {% if user.is_authenticated %}
-            {% if user.esAdmin  or user.esGestor %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'reporte7s:reporte7s_list' %}">
-                <span data-feather="clock"></span>
-                Reporte 7
-              </a>
-            </li>
-            {% endif %}
-          {% endif %}
 
         </ul>
       </div>
