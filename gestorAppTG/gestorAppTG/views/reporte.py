@@ -97,8 +97,21 @@ class IndexReporte6View(generic.ListView):
     def get_queryset(self):
         p = Tranzabilidad(tipo_de_acccion='se consulto el reporte 6', usuario=self.request.user,fecha_accion=datetime.datetime.now())
         p.save()
-        return Propuesta.objects.filter(estatus__nombre="Aprobada").order_by('estudiante_1__cedula')
+        return Defensa.objects.all()
         #primer reporte filtar porque no sean aprobadas y por la cedula 
+
+@method_decorator([login_required, gestor_permisos], name='dispatch')
+class Busqueda6(generic.ListView):
+    template_name = 'reporte/reporte6.html'
+    context_object_name = 'propuesta_list_Reporte6'
+    def get_queryset(self):
+        if self.request.GET:
+            search = self.request.GET.get('search')
+            if (search == ""):
+                return Defensa.objects.all()
+        p = Tranzabilidad(tipo_de_acccion='se busco en en el reporte 5', usuario=self.request.user,fecha_accion=datetime.datetime.now())
+        p.save()
+        return Defensa.objects.filter(tesis__propuesta__termin__id = int(search))
 
 @method_decorator([login_required, gestor_permisos], name='dispatch')
 class IndexReporte7View(generic.ListView):
