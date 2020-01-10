@@ -44,6 +44,7 @@ Tesis
 ^^^^^
 
 Las acciones de modificar y eliminar solo son posibles para los roles Admin y Gestor. Por lo tanto los botones que realizan dichas acciones no aparecen en rol invitado
+
 .. image:: tesis.png
 
 Defensas
