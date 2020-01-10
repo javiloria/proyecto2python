@@ -27,6 +27,31 @@ TODO: ELIAS: en el campo de estatus de la tesis poner un drownplist con los valo
 
     <script type="text/javascript">
      $('#enviar').on('click', function(e){
+
+      id = document.getElementById('id_id').value;
+      titulo = document.getElementById('id_titulo').value;
+      escuela = document.getElementById('id_escuela').value;
+      estatus = document.getElementById('id_estatus').value;
+      nrc = document.getElementById('id_nrc').value;
+      descriptors = document.getElementById('id_descriptors').value;
+      categoriatema = document.getElementById('id_categoriaTema').value;
+      fechaTope = document.getElementById('id_fechaTope').value;
+      empresa = document.getElementById('id_EmpresaNombre').value;
+      termin = document.getElementById('id_termin').value;
+      propuesta = document.getElementById('id_propuesta').value;
+
+      if(id == ""){ swal("Error", "Falta el id", "error"); return false;}
+      if(titulo == ""){ swal("Error", "Falta el titulo", "error");  return false;}
+      if(escuela == ""){ swal("Error", "Falta la escuela", "error");  return false;}
+      if(estatus == ""){ swal("Error", "Falta el estatus", "error"); return false;}
+      if(nrc == ""){ swal("Error", "Falta el nrc", "error");  return false;}
+      if(descriptors == ""){swal("Error", "Falta los descriptors", "error");return false;}
+      if(categoriatema == ""){swal("Error", "Falta la categoria del tema", "error");return false;}
+      if(fechaTope == ""){swal("Error", "Escriba la fecha tope", "error");return false;}
+      if(empresa == ""){swal("Error", "Falta el nombre de la empresa", "error");return false;}
+      if(termin == ""){swal("Error", "Falta la terminologia", "error");return false;}
+      if(propuesta == ""){swal("Error", "Falta el nombre de la propuesta", "error");return false;}
+
       e.preventDefault();
       var $thisForm = $(this).parents('form');
       swal({

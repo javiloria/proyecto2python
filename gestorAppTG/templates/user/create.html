@@ -32,15 +32,6 @@
       idTelefono = document.getElementById('id_telefono').value;
       idTelefono1 = document.getElementById('id_telefono_1').value;
 
-      // if(idPass.length > 128){ swal("Error", "Contraseña debe tener un maximo de 128 caracteres", "error"); return false;}
-      // if(idNombre.length > 100){ swal("Error", "Primer nombre debe tener un maximo de 100 caracteres", "error"); return false;}
-      // if(idNombreS.length > 100){ swal("Error", "Segundo nombre debe tener un maximo de 100 caracteres", "error"); return false;}
-      // if(idApellido.length > 100){ swal("Error", "Primer apellido debe tener un maximo de 100 caracteres", "error"); return false;}
-      // if(idApellidoS.length > 100){ swal("Error", "Segundo apellido debe tener un maximo de 100 caracteres", "error"); return false;}
-      // if(idCorreo.length > 100){ swal("Error", "El correo debe tener un maximo de 100 caracteres", "error"); return false;}
-      // if(idTelefono.length > 15){ swal("Error", "Los telefonos deben tener un maximo de 15 digitos", "error"); return false;}
-      // if(idTelefono1.length > 15){ swal("Error", "Los telefonos deben tener un maximo de 15 digitos", "error"); return false;}
-
       if(idCedula == ""){ swal("Error", "Falta la cedula", "error"); return false;}
       if(idUser == ""){ swal("Error", "Falta el usuario", "error");  return false;}
       if(idTipo == ""){ swal("Error", "Falta el tipo de usuario", "error");  return false;}
@@ -64,7 +55,7 @@
       }).then(function (isConfirm) {
           if(isConfirm){
             swal({
-            title: 'Actualizado',
+            title: 'Creado',
             text: 'El usuario fue creado satisfactoriamente!',
             icon: 'success'
             }).then(function() {

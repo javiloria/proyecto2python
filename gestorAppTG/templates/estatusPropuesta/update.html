@@ -17,6 +17,8 @@
       </div>
       <script type="text/javascript">
          $('#enviar').on('click', function(e){
+          id = document.getElementById('id_nombre').value;
+          if(id == ""){ swal("Error", "Falta el nombre", "error"); return false;}
           e.preventDefault();
           var $thisForm = $(this).parents('form');
           swal({

@@ -18,6 +18,11 @@
 
     <script type="text/javascript">
      $('#enviar').on('click', function(e){
+      id = document.getElementById('id_id').value;
+      descripcion = document.getElementById('id_descripcion').value;
+
+      if(id == ""){ swal("Error", "Falta el id", "error"); return false;}
+      if(descripcion == ""){ swal("Error", "Falta la descripcion", "error");  return false;}
       e.preventDefault();
       var $thisForm = $(this).parents('form');
       swal({
