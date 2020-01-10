@@ -14,17 +14,17 @@ Login
 
 .. image:: login.png
 
-Cambio de contraseña
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. image:: cambiocontrasena.png
-
 Personas
 ^^^^^^^^^
 
 Esta vista solo es visible por el Rol Admin
 
 .. image:: usuario.png
+
+Cambio de contraseña
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: cambiocontrasena.png
 
 Tranzabilidad
 ^^^^^^^^^^^^^^
@@ -36,21 +36,20 @@ Esta vista solo es visible por el Rol Admin
 Propuestas
 ^^^^^^^^^^^
 
-Las acciones de modificar y eliminar solo son posibles para los roles Admin y Gestor. Por lo tanto los botones que realizan dichas acciones no aparecen
+Las acciones de modificar y eliminar solo son posibles para los roles Admin y Gestor. Por lo tanto los botones que realizan dichas acciones no aparecen en rol invitado
 
 .. image:: propuesta.png
 
 Tesis
 ^^^^^
 
-Las acciones de modificar y eliminar solo son posibles para los roles Admin y Gestor. Por lo tanto los botones que realizan dichas acciones no aparecen
-
+Las acciones de modificar y eliminar solo son posibles para los roles Admin y Gestor. Por lo tanto los botones que realizan dichas acciones no aparecen en rol invitado
 .. image:: tesis.png
 
 Defensas
 ^^^^^^^^^
 
-Las acciones de modificar y eliminar solo son posibles para los roles Admin y Gestor. Por lo tanto los botones que realizan dichas acciones no aparecen
+Las acciones de modificar y eliminar solo son posibles para los roles Admin y Gestor. Por lo tanto los botones que realizan dichas acciones no aparecen en rol invitado
 
 .. image:: defensas.png
 
