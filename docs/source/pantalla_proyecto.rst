@@ -60,3 +60,8 @@ Reporte 4
 ^^^^^^^^^^
 
 .. image:: reporte4.png
+
+Reporte 5
+^^^^^^^^^^
+
+.. image:: reporte5.png
